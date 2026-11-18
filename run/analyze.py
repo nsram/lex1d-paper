@@ -3,8 +3,8 @@
     python3 run/analyze.py --out out/raw        (the run scripts call this at the end)
 
 For one out folder: merges cells/ into reps.csv (one row per process) and results.csv (one row per
-cell x method: medians and min/max over the timed rounds), writes summary.md, prior_check.md (SSE
-identity and time ratios against the earlier Mac runs in results/prior/) and figures/ (if matplotlib imports).
+cell x method: medians and min/max over the timed rounds), writes summary.md, gold_check.md (SSE
+identity and time ratios against the GOLD run in results/gold/<mode>/) and figures/ (if matplotlib imports).
 If both out/raw/ and out/sorted/ exist next to each other (with results.csv), it also writes
 raw_vs_sorted.csv / raw_vs_sorted.md into both (sort cost = raw - sorted, per cell and method).
 """
@@ -289,58 +289,48 @@ def summary(out, rows, res):
         fh.write("\n".join(L))
 
 
-def prior_check(out, res):
-    p = os.path.join(PACK, "results", "prior", "prior_mac.csv")
-    if not os.path.isfile(p) or not res:
+def gold_check(out, res):
+    """Compare this run with the GOLD run of the same mode: SSE identity and time ratios."""
+    if not res:
+        return
+    mode = res[0]["mode"]
+    p = os.path.join(PACK, "results", "gold", mode, "results.csv")
+    if not os.path.isfile(p) or os.path.abspath(os.path.dirname(p)) == os.path.abspath(out):
         return
     with open(p, newline="") as fh:
-        prior = list(csv.DictReader(fh))
-    mode = res[0]["mode"]
-    idx = {}
-    for o in res:
-        if o.get("status") != "ok":
-            continue
-        meth = {"rb_hybrid": "lex_hybrid"}.get(o["method"], o["method"]) if o["section"] == "bindings" else o["method"]
-        idx[(o["section"], o["dataset"], int(o["slice"]), int(o["k"]), meth, int(o["M"] or 0), o["family"] if o["section"] == "bindings" else "")] = o
+        gold = list(csv.DictReader(fh))
+    key = lambda r: (r["section"], r["dataset"], r["slice"], r["k"], r["method"], r["M"], r["family"], r["weighted"])
+    idx = {key(o): o for o in res if o.get("status") == "ok"}
     out_rows = []
-    for r in prior:
-        fam = "R" if r["source"] == "v23_rbind" else ""
-        if r["source"] == "v23_rbind" and r["method"] == "Ckmeans.1d.dp":
-            continue  # v23's k=16 drift cells are covered by the main grid
-        sec = r["section"]
-        key = (sec, r["dataset"], int(r["slice"]), int(r["k"]), r["method"], int(float(r["M"] or 0)), fam)
-        o = idx.get(key)
-        if not o:
+    for g in gold:
+        o = idx.get(key(g))
+        if not o or g.get("status") != "ok" or str(o["N"]) != g["N"]:  # e.g. --smoke pieces: not comparable
             continue
-        full_n = 8_168_256 if int(r["slice"]) == 0 else 2 ** (13 + int(r["slice"]))
-        if int(o["N"]) != full_n:  # e.g. --smoke pieces: not comparable
-            continue
-        t_prior = f(r["time_presorted_s"]) if mode == "sorted" else f(r["time_raw_s"])
-        same = o["sse"] == r["sse"] or (f(o["sse"]) == f(r["sse"]))
-        out_rows.append(dict(source=r["source"], section=sec, dataset=r["dataset"], slice=r["slice"], k=r["k"], method=r["method"],
-                             M=r["M"], sse_v24=o["sse"], sse_prior=r["sse"], sse_identical=int(same),
-                             rel_diff=(abs(f(o["sse"]) - f(r["sse"])) / f(r["sse"]) if f(r["sse"]) else ""),
-                             sizes_identical=(int(o["sizes"] == r["sizes"]) if r["sizes"] else ""),
-                             time_v24=o["fit_s"], time_prior=t_prior,
-                             time_ratio_v24_over_prior=(o["fit_s"] / t_prior if t_prior and o["fit_s"] else "")))
+        same = o["sse"] == g["sse"] or f(o["sse"]) == f(g["sse"])
+        out_rows.append(dict(section=g["section"], dataset=g["dataset"], slice=g["slice"], k=g["k"], method=g["method"],
+                             M=g["M"], family=g["family"], weighted=g["weighted"], sse=o["sse"], sse_gold=g["sse"],
+                             sse_identical=int(same),
+                             rel_diff=(abs(f(o["sse"]) - f(g["sse"])) / f(g["sse"]) if f(g["sse"]) else ""),
+                             sizes_identical=int(o["sizes"] == g["sizes"]),
+                             time=o["fit_s"], time_gold=g["fit_s"],
+                             time_ratio=(f(o["fit_s"]) / f(g["fit_s"]) if f(g["fit_s"]) and o["fit_s"] else "")))
     if not out_rows:
         return
-    with open(os.path.join(out, "prior_check.csv"), "w", newline="") as fh:
+    with open(os.path.join(out, "gold_check.csv"), "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(out_rows[0].keys()))
         w.writeheader()
         w.writerows(out_rows)
-    L = [f"# Identity and drift vs earlier Mac runs ({os.path.basename(out)})\n",
-         "This run's time is the median of the timed rounds (one fit per process). Earlier times: v15 = median of in-process repeats "
-         f"({'presorted_s' if mode == 'sorted' else 'time_s, unsorted'}); v19/v21/v23 = single fits. Same Mac, different day.\n"]
+    L = [f"# Identity and timing vs GOLD ({os.path.basename(out)})\n",
+         f"GOLD: results/gold/{mode}/results.csv (Apple M3 Max). SSEs should match on any machine; time ratios "
+         "(this run / GOLD, median fit times) show the speed of this machine relative to GOLD.\n"]
     body = []
-    for key in sorted({(r["source"], r["method"]) for r in out_rows}):
-        sel = [r for r in out_rows if (r["source"], r["method"]) == key]
-        rat = [r["time_ratio_v24_over_prior"] for r in sel if r["time_ratio_v24_over_prior"] != ""]
-        szs = [r["sizes_identical"] for r in sel if r["sizes_identical"] != ""]
-        body.append([key[0], key[1], str(len(sel)), f"{sum(r['sse_identical'] for r in sel)}/{len(sel)}",
-                     f"{sum(szs)}/{len(szs)}" if szs else "", med(rat), min(rat) if rat else None, max(rat) if rat else None])
-    L.append(table(["earlier run", "method", "cells", "SSE identical", "sizes identical", "time ratio this run/earlier (median)", "min", "max"], body))
-    with open(os.path.join(out, "prior_check.md"), "w") as fh:
+    for m in sorted({r["method"] for r in out_rows}):
+        sel = [r for r in out_rows if r["method"] == m]
+        rat = [r["time_ratio"] for r in sel if r["time_ratio"] != ""]
+        body.append([m, str(len(sel)), f"{sum(r['sse_identical'] for r in sel)}/{len(sel)}",
+                     f"{sum(r['sizes_identical'] for r in sel)}/{len(sel)}", med(rat), min(rat) if rat else None, max(rat) if rat else None])
+    L.append(table(["method", "cells", "SSE identical", "sizes identical", "time ratio this run/GOLD (median)", "min", "max"], body))
+    with open(os.path.join(out, "gold_check.md"), "w") as fh:
         fh.write("\n".join(L))
 
 
@@ -499,7 +489,7 @@ def main():
         print("no cells yet in", a.out)
         return 0
     summary(a.out, rows, res)
-    prior_check(a.out, res)
+    gold_check(a.out, res)
     raw_vs_sorted(a.out)
     figures(a.out, res)
     print(f"analysis: {len(rows)} processes, {len(res)} cell x method rows -> {a.out}/results.csv, summary.md")

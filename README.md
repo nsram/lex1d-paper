@@ -24,7 +24,6 @@ figures, and the data or the means to regenerate it.
 | `simulation/input/` | The 12 generated simulation files. Not in git; created on the first run. |
 | `results/gold/` | Outputs of the GOLD run used in the papers: `raw/`, `sorted/`, `bindings/`. |
 | `results/figures/` | The figures in the papers. |
-| `results/prior/` | SSEs and times from earlier runs on the same Mac, used for an identity check. |
 | `paper/` | LaTeX sources and PDFs of the technical and expository papers. |
 | `talk/` | The talk, as HTML and PDF. |
 | `requirements.txt`, `requirements-r.txt` | Pinned Python and R package versions (the GOLD versions). |
@@ -129,7 +128,7 @@ Each script writes to `out/raw/`, `out/sorted/` or `out/bindings/`:
 | `results.csv` | One row per cell and method: median, minimum and maximum fit time over the timed rounds, SSE, gap to the exact SSE, peak memory, stage times, and checks. |
 | `reps.csv` | One row per process (every round of every fit). |
 | `summary.md` | Tables of gaps, speed-ups, memory and checks. |
-| `prior_check.csv`, `prior_check.md` | SSE identity and time ratios against `results/prior/`. |
+| `gold_check.csv`, `gold_check.md` | SSE identity and time ratios against the GOLD run in `results/gold/`. |
 | `raw_vs_sorted.csv`, `raw_vs_sorted.md` | Sort cost per cell and method (written once both raw and sorted exist). |
 | `inputs_manifest.csv` | SHA-256 of every prepared input file and the check that each sorted copy is a permutation of its raw slice. |
 | `env.txt`, `env_<session>.txt` | Machine, compiler, R and Python versions, and SHA-256 of the lex1d and benchmark sources. |
