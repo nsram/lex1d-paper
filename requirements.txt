@@ -1,0 +1,12 @@
+# Python packages for the lex1d Python binding (run/bindings.sh only), installed by run/setup.sh into
+# ./.venv. The two full-grid scripts (run/raw.sh, run/sorted.sh) use only the Python standard library;
+# numpy is also used by data/generate.py when simulation/input/ has to be generated.
+# Needs Python 3.12+ (numpy 2.5.5 requires it). GOLD used Python 3.13.18.
+# All six versions are the ones in the GOLD environment, confirmed with `pip freeze` on the GOLD Mac
+# (2026-11-18). numpy 2.5.5 is also recorded in results/gold/bindings/env.txt.
+numpy==2.5.5
+nanobind==3.1.0
+scikit-build-core==1.1.2
+cmake==4.4.5
+packaging==26.3
+pathspec==1.1.1

@@ -1,0 +1,86 @@
+2026-11-18 10:52:21 EST ==== bot_v24_bindings.sh start (session 20261118T105221-32750) ====
+2026-11-18 10:52:21 EST args: simulation --resume
+2026-11-18 10:52:21 EST pack: /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack  out: /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/out_v24_bindings  mode: bindings  reps: 3 (+1 warm-up)  smoke: 0
+2026-11-18 10:52:21 EST python: /Users/sriram/Desktop/PyEnv/llm/bin/python3 (3.13.18)
+2026-11-18 10:52:21 EST lex1d check: 104/104 files identical to commit 8a691ee
+2026-11-18 10:52:21 EST building lex1d (8a691ee005b657f985ffa299c57542b79570b08c) and bench/bot_v24_fit.cpp in .build_v24/
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/.build_v24
+[ 33%] Built target lex
+[ 42%] Built target bot_v24_fit
+[ 52%] Built target test_edge
+[ 71%] Built target test_coarse
+[ 71%] Built target test_weighted
+[ 90%] Built target test_ties
+[100%] Built target test_quality
+[100%] Built target test_exact
+Test project /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/.build_v24
+    Start 1: edge
+1/6 Test #1: edge .............................   Passed    0.00 sec
+    Start 2: exact
+2/6 Test #2: exact ............................   Passed    0.06 sec
+    Start 3: quality
+3/6 Test #3: quality ..........................   Passed    0.12 sec
+    Start 4: coarse
+4/6 Test #4: coarse ...........................   Passed    1.59 sec
+    Start 5: weighted
+5/6 Test #5: weighted .........................   Passed    0.01 sec
+    Start 6: ties
+6/6 Test #6: ties .............................   Passed    0.25 sec
+
+100% tests passed out of 6
+
+Total Test time (real) =   2.04 sec
+2026-11-18 10:52:24 EST ctest: 100% tests passed out of 6
+* installing *source* package ‘lex1d’ ...
+** this is package ‘lex1d’ version ‘0.1.0’
+** using staged installation
+** libs
+specified C++17
+using C++ compiler: ‘Apple clang version 17.0.0 (clang-1700.4.4.1)’
+using C++17
+using SDK: ‘MacOSX26.1.sdk’
+clang++ -std=gnu++17 -I"/opt/homebrew/Cellar/r/4.6.2/lib/R/include" -DNDEBUG -I. -I'/opt/homebrew/lib/R/4.6/site-library/Rcpp/include' -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include   -ffp-contract=off -fPIC  -g -O2   -c RcppExports.cpp -o RcppExports.o
+clang++ -std=gnu++17 -I"/opt/homebrew/Cellar/r/4.6.2/lib/R/include" -DNDEBUG -I. -I'/opt/homebrew/lib/R/4.6/site-library/Rcpp/include' -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include   -ffp-contract=off -fPIC  -g -O2   -c atoms.cpp -o atoms.o
+clang++ -std=gnu++17 -I"/opt/homebrew/Cellar/r/4.6.2/lib/R/include" -DNDEBUG -I. -I'/opt/homebrew/lib/R/4.6/site-library/Rcpp/include' -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include   -ffp-contract=off -fPIC  -g -O2   -c collapse.cpp -o collapse.o
+clang++ -std=gnu++17 -I"/opt/homebrew/Cellar/r/4.6.2/lib/R/include" -DNDEBUG -I. -I'/opt/homebrew/lib/R/4.6/site-library/Rcpp/include' -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include   -ffp-contract=off -fPIC  -g -O2   -c exact.cpp -o exact.o
+clang++ -std=gnu++17 -I"/opt/homebrew/Cellar/r/4.6.2/lib/R/include" -DNDEBUG -I. -I'/opt/homebrew/lib/R/4.6/site-library/Rcpp/include' -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include   -ffp-contract=off -fPIC  -g -O2   -c lex.cpp -o lex.o
+clang++ -std=gnu++17 -I"/opt/homebrew/Cellar/r/4.6.2/lib/R/include" -DNDEBUG -I. -I'/opt/homebrew/lib/R/4.6/site-library/Rcpp/include' -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include   -ffp-contract=off -fPIC  -g -O2   -c lex1d_r.cpp -o lex1d_r.o
+clang++ -std=gnu++17 -I"/opt/homebrew/Cellar/r/4.6.2/lib/R/include" -DNDEBUG -I. -I'/opt/homebrew/lib/R/4.6/site-library/Rcpp/include' -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include   -ffp-contract=off -fPIC  -g -O2   -c refine.cpp -o refine.o
+clang++ -std=gnu++17 -I"/opt/homebrew/Cellar/r/4.6.2/lib/R/include" -DNDEBUG -I. -I'/opt/homebrew/lib/R/4.6/site-library/Rcpp/include' -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include   -ffp-contract=off -fPIC  -g -O2   -c sort.cpp -o sort.o
+clang++ -std=gnu++17 -dynamiclib -Wl,-headerpad_max_install_names -undefined dynamic_lookup -L/opt/homebrew/Cellar/r/4.6.2/lib/R/lib -L/opt/homebrew/opt/gettext/lib -L/opt/homebrew/opt/readline/lib -L/opt/homebrew/opt/xz/lib -L/opt/homebrew/lib -o lex1d.so RcppExports.o atoms.o collapse.o exact.o lex.o lex1d_r.o refine.o sort.o -L/opt/homebrew/Cellar/r/4.6.2/lib/R/lib -lR
+installing to /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/R-lib/00LOCK-r/00new/lex1d/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (lex1d)
+2026-11-18 10:52:30 EST lex1d R binding installed in R-lib (0.1.0)
+2026-11-18 10:52:30 EST building the lex1d Python module into .venv_v24 (pip: numpy, nanobind, scikit-build-core, cmake; needs internet)
+2026-11-18 10:52:30 EST venv base python: /Users/sriram/Desktop/PyEnv/llm/bin/python3
+2026-11-18 10:52:45 EST lex1d Python binding: 0.1.0 numpy 2.5.5
+2026-11-18 10:52:45 EST input folder: /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/simulation/input/input
+ok       gaussian_continuous: 2080768 lines, sha256 33de84399ea3fee9b25dcef7d67712995cbb9df5016d7b7ba80b6d1155be2d7b
+2026-11-18 10:52:45 EST audio: part1 ../bot_v19_mem/data/dharini-abhogi.txt.gz.part1 part2 ../bot_v19_mem/data/dharini-abhogi.txt.gz.part2
+2026-11-18 10:52:45 EST environment written to env.txt (and env_20261118T105221-32750.txt)
+2026-11-18T10:52:45-05:00 plan: 8 cells, mode=bindings, sections=['main', 'msweep', 'audio', 'weighted'], reps=3 (+1 warm-up), RAM=137.4 GB, mem limit=100.0 GB
+2026-11-18T10:52:50-05:00 inputs checked: 2 slices, 7 files; all sorted copies are ascending permutations of their own raw slice (inputs_manifest.csv)
+2026-11-18T10:52:50-05:00 [1/8] bindings gaussian_continuous_s7_load done (0.1 min elapsed) 
+2026-11-18T10:52:54-05:00 [2/8] bindings gaussian_continuous_s7_k8 done (0.2 min elapsed) lex_hybrid4096=0.2751s py_hybrid4096=0.2767s rb_hybrid4096=0.2916s
+2026-11-18T10:52:59-05:00 [3/8] bindings gaussian_continuous_s7_k64 done (0.2 min elapsed) lex_hybrid4096=0.2803s py_hybrid4096=0.2822s rb_hybrid4096=0.2959s
+2026-11-18T10:53:04-05:00 [4/8] bindings gaussian_continuous_s7_k512 done (0.3 min elapsed) lex_hybrid4096=0.3193s py_hybrid4096=0.3205s rb_hybrid4096=0.3397s
+2026-11-18T10:53:04-05:00 [5/8] bindings audio_s0_load done (0.3 min elapsed) 
+2026-11-18T10:58:51-05:00 [6/8] bindings audio_s0_k8 done (6.1 min elapsed) lex_hybrid4096=2.789s py_hybrid4096=2.783s rb_hybrid4096=2.895s
+2026-11-18T11:04:08-05:00 [7/8] bindings audio_s0_k64 done (11.4 min elapsed) lex_hybrid4096=2.826s py_hybrid4096=2.819s rb_hybrid4096=2.921s
+2026-11-18T11:04:48-05:00 [8/8] bindings audio_s0_k512 done (12.0 min elapsed) lex_hybrid4096=2.967s py_hybrid4096=2.968s rb_hybrid4096=3.125s
+2026-11-18T11:04:48-05:00 all 8 cells done (12.0 min this session)
+raw vs sorted comparison written to /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/out_v24_raw and /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/out_v24_sorted
+analysis: 78 processes, 18 cell x method rows -> /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/out_v24_bindings/results.csv, summary.md
+2026-11-18 11:04:49 EST after the run: lex1d check: 104/104 files identical to commit 8a691ee
+2026-11-18 11:04:49 EST finished bot_v24_bindings.sh (rc 0). session time: 0h 12m 28s. Results: /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/out_v24_bindings

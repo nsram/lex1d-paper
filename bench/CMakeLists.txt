@@ -1,0 +1,23 @@
+# Benchmark build: the frozen lex1d C++ library (../lex1d/cpp, commit 8a691ee, verbatim), its 6 test
+# suites, and the single-fit driver fit.cpp. Release and strict floating point (-ffp-contract=off)
+# come from lex1d/cpp/cmake/LexFloatingPoint.cmake. run/common.sh configures it with
+#   cmake -S bench -B build -DCMAKE_BUILD_TYPE=Release
+cmake_minimum_required(VERSION 3.21)
+project(lex_bench LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+endif()
+set(LEX_BUILD_TESTS ON CACHE BOOL "" FORCE)
+set(LEX_BUILD_CLI OFF CACHE BOOL "" FORCE)
+enable_testing()
+set(LEX1D_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../lex1d)
+add_subdirectory(${LEX1D_DIR}/cpp ${CMAKE_CURRENT_BINARY_DIR}/lex1d)
+add_executable(fit fit.cpp)
+target_include_directories(fit PRIVATE ${LEX1D_DIR}/cpp/src)
+target_link_libraries(fit PRIVATE lex)
+lex_strict_fp(fit)
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+  target_compile_options(fit PRIVATE -Wall -Wextra)
+endif()

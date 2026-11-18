@@ -1,0 +1,3 @@
+source,section,dataset,slice,k,method,M,sse_v24,sse_prior,sse_identical,rel_diff,sizes_identical,time_v24,time_prior,time_ratio_v24_over_prior
+v23_rbind,bindings,audio,0,512,lex_hybrid,4096,2.6161600135588414,2.6161600135588414,1,0.0,,3.124561071,3.20320487,0.9754484017751883
+v23_rbind,bindings,gaussian_continuous,7,512,lex_hybrid,4096,10.553673331986507,10.553673331986507,1,0.0,,0.339670897,0.330528975,1.027658458687321

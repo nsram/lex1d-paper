@@ -1,0 +1,10 @@
+# R packages, installed by run/setup.sh into ./R-lib from CRAN source tarballs, in this order
+# (each line's dependencies come before it). Format: package==version
+# Rcpp 1.1.2 and Ckmeans.1d.dp 4.3.6: recorded in results/gold/*/env.txt.
+# rbibutils and Rdpack (needed by Ckmeans.1d.dp: Imports Rdpack (>= 0.6-1); Rdpack Imports rbibutils (> 2.4)):
+# not recorded in the GOLD logs. Pinned to the CRAN releases current on 2026-11-18.
+# lex1d's own R package (lex1d/r) needs only Rcpp; it is built from lex1d/ by run/bindings.sh.
+rbibutils==2.4.1
+Rdpack==2.6.6
+Rcpp==1.1.2
+Ckmeans.1d.dp==4.3.6

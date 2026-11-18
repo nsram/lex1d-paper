@@ -1,0 +1,968 @@
+2026-11-17 23:50:41 EST ==== bot_v24_lex_full.sh start (session 20261117T235041-88996) ====
+2026-11-17 23:50:41 EST args: simulation --resume
+2026-11-17 23:50:41 EST pack: /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack  out: /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/out_v24_raw  mode: raw  reps: 3 (+1 warm-up)  smoke: 0
+2026-11-17 23:50:41 EST python: /Users/sriram/Desktop/PyEnv/llm/bin/python3 (3.13.18)
+2026-11-17 23:50:41 EST lex1d check: 104/104 files identical to commit 8a691ee
+2026-11-17 23:50:41 EST R: /opt/homebrew/bin/Rscript; Ckmeans.1d.dp 4.3.6
+2026-11-17 23:50:41 EST building lex1d (8a691ee005b657f985ffa299c57542b79570b08c) and bench/bot_v24_fit.cpp in .build_v24/
+-- The CXX compiler identification is AppleClang 17.0.0.17000404
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/.build_v24
+[ 23%] Building CXX object lex1d/cpp/CMakeFiles/lex.dir/src/lex.cpp.o
+[ 23%] Building CXX object lex1d/cpp/CMakeFiles/lex.dir/src/exact.cpp.o
+[ 23%] Building CXX object lex1d/cpp/CMakeFiles/lex.dir/src/collapse.cpp.o
+[ 23%] Building CXX object lex1d/cpp/CMakeFiles/lex.dir/src/atoms.cpp.o
+[ 28%] Building CXX object lex1d/cpp/CMakeFiles/lex.dir/src/refine.cpp.o
+[ 28%] Building CXX object lex1d/cpp/CMakeFiles/lex.dir/src/sort.cpp.o
+[ 33%] Linking CXX static library liblex.a
+[ 33%] Built target lex
+[ 38%] Building CXX object CMakeFiles/bot_v24_fit.dir/bench/bot_v24_fit.cpp.o
+[ 66%] Building CXX object lex1d/cpp/CMakeFiles/test_weighted.dir/tests/test_weighted.cpp.o
+[ 66%] Building CXX object lex1d/cpp/CMakeFiles/test_ties.dir/tests/test_ties.cpp.o
+[ 66%] Building CXX object lex1d/cpp/CMakeFiles/test_edge.dir/tests/test_edge.cpp.o
+[ 66%] Building CXX object lex1d/cpp/CMakeFiles/test_coarse.dir/tests/test_coarse.cpp.o
+[ 66%] Building CXX object lex1d/cpp/CMakeFiles/test_exact.dir/tests/test_exact.cpp.o
+[ 66%] Building CXX object lex1d/cpp/CMakeFiles/test_quality.dir/tests/test_quality.cpp.o
+[ 71%] Linking CXX executable bot_v24_fit
+[ 71%] Built target bot_v24_fit
+[ 76%] Linking CXX executable test_exact
+[ 80%] Linking CXX executable test_quality
+[ 80%] Built target test_exact
+[ 80%] Built target test_quality
+[ 85%] Linking CXX executable test_edge
+[ 85%] Built target test_edge
+[ 90%] Linking CXX executable test_ties
+[ 95%] Linking CXX executable test_coarse
+[ 95%] Built target test_ties
+[ 95%] Built target test_coarse
+[100%] Linking CXX executable test_weighted
+[100%] Built target test_weighted
+Test project /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/.build_v24
+    Start 1: edge
+1/6 Test #1: edge .............................   Passed    0.14 sec
+    Start 2: exact
+2/6 Test #2: exact ............................   Passed    0.18 sec
+    Start 3: quality
+3/6 Test #3: quality ..........................   Passed    0.23 sec
+    Start 4: coarse
+4/6 Test #4: coarse ...........................   Passed    1.60 sec
+    Start 5: weighted
+5/6 Test #5: weighted .........................   Passed    0.15 sec
+    Start 6: ties
+6/6 Test #6: ties .............................   Passed    0.35 sec
+
+100% tests passed out of 6
+
+Total Test time (real) =   2.66 sec
+2026-11-17 23:50:46 EST ctest: 100% tests passed out of 6
+2026-11-17 23:50:46 EST input folder: /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/simulation/input/input
+ok       uniform_continuous: 2080768 lines, sha256 42bca98e79af6d5bbe7636c014eb811d7b4acbc62c6a956e67b9aa3525686330
+ok       gaussian_continuous: 2080768 lines, sha256 33de84399ea3fee9b25dcef7d67712995cbb9df5016d7b7ba80b6d1155be2d7b
+ok       exponential_continuous: 2080768 lines, sha256 3d3ef789d55aaab011dfeacb83c8c9db8fc98c9950ec8abae8941af0f83dfd09
+ok       weibull_continuous: 2080768 lines, sha256 a9b9248d76fb86659759739c6c4609297bd312125ccf0311ca78d8a163ff482d
+ok       lognormal_continuous: 2080768 lines, sha256 e760283b3a050303b29066837fd5851be88d710693085114935ac1cbc5a9a3ae
+ok       gmm_continuous: 2080768 lines, sha256 e2d68b79b208d15bb1ef37bf67eb7ee5555896d375fa6292a13544c85611e6ab
+ok       wg_mixture_continuous: 2080768 lines, sha256 8f4232cf65b6c45084c68c061c3063793f132c0725eda335339bae9336ffc032
+ok       bimodal_gaussian_continuous: 2080768 lines, sha256 d9d088356f175984c2f96adbf4e39afb1acaaf472860b4bb5661eabab3c1cb52
+ok       mixed_continuous: 2080768 lines, sha256 13defb8b9c8c7c389586319b57c85a6ad54625bfc2f137c8a0f1a2e5b58427fd
+ok       truncated_continuous: 2080768 lines, sha256 0133e459e0812c9e07268c9769e0d62ade6a2c8ed65727ca97401bec387b39a2
+ok       triangular_discrete: 2080768 lines, sha256 358cfd7b5bb53c765274d81b63d315b2090694dcd129a2ea04ab2311322bf291
+ok       spike_uniform_discrete: 2080768 lines, sha256 65cdea51c4efa72044c2f2fe2cffc68e27727d1cd835b282d578b5ca2179ad36
+2026-11-17 23:50:47 EST audio: part1 ../bot_v19_mem/data/dharini-abhogi.txt.gz.part1 part2 ../bot_v19_mem/data/dharini-abhogi.txt.gz.part2
+2026-11-17 23:50:47 EST environment written to env.txt (and env_20261117T235041-88996.txt)
+2026-11-17T23:50:47-05:00 plan: 870 cells, mode=raw, sections=['main', 'msweep', 'audio', 'weighted'], reps=3 (+1 warm-up), RAM=137.4 GB, mem limit=100.0 GB
+2026-11-17T23:50:50-05:00 prepared audio slices [0] (3.0s)
+2026-11-17T23:50:51-05:00 prepared bimodal_gaussian_continuous slices [1, 2, 3, 4, 5, 6, 7] (0.8s)
+2026-11-17T23:50:51-05:00 prepared exponential_continuous slices [1, 2, 3, 4, 5, 6, 7] (0.8s)
+2026-11-17T23:50:53-05:00 prepared gaussian_continuous slices [1, 2, 3, 4, 5, 6, 7] (2.0s)
+2026-11-17T23:50:54-05:00 prepared gmm_continuous slices [1, 2, 3, 4, 5, 6, 7] (0.8s)
+2026-11-17T23:50:56-05:00 prepared lognormal_continuous slices [1, 2, 3, 4, 5, 6, 7] (2.0s)
+2026-11-17T23:50:57-05:00 prepared mixed_continuous slices [1, 2, 3, 4, 5, 6, 7] (0.8s)
+2026-11-17T23:50:57-05:00 prepared spike_uniform_discrete slices [1, 2, 3, 4, 5, 6, 7] (0.5s)
+2026-11-17T23:50:58-05:00 prepared triangular_discrete slices [1, 2, 3, 4, 5, 6, 7] (0.5s)
+2026-11-17T23:50:59-05:00 prepared truncated_continuous slices [1, 2, 3, 4, 5, 6, 7] (0.8s)
+2026-11-17T23:51:01-05:00 prepared uniform_continuous slices [1, 2, 3, 4, 5, 6, 7] (2.0s)
+2026-11-17T23:51:02-05:00 prepared weibull_continuous slices [1, 2, 3, 4, 5, 6, 7] (0.8s)
+2026-11-17T23:51:02-05:00 prepared wg_mixture_continuous slices [1, 2, 3, 4, 5, 6, 7] (0.8s)
+2026-11-17T23:51:20-05:00 inputs checked: 85 slices, 233 files; all sorted copies are ascending permutations of their own raw slice (inputs_manifest.csv)
+2026-11-17T23:51:20-05:00 [1/870] main uniform_continuous_s1_load done (0.6 min elapsed) 
+2026-11-17T23:51:21-05:00 [2/870] main uniform_continuous_s1_k4 done (0.6 min elapsed) Ckmeans.1d.dp=0.002907s ckmeans_exact=0.001912s lex_hybrid16384=0.001934s lex_hybrid4096=0.002272s lex_hybrid8192=0.002256s lex_plain=0.002519s
+2026-11-17T23:51:22-05:00 [3/870] main uniform_continuous_s1_k8 done (0.6 min elapsed) Ckmeans.1d.dp=0.00564s ckmeans_exact=0.003403s lex_hybrid16384=0.003361s lex_hybrid4096=0.002593s lex_hybrid8192=0.002932s lex_plain=0.002799s
+2026-11-17T23:51:23-05:00 [4/870] main uniform_continuous_s1_k16 done (0.6 min elapsed) Ckmeans.1d.dp=0.01114s ckmeans_exact=0.006023s lex_hybrid16384=0.006121s lex_hybrid4096=0.003249s lex_hybrid8192=0.004304s lex_plain=0.002713s
+2026-11-17T23:51:23-05:00 [5/870] main uniform_continuous_s1_k32 done (0.6 min elapsed) Ckmeans.1d.dp=0.02161s ckmeans_exact=0.01145s lex_hybrid16384=0.01145s lex_hybrid4096=0.004423s lex_hybrid8192=0.006868s lex_plain=0.002546s
+2026-11-17T23:51:25-05:00 [6/870] main uniform_continuous_s1_k64 done (0.6 min elapsed) Ckmeans.1d.dp=0.04221s ckmeans_exact=0.02212s lex_hybrid16384=0.02258s lex_hybrid4096=0.006737s lex_hybrid8192=0.01197s lex_plain=0.002683s
+2026-11-17T23:51:26-05:00 [7/870] main uniform_continuous_s1_k128 done (0.7 min elapsed) Ckmeans.1d.dp=0.08388s ckmeans_exact=0.04326s lex_hybrid16384=0.04333s lex_hybrid4096=0.01133s lex_hybrid8192=0.02182s lex_plain=0.00272s
+2026-11-17T23:51:29-05:00 [8/870] main uniform_continuous_s1_k256 done (0.7 min elapsed) Ckmeans.1d.dp=0.171s ckmeans_exact=0.08544s lex_hybrid16384=0.08586s lex_hybrid4096=0.02028s lex_hybrid8192=0.04216s lex_plain=0.002828s
+2026-11-17T23:51:33-05:00 [9/870] main uniform_continuous_s1_k512 done (0.8 min elapsed) Ckmeans.1d.dp=0.3228s ckmeans_exact=0.1663s lex_hybrid16384=0.1657s lex_hybrid4096=0.03696s lex_hybrid8192=0.07922s lex_plain=0.002731s
+2026-11-17T23:51:33-05:00 [10/870] main gaussian_continuous_s1_load done (0.8 min elapsed) 
+2026-11-17T23:51:34-05:00 [11/870] main gaussian_continuous_s1_k4 done (0.8 min elapsed) Ckmeans.1d.dp=0.00301s ckmeans_exact=0.001914s lex_hybrid16384=0.001951s lex_hybrid4096=0.002318s lex_hybrid8192=0.002287s lex_plain=0.002872s
+2026-11-17T23:51:35-05:00 [12/870] main gaussian_continuous_s1_k8 done (0.8 min elapsed) Ckmeans.1d.dp=0.005765s ckmeans_exact=0.003374s lex_hybrid16384=0.003346s lex_hybrid4096=0.002636s lex_hybrid8192=0.002985s lex_plain=0.002788s
+2026-11-17T23:51:36-05:00 [13/870] main gaussian_continuous_s1_k16 done (0.8 min elapsed) Ckmeans.1d.dp=0.0116s ckmeans_exact=0.006195s lex_hybrid16384=0.006167s lex_hybrid4096=0.003428s lex_hybrid8192=0.004336s lex_plain=0.002882s
+2026-11-17T23:51:37-05:00 [14/870] main gaussian_continuous_s1_k32 done (0.8 min elapsed) Ckmeans.1d.dp=0.02237s ckmeans_exact=0.01194s lex_hybrid16384=0.01177s lex_hybrid4096=0.004551s lex_hybrid8192=0.007015s lex_plain=0.002687s
+2026-11-17T23:51:38-05:00 [15/870] main gaussian_continuous_s1_k64 done (0.9 min elapsed) Ckmeans.1d.dp=0.04288s ckmeans_exact=0.02312s lex_hybrid16384=0.02312s lex_hybrid4096=0.00683s lex_hybrid8192=0.01242s lex_plain=0.00291s
+2026-11-17T23:51:40-05:00 [16/870] main gaussian_continuous_s1_k128 done (0.9 min elapsed) Ckmeans.1d.dp=0.08531s ckmeans_exact=0.04481s lex_hybrid16384=0.04473s lex_hybrid4096=0.01168s lex_hybrid8192=0.02267s lex_plain=0.002843s
+2026-11-17T23:51:42-05:00 [17/870] main gaussian_continuous_s1_k256 done (0.9 min elapsed) Ckmeans.1d.dp=0.1709s ckmeans_exact=0.08731s lex_hybrid16384=0.08688s lex_hybrid4096=0.02093s lex_hybrid8192=0.04254s lex_plain=0.002762s
+2026-11-17T23:51:47-05:00 [18/870] main gaussian_continuous_s1_k512 done (1.0 min elapsed) Ckmeans.1d.dp=0.3264s ckmeans_exact=0.1687s lex_hybrid16384=0.1682s lex_hybrid4096=0.03779s lex_hybrid8192=0.08043s lex_plain=0.002905s
+2026-11-17T23:51:47-05:00 [19/870] main exponential_continuous_s1_load done (1.0 min elapsed) 
+2026-11-17T23:51:48-05:00 [20/870] main exponential_continuous_s1_k4 done (1.0 min elapsed) Ckmeans.1d.dp=0.003331s ckmeans_exact=0.002008s lex_hybrid16384=0.00199s lex_hybrid4096=0.002324s lex_hybrid8192=0.002322s lex_plain=0.00261s
+2026-11-17T23:51:48-05:00 [21/870] main exponential_continuous_s1_k8 done (1.0 min elapsed) Ckmeans.1d.dp=0.00622s ckmeans_exact=0.003419s lex_hybrid16384=0.003486s lex_hybrid4096=0.002657s lex_hybrid8192=0.003014s lex_plain=0.002632s
+2026-11-17T23:51:49-05:00 [22/870] main exponential_continuous_s1_k16 done (1.0 min elapsed) Ckmeans.1d.dp=0.01188s ckmeans_exact=0.006208s lex_hybrid16384=0.006204s lex_hybrid4096=0.003302s lex_hybrid8192=0.00431s lex_plain=0.002761s
+2026-11-17T23:51:50-05:00 [23/870] main exponential_continuous_s1_k32 done (1.1 min elapsed) Ckmeans.1d.dp=0.02291s ckmeans_exact=0.01197s lex_hybrid16384=0.01193s lex_hybrid4096=0.004529s lex_hybrid8192=0.007088s lex_plain=0.003389s
+2026-11-17T23:51:51-05:00 [24/870] main exponential_continuous_s1_k64 done (1.1 min elapsed) Ckmeans.1d.dp=0.04379s ckmeans_exact=0.02266s lex_hybrid16384=0.02267s lex_hybrid4096=0.007041s lex_hybrid8192=0.01233s lex_plain=0.003587s
+2026-11-17T23:51:53-05:00 [25/870] main exponential_continuous_s1_k128 done (1.1 min elapsed) Ckmeans.1d.dp=0.08749s ckmeans_exact=0.0436s lex_hybrid16384=0.04392s lex_hybrid4096=0.01169s lex_hybrid8192=0.02245s lex_plain=0.003626s
+2026-11-17T23:51:56-05:00 [26/870] main exponential_continuous_s1_k256 done (1.1 min elapsed) Ckmeans.1d.dp=0.1736s ckmeans_exact=0.08448s lex_hybrid16384=0.0844s lex_hybrid4096=0.02046s lex_hybrid8192=0.04177s lex_plain=0.003077s
+2026-11-17T23:52:00-05:00 [27/870] main exponential_continuous_s1_k512 done (1.2 min elapsed) Ckmeans.1d.dp=0.3288s ckmeans_exact=0.1636s lex_hybrid16384=0.1641s lex_hybrid4096=0.03735s lex_hybrid8192=0.07944s lex_plain=0.003146s
+2026-11-17T23:52:00-05:00 [28/870] main weibull_continuous_s1_load done (1.2 min elapsed) 
+2026-11-17T23:52:01-05:00 [29/870] main weibull_continuous_s1_k4 done (1.2 min elapsed) Ckmeans.1d.dp=0.003323s ckmeans_exact=0.002007s lex_hybrid16384=0.002059s lex_hybrid4096=0.002341s lex_hybrid8192=0.00238s lex_plain=0.002825s
+2026-11-17T23:52:02-05:00 [30/870] main weibull_continuous_s1_k8 done (1.2 min elapsed) Ckmeans.1d.dp=0.006274s ckmeans_exact=0.003465s lex_hybrid16384=0.003394s lex_hybrid4096=0.002675s lex_hybrid8192=0.002989s lex_plain=0.002911s
+2026-11-17T23:52:03-05:00 [31/870] main weibull_continuous_s1_k16 done (1.3 min elapsed) Ckmeans.1d.dp=0.01189s ckmeans_exact=0.006218s lex_hybrid16384=0.006353s lex_hybrid4096=0.003315s lex_hybrid8192=0.004384s lex_plain=0.003091s
+2026-11-17T23:52:04-05:00 [32/870] main weibull_continuous_s1_k32 done (1.3 min elapsed) Ckmeans.1d.dp=0.02275s ckmeans_exact=0.01205s lex_hybrid16384=0.0121s lex_hybrid4096=0.004519s lex_hybrid8192=0.007064s lex_plain=0.002722s
+2026-11-17T23:52:05-05:00 [33/870] main weibull_continuous_s1_k64 done (1.3 min elapsed) Ckmeans.1d.dp=0.04374s ckmeans_exact=0.02291s lex_hybrid16384=0.02299s lex_hybrid4096=0.006937s lex_hybrid8192=0.01234s lex_plain=0.00282s
+2026-11-17T23:52:07-05:00 [34/870] main weibull_continuous_s1_k128 done (1.3 min elapsed) Ckmeans.1d.dp=0.08932s ckmeans_exact=0.0443s lex_hybrid16384=0.0442s lex_hybrid4096=0.01172s lex_hybrid8192=0.02261s lex_plain=0.002849s
+2026-11-17T23:52:09-05:00 [35/870] main weibull_continuous_s1_k256 done (1.4 min elapsed) Ckmeans.1d.dp=0.1748s ckmeans_exact=0.08622s lex_hybrid16384=0.08566s lex_hybrid4096=0.02075s lex_hybrid8192=0.04232s lex_plain=0.002944s
+2026-11-17T23:52:14-05:00 [36/870] main weibull_continuous_s1_k512 done (1.4 min elapsed) Ckmeans.1d.dp=0.3276s ckmeans_exact=0.1644s lex_hybrid16384=0.1655s lex_hybrid4096=0.03717s lex_hybrid8192=0.07898s lex_plain=0.002849s
+2026-11-17T23:52:14-05:00 [37/870] main lognormal_continuous_s1_load done (1.4 min elapsed) 
+2026-11-17T23:52:15-05:00 [38/870] main lognormal_continuous_s1_k4 done (1.5 min elapsed) Ckmeans.1d.dp=0.003359s ckmeans_exact=0.001983s lex_hybrid16384=0.001997s lex_hybrid4096=0.002382s lex_hybrid8192=0.00233s lex_plain=0.002651s
+2026-11-17T23:52:15-05:00 [39/870] main lognormal_continuous_s1_k8 done (1.5 min elapsed) Ckmeans.1d.dp=0.006313s ckmeans_exact=0.003376s lex_hybrid16384=0.003361s lex_hybrid4096=0.002697s lex_hybrid8192=0.003025s lex_plain=0.003112s
+2026-11-17T23:52:16-05:00 [40/870] main lognormal_continuous_s1_k16 done (1.5 min elapsed) Ckmeans.1d.dp=0.01204s ckmeans_exact=0.006262s lex_hybrid16384=0.0063s lex_hybrid4096=0.003343s lex_hybrid8192=0.004376s lex_plain=0.003438s
+2026-11-17T23:52:17-05:00 [41/870] main lognormal_continuous_s1_k32 done (1.5 min elapsed) Ckmeans.1d.dp=0.02311s ckmeans_exact=0.01191s lex_hybrid16384=0.01207s lex_hybrid4096=0.004599s lex_hybrid8192=0.007206s lex_plain=0.002862s
+2026-11-17T23:52:19-05:00 [42/870] main lognormal_continuous_s1_k64 done (1.5 min elapsed) Ckmeans.1d.dp=0.04389s ckmeans_exact=0.02296s lex_hybrid16384=0.02295s lex_hybrid4096=0.007103s lex_hybrid8192=0.01248s lex_plain=0.002887s
+2026-11-17T23:52:20-05:00 [43/870] main lognormal_continuous_s1_k128 done (1.6 min elapsed) Ckmeans.1d.dp=0.08785s ckmeans_exact=0.04408s lex_hybrid16384=0.04384s lex_hybrid4096=0.01177s lex_hybrid8192=0.02251s lex_plain=0.003287s
+2026-11-17T23:52:23-05:00 [44/870] main lognormal_continuous_s1_k256 done (1.6 min elapsed) Ckmeans.1d.dp=0.1745s ckmeans_exact=0.0848s lex_hybrid16384=0.08492s lex_hybrid4096=0.02042s lex_hybrid8192=0.04169s lex_plain=0.003801s
+2026-11-17T23:52:27-05:00 [45/870] main lognormal_continuous_s1_k512 done (1.7 min elapsed) Ckmeans.1d.dp=0.3298s ckmeans_exact=0.164s lex_hybrid16384=0.164s lex_hybrid4096=0.03687s lex_hybrid8192=0.07843s lex_plain=0.003376s
+2026-11-17T23:52:27-05:00 [46/870] main gmm_continuous_s1_load done (1.7 min elapsed) 
+2026-11-17T23:52:28-05:00 [47/870] main gmm_continuous_s1_k4 done (1.7 min elapsed) Ckmeans.1d.dp=0.003238s ckmeans_exact=0.002074s lex_hybrid16384=0.002121s lex_hybrid4096=0.002414s lex_hybrid8192=0.002439s lex_plain=0.00282s
+2026-11-17T23:52:29-05:00 [48/870] main gmm_continuous_s1_k8 done (1.7 min elapsed) Ckmeans.1d.dp=0.006242s ckmeans_exact=0.003604s lex_hybrid16384=0.003584s lex_hybrid4096=0.002855s lex_hybrid8192=0.003103s lex_plain=0.003588s
+2026-11-17T23:52:30-05:00 [49/870] main gmm_continuous_s1_k16 done (1.7 min elapsed) Ckmeans.1d.dp=0.01192s ckmeans_exact=0.006728s lex_hybrid16384=0.006681s lex_hybrid4096=0.003396s lex_hybrid8192=0.004584s lex_plain=0.002731s
+2026-11-17T23:52:31-05:00 [50/870] main gmm_continuous_s1_k32 done (1.7 min elapsed) Ckmeans.1d.dp=0.02253s ckmeans_exact=0.01213s lex_hybrid16384=0.01209s lex_hybrid4096=0.004587s lex_hybrid8192=0.00722s lex_plain=0.002802s
+2026-11-17T23:52:32-05:00 [51/870] main gmm_continuous_s1_k64 done (1.8 min elapsed) Ckmeans.1d.dp=0.04401s ckmeans_exact=0.02333s lex_hybrid16384=0.02331s lex_hybrid4096=0.007094s lex_hybrid8192=0.01262s lex_plain=0.002755s
+2026-11-17T23:52:34-05:00 [52/870] main gmm_continuous_s1_k128 done (1.8 min elapsed) Ckmeans.1d.dp=0.08675s ckmeans_exact=0.04473s lex_hybrid16384=0.04453s lex_hybrid4096=0.01182s lex_hybrid8192=0.02282s lex_plain=0.002827s
+2026-11-17T23:52:36-05:00 [53/870] main gmm_continuous_s1_k256 done (1.8 min elapsed) Ckmeans.1d.dp=0.1734s ckmeans_exact=0.08607s lex_hybrid16384=0.08659s lex_hybrid4096=0.02077s lex_hybrid8192=0.04255s lex_plain=0.003159s
+2026-11-17T23:52:41-05:00 [54/870] main gmm_continuous_s1_k512 done (1.9 min elapsed) Ckmeans.1d.dp=0.329s ckmeans_exact=0.1665s lex_hybrid16384=0.1665s lex_hybrid4096=0.03711s lex_hybrid8192=0.08039s lex_plain=0.003019s
+2026-11-17T23:52:41-05:00 [55/870] main wg_mixture_continuous_s1_load done (1.9 min elapsed) 
+2026-11-17T23:52:42-05:00 [56/870] main wg_mixture_continuous_s1_k4 done (1.9 min elapsed) Ckmeans.1d.dp=0.002979s ckmeans_exact=0.001946s lex_hybrid16384=0.001963s lex_hybrid4096=0.002356s lex_hybrid8192=0.002279s lex_plain=0.002493s
+2026-11-17T23:52:43-05:00 [57/870] main wg_mixture_continuous_s1_k8 done (1.9 min elapsed) Ckmeans.1d.dp=0.005504s ckmeans_exact=0.003397s lex_hybrid16384=0.0034s lex_hybrid4096=0.002619s lex_hybrid8192=0.003047s lex_plain=0.002627s
+2026-11-17T23:52:43-05:00 [58/870] main wg_mixture_continuous_s1_k16 done (1.9 min elapsed) Ckmeans.1d.dp=0.01093s ckmeans_exact=0.006338s lex_hybrid16384=0.006337s lex_hybrid4096=0.003303s lex_hybrid8192=0.0044s lex_plain=0.002598s
+2026-11-17T23:52:44-05:00 [59/870] main wg_mixture_continuous_s1_k32 done (2.0 min elapsed) Ckmeans.1d.dp=0.02164s ckmeans_exact=0.01221s lex_hybrid16384=0.01215s lex_hybrid4096=0.00464s lex_hybrid8192=0.007296s lex_plain=0.002887s
+2026-11-17T23:52:46-05:00 [60/870] main wg_mixture_continuous_s1_k64 done (2.0 min elapsed) Ckmeans.1d.dp=0.04214s ckmeans_exact=0.02322s lex_hybrid16384=0.02318s lex_hybrid4096=0.00714s lex_hybrid8192=0.0125s lex_plain=0.003347s
+2026-11-17T23:52:47-05:00 [61/870] main wg_mixture_continuous_s1_k128 done (2.0 min elapsed) Ckmeans.1d.dp=0.08348s ckmeans_exact=0.04487s lex_hybrid16384=0.04475s lex_hybrid4096=0.0118s lex_hybrid8192=0.02262s lex_plain=0.003033s
+2026-11-17T23:52:50-05:00 [62/870] main wg_mixture_continuous_s1_k256 done (2.1 min elapsed) Ckmeans.1d.dp=0.1709s ckmeans_exact=0.08769s lex_hybrid16384=0.08757s lex_hybrid4096=0.02098s lex_hybrid8192=0.04316s lex_plain=0.002775s
+2026-11-17T23:52:54-05:00 [63/870] main wg_mixture_continuous_s1_k512 done (2.1 min elapsed) Ckmeans.1d.dp=0.3246s ckmeans_exact=0.1696s lex_hybrid16384=0.1689s lex_hybrid4096=0.03773s lex_hybrid8192=0.08071s lex_plain=0.003168s
+2026-11-17T23:52:54-05:00 [64/870] main bimodal_gaussian_continuous_s1_load done (2.1 min elapsed) 
+2026-11-17T23:52:55-05:00 [65/870] main bimodal_gaussian_continuous_s1_k4 done (2.1 min elapsed) Ckmeans.1d.dp=0.00288s ckmeans_exact=0.001892s lex_hybrid16384=0.001909s lex_hybrid4096=0.002323s lex_hybrid8192=0.002287s lex_plain=0.002629s
+2026-11-17T23:52:56-05:00 [66/870] main bimodal_gaussian_continuous_s1_k8 done (2.2 min elapsed) Ckmeans.1d.dp=0.00532s ckmeans_exact=0.003449s lex_hybrid16384=0.003341s lex_hybrid4096=0.002596s lex_hybrid8192=0.002943s lex_plain=0.002966s
+2026-11-17T23:52:57-05:00 [67/870] main bimodal_gaussian_continuous_s1_k16 done (2.2 min elapsed) Ckmeans.1d.dp=0.01077s ckmeans_exact=0.006325s lex_hybrid16384=0.006323s lex_hybrid4096=0.003309s lex_hybrid8192=0.00442s lex_plain=0.00264s
+2026-11-17T23:52:58-05:00 [68/870] main bimodal_gaussian_continuous_s1_k32 done (2.2 min elapsed) Ckmeans.1d.dp=0.02125s ckmeans_exact=0.01193s lex_hybrid16384=0.01192s lex_hybrid4096=0.004511s lex_hybrid8192=0.007112s lex_plain=0.002765s
+2026-11-17T23:52:59-05:00 [69/870] main bimodal_gaussian_continuous_s1_k64 done (2.2 min elapsed) Ckmeans.1d.dp=0.04215s ckmeans_exact=0.02304s lex_hybrid16384=0.02313s lex_hybrid4096=0.007004s lex_hybrid8192=0.01235s lex_plain=0.002894s
+2026-11-17T23:53:01-05:00 [70/870] main bimodal_gaussian_continuous_s1_k128 done (2.2 min elapsed) Ckmeans.1d.dp=0.08497s ckmeans_exact=0.04462s lex_hybrid16384=0.04462s lex_hybrid4096=0.01179s lex_hybrid8192=0.02257s lex_plain=0.002881s
+2026-11-17T23:53:03-05:00 [71/870] main bimodal_gaussian_continuous_s1_k256 done (2.3 min elapsed) Ckmeans.1d.dp=0.1717s ckmeans_exact=0.08635s lex_hybrid16384=0.08649s lex_hybrid4096=0.02068s lex_hybrid8192=0.04221s lex_plain=0.002791s
+2026-11-17T23:53:08-05:00 [72/870] main bimodal_gaussian_continuous_s1_k512 done (2.3 min elapsed) Ckmeans.1d.dp=0.3245s ckmeans_exact=0.1669s lex_hybrid16384=0.1672s lex_hybrid4096=0.03755s lex_hybrid8192=0.07975s lex_plain=0.002975s
+2026-11-17T23:53:08-05:00 [73/870] main mixed_continuous_s1_load done (2.4 min elapsed) 
+2026-11-17T23:53:09-05:00 [74/870] main mixed_continuous_s1_k4 done (2.4 min elapsed) Ckmeans.1d.dp=0.002882s ckmeans_exact=0.001892s lex_hybrid16384=0.001915s lex_hybrid4096=0.002279s lex_hybrid8192=0.002282s lex_plain=0.002394s
+2026-11-17T23:53:09-05:00 [75/870] main mixed_continuous_s1_k8 done (2.4 min elapsed) Ckmeans.1d.dp=0.005199s ckmeans_exact=0.00339s lex_hybrid16384=0.003316s lex_hybrid4096=0.002639s lex_hybrid8192=0.002982s lex_plain=0.002762s
+2026-11-17T23:53:10-05:00 [76/870] main mixed_continuous_s1_k16 done (2.4 min elapsed) Ckmeans.1d.dp=0.01018s ckmeans_exact=0.006239s lex_hybrid16384=0.006228s lex_hybrid4096=0.003289s lex_hybrid8192=0.004364s lex_plain=0.002886s
+2026-11-17T23:53:11-05:00 [77/870] main mixed_continuous_s1_k32 done (2.4 min elapsed) Ckmeans.1d.dp=0.02036s ckmeans_exact=0.01198s lex_hybrid16384=0.01195s lex_hybrid4096=0.004513s lex_hybrid8192=0.007091s lex_plain=0.002918s
+2026-11-17T23:53:13-05:00 [78/870] main mixed_continuous_s1_k64 done (2.4 min elapsed) Ckmeans.1d.dp=0.04077s ckmeans_exact=0.02332s lex_hybrid16384=0.02316s lex_hybrid4096=0.00708s lex_hybrid8192=0.01249s lex_plain=0.002799s
+2026-11-17T23:53:14-05:00 [79/870] main mixed_continuous_s1_k128 done (2.5 min elapsed) Ckmeans.1d.dp=0.08161s ckmeans_exact=0.04471s lex_hybrid16384=0.0447s lex_hybrid4096=0.01179s lex_hybrid8192=0.02275s lex_plain=0.0029s
+2026-11-17T23:53:17-05:00 [80/870] main mixed_continuous_s1_k256 done (2.5 min elapsed) Ckmeans.1d.dp=0.1686s ckmeans_exact=0.08708s lex_hybrid16384=0.08708s lex_hybrid4096=0.02087s lex_hybrid8192=0.04255s lex_plain=0.003086s
+2026-11-17T23:53:21-05:00 [81/870] main mixed_continuous_s1_k512 done (2.6 min elapsed) Ckmeans.1d.dp=0.3204s ckmeans_exact=0.1681s lex_hybrid16384=0.1683s lex_hybrid4096=0.03752s lex_hybrid8192=0.0804s lex_plain=0.002871s
+2026-11-17T23:53:21-05:00 [82/870] main truncated_continuous_s1_load done (2.6 min elapsed) 
+2026-11-17T23:53:22-05:00 [83/870] main truncated_continuous_s1_k4 done (2.6 min elapsed) Ckmeans.1d.dp=0.002938s ckmeans_exact=0.001925s lex_hybrid16384=0.001949s lex_hybrid4096=0.00231s lex_hybrid8192=0.002286s lex_plain=0.002964s
+2026-11-17T23:53:23-05:00 [84/870] main truncated_continuous_s1_k8 done (2.6 min elapsed) Ckmeans.1d.dp=0.005476s ckmeans_exact=0.003394s lex_hybrid16384=0.003413s lex_hybrid4096=0.002648s lex_hybrid8192=0.002926s lex_plain=0.002668s
+2026-11-17T23:53:24-05:00 [85/870] main truncated_continuous_s1_k16 done (2.6 min elapsed) Ckmeans.1d.dp=0.01075s ckmeans_exact=0.006285s lex_hybrid16384=0.006331s lex_hybrid4096=0.003339s lex_hybrid8192=0.004407s lex_plain=0.002835s
+2026-11-17T23:53:25-05:00 [86/870] main truncated_continuous_s1_k32 done (2.6 min elapsed) Ckmeans.1d.dp=0.0213s ckmeans_exact=0.01202s lex_hybrid16384=0.01192s lex_hybrid4096=0.004573s lex_hybrid8192=0.007094s lex_plain=0.002747s
+2026-11-17T23:53:26-05:00 [87/870] main truncated_continuous_s1_k64 done (2.7 min elapsed) Ckmeans.1d.dp=0.04215s ckmeans_exact=0.02288s lex_hybrid16384=0.02289s lex_hybrid4096=0.007048s lex_hybrid8192=0.01241s lex_plain=0.003209s
+2026-11-17T23:53:28-05:00 [88/870] main truncated_continuous_s1_k128 done (2.7 min elapsed) Ckmeans.1d.dp=0.08469s ckmeans_exact=0.04442s lex_hybrid16384=0.0444s lex_hybrid4096=0.01183s lex_hybrid8192=0.02265s lex_plain=0.002894s
+2026-11-17T23:53:30-05:00 [89/870] main truncated_continuous_s1_k256 done (2.7 min elapsed) Ckmeans.1d.dp=0.1712s ckmeans_exact=0.08569s lex_hybrid16384=0.08571s lex_hybrid4096=0.02067s lex_hybrid8192=0.04215s lex_plain=0.003185s
+2026-11-17T23:53:35-05:00 [90/870] main truncated_continuous_s1_k512 done (2.8 min elapsed) Ckmeans.1d.dp=0.3254s ckmeans_exact=0.166s lex_hybrid16384=0.1659s lex_hybrid4096=0.03726s lex_hybrid8192=0.07973s lex_plain=0.002854s
+2026-11-17T23:53:35-05:00 [91/870] main triangular_discrete_s1_load done (2.8 min elapsed) 
+2026-11-17T23:53:35-05:00 [92/870] main triangular_discrete_s1_k4 done (2.8 min elapsed) Ckmeans.1d.dp=0.002947s ckmeans_exact=0.0009965s lex_hybrid16384=0.00098s lex_hybrid4096=0.0009863s lex_hybrid8192=0.0009786s lex_plain=0.001123s
+2026-11-17T23:53:36-05:00 [93/870] main triangular_discrete_s1_k8 done (2.8 min elapsed) Ckmeans.1d.dp=0.005505s ckmeans_exact=0.001273s lex_hybrid16384=0.00126s lex_hybrid4096=0.001281s lex_hybrid8192=0.00127s lex_plain=0.001203s
+2026-11-17T23:53:37-05:00 [94/870] main triangular_discrete_s1_k16 done (2.8 min elapsed) Ckmeans.1d.dp=0.01061s ckmeans_exact=0.001841s lex_hybrid16384=0.001811s lex_hybrid4096=0.001815s lex_hybrid8192=0.001815s lex_plain=0.001172s
+2026-11-17T23:53:38-05:00 [95/870] main triangular_discrete_s1_k32 done (2.8 min elapsed) Ckmeans.1d.dp=0.02052s ckmeans_exact=0.00283s lex_hybrid16384=0.002846s lex_hybrid4096=0.002874s lex_hybrid8192=0.002859s lex_plain=0.001206s
+2026-11-17T23:53:39-05:00 [96/870] main triangular_discrete_s1_k64 done (2.9 min elapsed) Ckmeans.1d.dp=0.03982s ckmeans_exact=0.004983s lex_hybrid16384=0.004982s lex_hybrid4096=0.004924s lex_hybrid8192=0.004907s lex_plain=0.001233s
+2026-11-17T23:53:40-05:00 [97/870] main triangular_discrete_s1_k128 done (2.9 min elapsed) Ckmeans.1d.dp=0.08134s ckmeans_exact=0.008856s lex_hybrid16384=0.009021s lex_hybrid4096=0.009033s lex_hybrid8192=0.008963s lex_plain=0.001246s
+2026-11-17T23:53:42-05:00 [98/870] main triangular_discrete_s1_k256 done (2.9 min elapsed) Ckmeans.1d.dp=0.1623s ckmeans_exact=0.01672s lex_hybrid16384=0.01652s lex_hybrid4096=0.01668s lex_hybrid8192=0.01655s lex_plain=0.001337s
+2026-11-17T23:53:44-05:00 [99/870] main triangular_discrete_s1_k512 done (3.0 min elapsed) Ckmeans.1d.dp=0.305s ckmeans_exact=0.02955s lex_hybrid16384=0.0297s lex_hybrid4096=0.03029s lex_hybrid8192=0.03036s lex_plain=0.001309s
+2026-11-17T23:53:44-05:00 [100/870] main spike_uniform_discrete_s1_load done (3.0 min elapsed) 
+2026-11-17T23:53:45-05:00 [101/870] main spike_uniform_discrete_s1_k4 done (3.0 min elapsed) Ckmeans.1d.dp=0.002566s ckmeans_exact=0.0009024s lex_hybrid16384=0.000912s lex_hybrid4096=0.0009214s lex_hybrid8192=0.0009203s lex_plain=0.001092s
+2026-11-17T23:53:46-05:00 [102/870] main spike_uniform_discrete_s1_k8 done (3.0 min elapsed) Ckmeans.1d.dp=0.004119s ckmeans_exact=0.001179s lex_hybrid16384=0.001197s lex_hybrid4096=0.001196s lex_hybrid8192=0.001171s lex_plain=0.001059s
+2026-11-17T23:53:47-05:00 [103/870] main spike_uniform_discrete_s1_k16 done (3.0 min elapsed) Ckmeans.1d.dp=0.007211s ckmeans_exact=0.001729s lex_hybrid16384=0.001715s lex_hybrid4096=0.001739s lex_hybrid8192=0.001752s lex_plain=0.001104s
+2026-11-17T23:53:47-05:00 [104/870] main spike_uniform_discrete_s1_k32 done (3.0 min elapsed) Ckmeans.1d.dp=0.01296s ckmeans_exact=0.002798s lex_hybrid16384=0.002797s lex_hybrid4096=0.00275s lex_hybrid8192=0.002728s lex_plain=0.001102s
+2026-11-17T23:53:48-05:00 [105/870] main spike_uniform_discrete_s1_k64 done (3.0 min elapsed) Ckmeans.1d.dp=0.0241s ckmeans_exact=0.004816s lex_hybrid16384=0.004826s lex_hybrid4096=0.004875s lex_hybrid8192=0.004832s lex_plain=0.001096s
+2026-11-17T23:53:49-05:00 [106/870] main spike_uniform_discrete_s1_k128 done (3.0 min elapsed) Ckmeans.1d.dp=0.0466s ckmeans_exact=0.008917s lex_hybrid16384=0.008871s lex_hybrid4096=0.008785s lex_hybrid8192=0.008846s lex_plain=0.001099s
+2026-11-17T23:53:51-05:00 [107/870] main spike_uniform_discrete_s1_k256 done (3.1 min elapsed) Ckmeans.1d.dp=0.09422s ckmeans_exact=0.01619s lex_hybrid16384=0.01625s lex_hybrid4096=0.01623s lex_hybrid8192=0.01614s lex_plain=0.001123s
+2026-11-17T23:53:53-05:00 [108/870] main spike_uniform_discrete_s1_k512 done (3.1 min elapsed) Ckmeans.1d.dp=0.1704s ckmeans_exact=0.02971s lex_hybrid16384=0.02943s lex_hybrid4096=0.02929s lex_hybrid8192=0.02912s lex_plain=0.001159s
+2026-11-17T23:53:53-05:00 [109/870] main uniform_continuous_s2_load done (3.1 min elapsed) 
+2026-11-17T23:53:54-05:00 [110/870] main uniform_continuous_s2_k4 done (3.1 min elapsed) Ckmeans.1d.dp=0.006074s ckmeans_exact=0.004127s lex_hybrid16384=0.004773s lex_hybrid4096=0.004921s lex_hybrid8192=0.004962s lex_plain=0.00537s
+2026-11-17T23:53:55-05:00 [111/870] main uniform_continuous_s2_k8 done (3.1 min elapsed) Ckmeans.1d.dp=0.0114s ckmeans_exact=0.007266s lex_hybrid16384=0.006266s lex_hybrid4096=0.005257s lex_hybrid8192=0.005577s lex_plain=0.005653s
+2026-11-17T23:53:56-05:00 [112/870] main uniform_continuous_s2_k16 done (3.1 min elapsed) Ckmeans.1d.dp=0.0225s ckmeans_exact=0.01352s lex_hybrid16384=0.009312s lex_hybrid4096=0.006099s lex_hybrid8192=0.007056s lex_plain=0.005974s
+2026-11-17T23:53:57-05:00 [113/870] main uniform_continuous_s2_k32 done (3.2 min elapsed) Ckmeans.1d.dp=0.04378s ckmeans_exact=0.02552s lex_hybrid16384=0.01528s lex_hybrid4096=0.007441s lex_hybrid8192=0.00992s lex_plain=0.006043s
+2026-11-17T23:53:59-05:00 [114/870] main uniform_continuous_s2_k64 done (3.2 min elapsed) Ckmeans.1d.dp=0.08516s ckmeans_exact=0.04888s lex_hybrid16384=0.02646s lex_hybrid4096=0.009916s lex_hybrid8192=0.01515s lex_plain=0.006193s
+2026-11-17T23:54:01-05:00 [115/870] main uniform_continuous_s2_k128 done (3.2 min elapsed) Ckmeans.1d.dp=0.1764s ckmeans_exact=0.09473s lex_hybrid16384=0.04821s lex_hybrid4096=0.01459s lex_hybrid8192=0.0257s lex_plain=0.00605s
+2026-11-17T23:54:05-05:00 [116/870] main uniform_continuous_s2_k256 done (3.3 min elapsed) Ckmeans.1d.dp=0.3392s ckmeans_exact=0.1833s lex_hybrid16384=0.09066s lex_hybrid4096=0.02371s lex_hybrid8192=0.04517s lex_plain=0.005971s
+2026-11-17T23:54:11-05:00 [117/870] main uniform_continuous_s2_k512 done (3.4 min elapsed) Ckmeans.1d.dp=0.6542s ckmeans_exact=0.3588s lex_hybrid16384=0.1728s lex_hybrid4096=0.04013s lex_hybrid8192=0.08304s lex_plain=0.006171s
+2026-11-17T23:54:12-05:00 [118/870] main gaussian_continuous_s2_load done (3.4 min elapsed) 
+2026-11-17T23:54:12-05:00 [119/870] main gaussian_continuous_s2_k4 done (3.4 min elapsed) Ckmeans.1d.dp=0.006114s ckmeans_exact=0.004145s lex_hybrid16384=0.004969s lex_hybrid4096=0.005209s lex_hybrid8192=0.005131s lex_plain=0.005311s
+2026-11-17T23:54:13-05:00 [120/870] main gaussian_continuous_s2_k8 done (3.4 min elapsed) Ckmeans.1d.dp=0.01153s ckmeans_exact=0.007393s lex_hybrid16384=0.00647s lex_hybrid4096=0.005454s lex_hybrid8192=0.005831s lex_plain=0.005492s
+2026-11-17T23:54:14-05:00 [121/870] main gaussian_continuous_s2_k16 done (3.5 min elapsed) Ckmeans.1d.dp=0.02308s ckmeans_exact=0.01365s lex_hybrid16384=0.009565s lex_hybrid4096=0.006178s lex_hybrid8192=0.007216s lex_plain=0.005747s
+2026-11-17T23:54:16-05:00 [122/870] main gaussian_continuous_s2_k32 done (3.5 min elapsed) Ckmeans.1d.dp=0.04513s ckmeans_exact=0.02606s lex_hybrid16384=0.01553s lex_hybrid4096=0.007612s lex_hybrid8192=0.01023s lex_plain=0.006228s
+2026-11-17T23:54:17-05:00 [123/870] main gaussian_continuous_s2_k64 done (3.5 min elapsed) Ckmeans.1d.dp=0.08673s ckmeans_exact=0.05008s lex_hybrid16384=0.02705s lex_hybrid4096=0.0101s lex_hybrid8192=0.01561s lex_plain=0.007055s
+2026-11-17T23:54:20-05:00 [124/870] main gaussian_continuous_s2_k128 done (3.5 min elapsed) Ckmeans.1d.dp=0.178s ckmeans_exact=0.09629s lex_hybrid16384=0.04941s lex_hybrid4096=0.0149s lex_hybrid8192=0.02605s lex_plain=0.006252s
+2026-11-17T23:54:24-05:00 [125/870] main gaussian_continuous_s2_k256 done (3.6 min elapsed) Ckmeans.1d.dp=0.3384s ckmeans_exact=0.1869s lex_hybrid16384=0.09185s lex_hybrid4096=0.02379s lex_hybrid8192=0.04585s lex_plain=0.006472s
+2026-11-17T23:54:30-05:00 [126/870] main gaussian_continuous_s2_k512 done (3.7 min elapsed) Ckmeans.1d.dp=0.6489s ckmeans_exact=0.3618s lex_hybrid16384=0.1748s lex_hybrid4096=0.04082s lex_hybrid8192=0.08387s lex_plain=0.006658s
+2026-11-17T23:54:30-05:00 [127/870] main exponential_continuous_s2_load done (3.7 min elapsed) 
+2026-11-17T23:54:31-05:00 [128/870] main exponential_continuous_s2_k4 done (3.7 min elapsed) Ckmeans.1d.dp=0.006421s ckmeans_exact=0.004232s lex_hybrid16384=0.00499s lex_hybrid4096=0.005306s lex_hybrid8192=0.005161s lex_plain=0.006436s
+2026-11-17T23:54:32-05:00 [129/870] main exponential_continuous_s2_k8 done (3.8 min elapsed) Ckmeans.1d.dp=0.01215s ckmeans_exact=0.007449s lex_hybrid16384=0.006521s lex_hybrid4096=0.005565s lex_hybrid8192=0.005871s lex_plain=0.006401s
+2026-11-17T23:54:33-05:00 [130/870] main exponential_continuous_s2_k16 done (3.8 min elapsed) Ckmeans.1d.dp=0.02378s ckmeans_exact=0.01351s lex_hybrid16384=0.009601s lex_hybrid4096=0.006314s lex_hybrid8192=0.007411s lex_plain=0.00619s
+2026-11-17T23:54:34-05:00 [131/870] main exponential_continuous_s2_k32 done (3.8 min elapsed) Ckmeans.1d.dp=0.04581s ckmeans_exact=0.02548s lex_hybrid16384=0.01539s lex_hybrid4096=0.007469s lex_hybrid8192=0.01018s lex_plain=0.006952s
+2026-11-17T23:54:36-05:00 [132/870] main exponential_continuous_s2_k64 done (3.8 min elapsed) Ckmeans.1d.dp=0.08745s ckmeans_exact=0.04881s lex_hybrid16384=0.02668s lex_hybrid4096=0.01014s lex_hybrid8192=0.01541s lex_plain=0.006837s
+2026-11-17T23:54:38-05:00 [133/870] main exponential_continuous_s2_k128 done (3.9 min elapsed) Ckmeans.1d.dp=0.1798s ckmeans_exact=0.09354s lex_hybrid16384=0.04809s lex_hybrid4096=0.01479s lex_hybrid8192=0.02568s lex_plain=0.007461s
+2026-11-17T23:54:42-05:00 [134/870] main exponential_continuous_s2_k256 done (3.9 min elapsed) Ckmeans.1d.dp=0.347s ckmeans_exact=0.1815s lex_hybrid16384=0.09001s lex_hybrid4096=0.02373s lex_hybrid8192=0.04509s lex_plain=0.006909s
+2026-11-17T23:54:49-05:00 [135/870] main exponential_continuous_s2_k512 done (4.0 min elapsed) Ckmeans.1d.dp=0.6615s ckmeans_exact=0.3525s lex_hybrid16384=0.1706s lex_hybrid4096=0.04019s lex_hybrid8192=0.08197s lex_plain=0.00677s
+2026-11-17T23:54:49-05:00 [136/870] main weibull_continuous_s2_load done (4.0 min elapsed) 
+2026-11-17T23:54:50-05:00 [137/870] main weibull_continuous_s2_k4 done (4.1 min elapsed) Ckmeans.1d.dp=0.006404s ckmeans_exact=0.004251s lex_hybrid16384=0.004979s lex_hybrid4096=0.00515s lex_hybrid8192=0.00511s lex_plain=0.006244s
+2026-11-17T23:54:51-05:00 [138/870] main weibull_continuous_s2_k8 done (4.1 min elapsed) Ckmeans.1d.dp=0.01205s ckmeans_exact=0.007383s lex_hybrid16384=0.00654s lex_hybrid4096=0.005515s lex_hybrid8192=0.005788s lex_plain=0.005621s
+2026-11-17T23:54:52-05:00 [139/870] main weibull_continuous_s2_k16 done (4.1 min elapsed) Ckmeans.1d.dp=0.02345s ckmeans_exact=0.01368s lex_hybrid16384=0.009599s lex_hybrid4096=0.006197s lex_hybrid8192=0.007346s lex_plain=0.006017s
+2026-11-17T23:54:53-05:00 [140/870] main weibull_continuous_s2_k32 done (4.1 min elapsed) Ckmeans.1d.dp=0.04544s ckmeans_exact=0.02562s lex_hybrid16384=0.01538s lex_hybrid4096=0.007553s lex_hybrid8192=0.0101s lex_plain=0.006031s
+2026-11-17T23:54:55-05:00 [141/870] main weibull_continuous_s2_k64 done (4.1 min elapsed) Ckmeans.1d.dp=0.08709s ckmeans_exact=0.04895s lex_hybrid16384=0.02647s lex_hybrid4096=0.009908s lex_hybrid8192=0.01539s lex_plain=0.00579s
+2026-11-17T23:54:57-05:00 [142/870] main weibull_continuous_s2_k128 done (4.2 min elapsed) Ckmeans.1d.dp=0.1769s ckmeans_exact=0.09424s lex_hybrid16384=0.04809s lex_hybrid4096=0.01463s lex_hybrid8192=0.02546s lex_plain=0.006513s
+2026-11-17T23:55:01-05:00 [143/870] main weibull_continuous_s2_k256 done (4.2 min elapsed) Ckmeans.1d.dp=0.3419s ckmeans_exact=0.1832s lex_hybrid16384=0.08999s lex_hybrid4096=0.02363s lex_hybrid8192=0.04534s lex_plain=0.006456s
+2026-11-17T23:55:08-05:00 [144/870] main weibull_continuous_s2_k512 done (4.3 min elapsed) Ckmeans.1d.dp=0.6598s ckmeans_exact=0.3549s lex_hybrid16384=0.1716s lex_hybrid4096=0.04027s lex_hybrid8192=0.08304s lex_plain=0.006543s
+2026-11-17T23:55:08-05:00 [145/870] main lognormal_continuous_s2_load done (4.3 min elapsed) 
+2026-11-17T23:55:09-05:00 [146/870] main lognormal_continuous_s2_k4 done (4.4 min elapsed) Ckmeans.1d.dp=0.006509s ckmeans_exact=0.004176s lex_hybrid16384=0.005045s lex_hybrid4096=0.005199s lex_hybrid8192=0.005176s lex_plain=0.006476s
+2026-11-17T23:55:10-05:00 [147/870] main lognormal_continuous_s2_k8 done (4.4 min elapsed) Ckmeans.1d.dp=0.01231s ckmeans_exact=0.007425s lex_hybrid16384=0.006531s lex_hybrid4096=0.005558s lex_hybrid8192=0.005824s lex_plain=0.007058s
+2026-11-17T23:55:11-05:00 [148/870] main lognormal_continuous_s2_k16 done (4.4 min elapsed) Ckmeans.1d.dp=0.02378s ckmeans_exact=0.01342s lex_hybrid16384=0.00952s lex_hybrid4096=0.006313s lex_hybrid8192=0.007359s lex_plain=0.007569s
+2026-11-17T23:55:12-05:00 [149/870] main lognormal_continuous_s2_k32 done (4.4 min elapsed) Ckmeans.1d.dp=0.04594s ckmeans_exact=0.02543s lex_hybrid16384=0.01524s lex_hybrid4096=0.007624s lex_hybrid8192=0.01006s lex_plain=0.00828s
+2026-11-17T23:55:13-05:00 [150/870] main lognormal_continuous_s2_k64 done (4.4 min elapsed) Ckmeans.1d.dp=0.08748s ckmeans_exact=0.04875s lex_hybrid16384=0.02675s lex_hybrid4096=0.01006s lex_hybrid8192=0.0153s lex_plain=0.01046s
+2026-11-17T23:55:16-05:00 [151/870] main lognormal_continuous_s2_k128 done (4.5 min elapsed) Ckmeans.1d.dp=0.1799s ckmeans_exact=0.09356s lex_hybrid16384=0.048s lex_hybrid4096=0.01489s lex_hybrid8192=0.0256s lex_plain=0.006303s
+2026-11-17T23:55:20-05:00 [152/870] main lognormal_continuous_s2_k256 done (4.5 min elapsed) Ckmeans.1d.dp=0.3435s ckmeans_exact=0.1814s lex_hybrid16384=0.08974s lex_hybrid4096=0.02365s lex_hybrid8192=0.04495s lex_plain=0.007787s
+2026-11-17T23:55:26-05:00 [153/870] main lognormal_continuous_s2_k512 done (4.7 min elapsed) Ckmeans.1d.dp=0.6612s ckmeans_exact=0.3527s lex_hybrid16384=0.1697s lex_hybrid4096=0.04021s lex_hybrid8192=0.0818s lex_plain=0.007061s
+2026-11-17T23:55:27-05:00 [154/870] main gmm_continuous_s2_load done (4.7 min elapsed) 
+2026-11-17T23:55:27-05:00 [155/870] main gmm_continuous_s2_k4 done (4.7 min elapsed) Ckmeans.1d.dp=0.006128s ckmeans_exact=0.004216s lex_hybrid16384=0.004966s lex_hybrid4096=0.005184s lex_hybrid8192=0.0051s lex_plain=0.005898s
+2026-11-17T23:55:28-05:00 [156/870] main gmm_continuous_s2_k8 done (4.7 min elapsed) Ckmeans.1d.dp=0.0117s ckmeans_exact=0.007327s lex_hybrid16384=0.006486s lex_hybrid4096=0.005476s lex_hybrid8192=0.005891s lex_plain=0.006473s
+2026-11-17T23:55:29-05:00 [157/870] main gmm_continuous_s2_k16 done (4.7 min elapsed) Ckmeans.1d.dp=0.02307s ckmeans_exact=0.01361s lex_hybrid16384=0.009545s lex_hybrid4096=0.006133s lex_hybrid8192=0.007308s lex_plain=0.006613s
+2026-11-17T23:55:31-05:00 [158/870] main gmm_continuous_s2_k32 done (4.7 min elapsed) Ckmeans.1d.dp=0.04458s ckmeans_exact=0.02572s lex_hybrid16384=0.0154s lex_hybrid4096=0.007552s lex_hybrid8192=0.01006s lex_plain=0.005773s
+2026-11-17T23:55:32-05:00 [159/870] main gmm_continuous_s2_k64 done (4.8 min elapsed) Ckmeans.1d.dp=0.08599s ckmeans_exact=0.04896s lex_hybrid16384=0.02677s lex_hybrid4096=0.009992s lex_hybrid8192=0.01532s lex_plain=0.006337s
+2026-11-17T23:55:35-05:00 [160/870] main gmm_continuous_s2_k128 done (4.8 min elapsed) Ckmeans.1d.dp=0.1779s ckmeans_exact=0.09459s lex_hybrid16384=0.04847s lex_hybrid4096=0.01487s lex_hybrid8192=0.02584s lex_plain=0.006976s
+2026-11-17T23:55:38-05:00 [161/870] main gmm_continuous_s2_k256 done (4.9 min elapsed) Ckmeans.1d.dp=0.337s ckmeans_exact=0.1838s lex_hybrid16384=0.09086s lex_hybrid4096=0.02359s lex_hybrid8192=0.04538s lex_plain=0.007031s
+2026-11-17T23:55:45-05:00 [162/870] main gmm_continuous_s2_k512 done (5.0 min elapsed) Ckmeans.1d.dp=0.655s ckmeans_exact=0.3599s lex_hybrid16384=0.1736s lex_hybrid4096=0.04071s lex_hybrid8192=0.0833s lex_plain=0.006529s
+2026-11-17T23:55:45-05:00 [163/870] main wg_mixture_continuous_s2_load done (5.0 min elapsed) 
+2026-11-17T23:55:46-05:00 [164/870] main wg_mixture_continuous_s2_k4 done (5.0 min elapsed) Ckmeans.1d.dp=0.005718s ckmeans_exact=0.004097s lex_hybrid16384=0.004901s lex_hybrid4096=0.005117s lex_hybrid8192=0.005161s lex_plain=0.006296s
+2026-11-17T23:55:47-05:00 [165/870] main wg_mixture_continuous_s2_k8 done (5.0 min elapsed) Ckmeans.1d.dp=0.01063s ckmeans_exact=0.007291s lex_hybrid16384=0.00652s lex_hybrid4096=0.005536s lex_hybrid8192=0.005867s lex_plain=0.005755s
+2026-11-17T23:55:48-05:00 [166/870] main wg_mixture_continuous_s2_k16 done (5.0 min elapsed) Ckmeans.1d.dp=0.02139s ckmeans_exact=0.01348s lex_hybrid16384=0.009523s lex_hybrid4096=0.006233s lex_hybrid8192=0.007275s lex_plain=0.005796s
+2026-11-17T23:55:49-05:00 [167/870] main wg_mixture_continuous_s2_k32 done (5.0 min elapsed) Ckmeans.1d.dp=0.04275s ckmeans_exact=0.02561s lex_hybrid16384=0.01531s lex_hybrid4096=0.007509s lex_hybrid8192=0.01009s lex_plain=0.006149s
+2026-11-17T23:55:51-05:00 [168/870] main wg_mixture_continuous_s2_k64 done (5.1 min elapsed) Ckmeans.1d.dp=0.08408s ckmeans_exact=0.04932s lex_hybrid16384=0.02667s lex_hybrid4096=0.0101s lex_hybrid8192=0.01545s lex_plain=0.006808s
+2026-11-17T23:55:53-05:00 [169/870] main wg_mixture_continuous_s2_k128 done (5.1 min elapsed) Ckmeans.1d.dp=0.1755s ckmeans_exact=0.09554s lex_hybrid16384=0.04878s lex_hybrid4096=0.01489s lex_hybrid8192=0.02575s lex_plain=0.006642s
+2026-11-17T23:55:57-05:00 [170/870] main wg_mixture_continuous_s2_k256 done (5.2 min elapsed) Ckmeans.1d.dp=0.3361s ckmeans_exact=0.1861s lex_hybrid16384=0.0914s lex_hybrid4096=0.02389s lex_hybrid8192=0.04577s lex_plain=0.007015s
+2026-11-17T23:56:04-05:00 [171/870] main wg_mixture_continuous_s2_k512 done (5.3 min elapsed) Ckmeans.1d.dp=0.646s ckmeans_exact=0.3613s lex_hybrid16384=0.1744s lex_hybrid4096=0.04085s lex_hybrid8192=0.08361s lex_plain=0.007671s
+2026-11-17T23:56:04-05:00 [172/870] main bimodal_gaussian_continuous_s2_load done (5.3 min elapsed) 
+2026-11-17T23:56:05-05:00 [173/870] main bimodal_gaussian_continuous_s2_k4 done (5.3 min elapsed) Ckmeans.1d.dp=0.005568s ckmeans_exact=0.004086s lex_hybrid16384=0.004833s lex_hybrid4096=0.005043s lex_hybrid8192=0.005055s lex_plain=0.006363s
+2026-11-17T23:56:06-05:00 [174/870] main bimodal_gaussian_continuous_s2_k8 done (5.3 min elapsed) Ckmeans.1d.dp=0.01035s ckmeans_exact=0.007222s lex_hybrid16384=0.00638s lex_hybrid4096=0.005421s lex_hybrid8192=0.005772s lex_plain=0.005723s
+2026-11-17T23:56:07-05:00 [175/870] main bimodal_gaussian_continuous_s2_k16 done (5.3 min elapsed) Ckmeans.1d.dp=0.02115s ckmeans_exact=0.0134s lex_hybrid16384=0.009403s lex_hybrid4096=0.006088s lex_hybrid8192=0.007242s lex_plain=0.006107s
+2026-11-17T23:56:08-05:00 [176/870] main bimodal_gaussian_continuous_s2_k32 done (5.4 min elapsed) Ckmeans.1d.dp=0.04256s ckmeans_exact=0.02557s lex_hybrid16384=0.01528s lex_hybrid4096=0.007476s lex_hybrid8192=0.01003s lex_plain=0.006778s
+2026-11-17T23:56:09-05:00 [177/870] main bimodal_gaussian_continuous_s2_k64 done (5.4 min elapsed) Ckmeans.1d.dp=0.08444s ckmeans_exact=0.04918s lex_hybrid16384=0.02661s lex_hybrid4096=0.01011s lex_hybrid8192=0.0153s lex_plain=0.006157s
+2026-11-17T23:56:12-05:00 [178/870] main bimodal_gaussian_continuous_s2_k128 done (5.4 min elapsed) Ckmeans.1d.dp=0.1768s ckmeans_exact=0.09517s lex_hybrid16384=0.04875s lex_hybrid4096=0.01481s lex_hybrid8192=0.02578s lex_plain=0.007368s
+2026-11-17T23:56:16-05:00 [179/870] main bimodal_gaussian_continuous_s2_k256 done (5.5 min elapsed) Ckmeans.1d.dp=0.3364s ckmeans_exact=0.1852s lex_hybrid16384=0.09097s lex_hybrid4096=0.02374s lex_hybrid8192=0.04539s lex_plain=0.006123s
+2026-11-17T23:56:22-05:00 [180/870] main bimodal_gaussian_continuous_s2_k512 done (5.6 min elapsed) Ckmeans.1d.dp=0.6525s ckmeans_exact=0.3591s lex_hybrid16384=0.1733s lex_hybrid4096=0.0406s lex_hybrid8192=0.08324s lex_plain=0.007037s
+2026-11-17T23:56:23-05:00 [181/870] main mixed_continuous_s2_load done (5.6 min elapsed) 
+2026-11-17T23:56:23-05:00 [182/870] main mixed_continuous_s2_k4 done (5.6 min elapsed) Ckmeans.1d.dp=0.005459s ckmeans_exact=0.004202s lex_hybrid16384=0.004868s lex_hybrid4096=0.00531s lex_hybrid8192=0.005081s lex_plain=0.00571s
+2026-11-17T23:56:24-05:00 [183/870] main mixed_continuous_s2_k8 done (5.6 min elapsed) Ckmeans.1d.dp=0.009956s ckmeans_exact=0.007184s lex_hybrid16384=0.006376s lex_hybrid4096=0.00548s lex_hybrid8192=0.005825s lex_plain=0.005698s
+2026-11-17T23:56:25-05:00 [184/870] main mixed_continuous_s2_k16 done (5.6 min elapsed) Ckmeans.1d.dp=0.02038s ckmeans_exact=0.01327s lex_hybrid16384=0.009379s lex_hybrid4096=0.006115s lex_hybrid8192=0.007181s lex_plain=0.006032s
+2026-11-17T23:56:27-05:00 [185/870] main mixed_continuous_s2_k32 done (5.7 min elapsed) Ckmeans.1d.dp=0.04053s ckmeans_exact=0.02528s lex_hybrid16384=0.01513s lex_hybrid4096=0.007412s lex_hybrid8192=0.009831s lex_plain=0.006499s
+2026-11-17T23:56:28-05:00 [186/870] main mixed_continuous_s2_k64 done (5.7 min elapsed) Ckmeans.1d.dp=0.08103s ckmeans_exact=0.04889s lex_hybrid16384=0.0264s lex_hybrid4096=0.009876s lex_hybrid8192=0.01532s lex_plain=0.005819s
+2026-11-17T23:56:30-05:00 [187/870] main mixed_continuous_s2_k128 done (5.7 min elapsed) Ckmeans.1d.dp=0.1686s ckmeans_exact=0.09489s lex_hybrid16384=0.0485s lex_hybrid4096=0.01466s lex_hybrid8192=0.02556s lex_plain=0.006108s
+2026-11-17T23:56:34-05:00 [188/870] main mixed_continuous_s2_k256 done (5.8 min elapsed) Ckmeans.1d.dp=0.3313s ckmeans_exact=0.1849s lex_hybrid16384=0.09141s lex_hybrid4096=0.02391s lex_hybrid8192=0.04555s lex_plain=0.006278s
+2026-11-17T23:56:41-05:00 [189/870] main mixed_continuous_s2_k512 done (5.9 min elapsed) Ckmeans.1d.dp=0.6409s ckmeans_exact=0.3603s lex_hybrid16384=0.1736s lex_hybrid4096=0.04006s lex_hybrid8192=0.08315s lex_plain=0.006535s
+2026-11-17T23:56:41-05:00 [190/870] main truncated_continuous_s2_load done (5.9 min elapsed) 
+2026-11-17T23:56:42-05:00 [191/870] main truncated_continuous_s2_k4 done (5.9 min elapsed) Ckmeans.1d.dp=0.005659s ckmeans_exact=0.004065s lex_hybrid16384=0.004832s lex_hybrid4096=0.005142s lex_hybrid8192=0.005084s lex_plain=0.005986s
+2026-11-17T23:56:43-05:00 [192/870] main truncated_continuous_s2_k8 done (5.9 min elapsed) Ckmeans.1d.dp=0.01062s ckmeans_exact=0.007284s lex_hybrid16384=0.006437s lex_hybrid4096=0.005493s lex_hybrid8192=0.005783s lex_plain=0.006178s
+2026-11-17T23:56:44-05:00 [193/870] main truncated_continuous_s2_k16 done (6.0 min elapsed) Ckmeans.1d.dp=0.02125s ckmeans_exact=0.01352s lex_hybrid16384=0.009492s lex_hybrid4096=0.006225s lex_hybrid8192=0.007256s lex_plain=0.00638s
+2026-11-17T23:56:45-05:00 [194/870] main truncated_continuous_s2_k32 done (6.0 min elapsed) Ckmeans.1d.dp=0.04256s ckmeans_exact=0.02556s lex_hybrid16384=0.01524s lex_hybrid4096=0.007533s lex_hybrid8192=0.01007s lex_plain=0.005673s
+2026-11-17T23:56:47-05:00 [195/870] main truncated_continuous_s2_k64 done (6.0 min elapsed) Ckmeans.1d.dp=0.08368s ckmeans_exact=0.04894s lex_hybrid16384=0.02652s lex_hybrid4096=0.009901s lex_hybrid8192=0.0153s lex_plain=0.006026s
+2026-11-17T23:56:49-05:00 [196/870] main truncated_continuous_s2_k128 done (6.0 min elapsed) Ckmeans.1d.dp=0.1761s ckmeans_exact=0.09452s lex_hybrid16384=0.04805s lex_hybrid4096=0.01472s lex_hybrid8192=0.02561s lex_plain=0.006017s
+2026-11-17T23:56:53-05:00 [197/870] main truncated_continuous_s2_k256 done (6.1 min elapsed) Ckmeans.1d.dp=0.3374s ckmeans_exact=0.1839s lex_hybrid16384=0.09094s lex_hybrid4096=0.0236s lex_hybrid8192=0.04511s lex_plain=0.006292s
+2026-11-17T23:57:00-05:00 [198/870] main truncated_continuous_s2_k512 done (6.2 min elapsed) Ckmeans.1d.dp=0.6517s ckmeans_exact=0.356s lex_hybrid16384=0.1724s lex_hybrid4096=0.0405s lex_hybrid8192=0.08248s lex_plain=0.006873s
+2026-11-17T23:57:00-05:00 [199/870] main triangular_discrete_s2_load done (6.2 min elapsed) 
+2026-11-17T23:57:01-05:00 [200/870] main triangular_discrete_s2_k4 done (6.2 min elapsed) Ckmeans.1d.dp=0.005162s ckmeans_exact=0.001732s lex_hybrid16384=0.001729s lex_hybrid4096=0.001734s lex_hybrid8192=0.001712s lex_plain=0.001955s
+2026-11-17T23:57:01-05:00 [201/870] main triangular_discrete_s2_k8 done (6.2 min elapsed) Ckmeans.1d.dp=0.009485s ckmeans_exact=0.00214s lex_hybrid16384=0.002037s lex_hybrid4096=0.002055s lex_hybrid8192=0.002033s lex_plain=0.001985s
+2026-11-17T23:57:02-05:00 [202/870] main triangular_discrete_s2_k16 done (6.3 min elapsed) Ckmeans.1d.dp=0.01862s ckmeans_exact=0.002627s lex_hybrid16384=0.002624s lex_hybrid4096=0.002649s lex_hybrid8192=0.002648s lex_plain=0.001984s
+2026-11-17T23:57:03-05:00 [203/870] main triangular_discrete_s2_k32 done (6.3 min elapsed) Ckmeans.1d.dp=0.03612s ckmeans_exact=0.003874s lex_hybrid16384=0.003816s lex_hybrid4096=0.003807s lex_hybrid8192=0.003813s lex_plain=0.002123s
+2026-11-17T23:57:04-05:00 [204/870] main triangular_discrete_s2_k64 done (6.3 min elapsed) Ckmeans.1d.dp=0.07023s ckmeans_exact=0.006052s lex_hybrid16384=0.006132s lex_hybrid4096=0.006135s lex_hybrid8192=0.006146s lex_plain=0.00202s
+2026-11-17T23:57:06-05:00 [205/870] main triangular_discrete_s2_k128 done (6.3 min elapsed) Ckmeans.1d.dp=0.1412s ckmeans_exact=0.01028s lex_hybrid16384=0.01039s lex_hybrid4096=0.01036s lex_hybrid8192=0.01032s lex_plain=0.002049s
+2026-11-17T23:57:08-05:00 [206/870] main triangular_discrete_s2_k256 done (6.4 min elapsed) Ckmeans.1d.dp=0.283s ckmeans_exact=0.01809s lex_hybrid16384=0.01826s lex_hybrid4096=0.01824s lex_hybrid8192=0.01844s lex_plain=0.00209s
+2026-11-17T23:57:12-05:00 [207/870] main triangular_discrete_s2_k512 done (6.4 min elapsed) Ckmeans.1d.dp=0.5444s ckmeans_exact=0.03244s lex_hybrid16384=0.03272s lex_hybrid4096=0.03303s lex_hybrid8192=0.03263s lex_plain=0.002203s
+2026-11-17T23:57:12-05:00 [208/870] main spike_uniform_discrete_s2_load done (6.4 min elapsed) 
+2026-11-17T23:57:12-05:00 [209/870] main spike_uniform_discrete_s2_k4 done (6.4 min elapsed) Ckmeans.1d.dp=0.004661s ckmeans_exact=0.001529s lex_hybrid16384=0.001543s lex_hybrid4096=0.001615s lex_hybrid8192=0.001554s lex_plain=0.001782s
+2026-11-17T23:57:13-05:00 [210/870] main spike_uniform_discrete_s2_k8 done (6.4 min elapsed) Ckmeans.1d.dp=0.007435s ckmeans_exact=0.001936s lex_hybrid16384=0.001852s lex_hybrid4096=0.001851s lex_hybrid8192=0.001869s lex_plain=0.001866s
+2026-11-17T23:57:14-05:00 [211/870] main spike_uniform_discrete_s2_k16 done (6.5 min elapsed) Ckmeans.1d.dp=0.01329s ckmeans_exact=0.002581s lex_hybrid16384=0.002537s lex_hybrid4096=0.00259s lex_hybrid8192=0.002512s lex_plain=0.001873s
+2026-11-17T23:57:15-05:00 [212/870] main spike_uniform_discrete_s2_k32 done (6.5 min elapsed) Ckmeans.1d.dp=0.02412s ckmeans_exact=0.003808s lex_hybrid16384=0.003735s lex_hybrid4096=0.0039s lex_hybrid8192=0.0039s lex_plain=0.001895s
+2026-11-17T23:57:16-05:00 [213/870] main spike_uniform_discrete_s2_k64 done (6.5 min elapsed) Ckmeans.1d.dp=0.04569s ckmeans_exact=0.006201s lex_hybrid16384=0.006204s lex_hybrid4096=0.006178s lex_hybrid8192=0.00614s lex_plain=0.001865s
+2026-11-17T23:57:17-05:00 [214/870] main spike_uniform_discrete_s2_k128 done (6.5 min elapsed) Ckmeans.1d.dp=0.08979s ckmeans_exact=0.01068s lex_hybrid16384=0.0107s lex_hybrid4096=0.01063s lex_hybrid8192=0.01083s lex_plain=0.001909s
+2026-11-17T23:57:19-05:00 [215/870] main spike_uniform_discrete_s2_k256 done (6.5 min elapsed) Ckmeans.1d.dp=0.1772s ckmeans_exact=0.01929s lex_hybrid16384=0.01923s lex_hybrid4096=0.01907s lex_hybrid8192=0.01906s lex_plain=0.001919s
+2026-11-17T23:57:22-05:00 [216/870] main spike_uniform_discrete_s2_k512 done (6.6 min elapsed) Ckmeans.1d.dp=0.334s ckmeans_exact=0.03528s lex_hybrid16384=0.03514s lex_hybrid4096=0.03493s lex_hybrid8192=0.03489s lex_plain=0.002036s
+2026-11-17T23:57:22-05:00 [217/870] main uniform_continuous_s3_load done (6.6 min elapsed) 
+2026-11-17T23:57:23-05:00 [218/870] main uniform_continuous_s3_k4 done (6.6 min elapsed) Ckmeans.1d.dp=0.01205s ckmeans_exact=0.008851s lex_hybrid16384=0.01082s lex_hybrid4096=0.01101s lex_hybrid8192=0.01103s lex_plain=0.01277s
+2026-11-17T23:57:24-05:00 [219/870] main uniform_continuous_s3_k8 done (6.6 min elapsed) Ckmeans.1d.dp=0.02291s ckmeans_exact=0.01536s lex_hybrid16384=0.01236s lex_hybrid4096=0.01137s lex_hybrid8192=0.01174s lex_plain=0.01307s
+2026-11-17T23:57:25-05:00 [220/870] main uniform_continuous_s3_k16 done (6.6 min elapsed) Ckmeans.1d.dp=0.04555s ckmeans_exact=0.02849s lex_hybrid16384=0.01535s lex_hybrid4096=0.01214s lex_hybrid8192=0.01324s lex_plain=0.0125s
+2026-11-17T23:57:27-05:00 [221/870] main uniform_continuous_s3_k32 done (6.7 min elapsed) Ckmeans.1d.dp=0.08919s ckmeans_exact=0.05378s lex_hybrid16384=0.02111s lex_hybrid4096=0.01339s lex_hybrid8192=0.0159s lex_plain=0.01292s
+2026-11-17T23:57:29-05:00 [222/870] main uniform_continuous_s3_k64 done (6.7 min elapsed) Ckmeans.1d.dp=0.1739s ckmeans_exact=0.1034s lex_hybrid16384=0.03254s lex_hybrid4096=0.01588s lex_hybrid8192=0.02136s lex_plain=0.0126s
+2026-11-17T23:57:33-05:00 [223/870] main uniform_continuous_s3_k128 done (6.8 min elapsed) Ckmeans.1d.dp=0.3372s ckmeans_exact=0.2004s lex_hybrid16384=0.05432s lex_hybrid4096=0.02072s lex_hybrid8192=0.03138s lex_plain=0.0134s
+2026-11-17T23:57:39-05:00 [224/870] main uniform_continuous_s3_k256 done (6.9 min elapsed) Ckmeans.1d.dp=0.6542s ckmeans_exact=0.3885s lex_hybrid16384=0.09689s lex_hybrid4096=0.02972s lex_hybrid8192=0.05154s lex_plain=0.01318s
+2026-11-17T23:57:51-05:00 [225/870] main uniform_continuous_s3_k512 done (7.1 min elapsed) Ckmeans.1d.dp=1.314s ckmeans_exact=0.7498s lex_hybrid16384=0.1779s lex_hybrid4096=0.04678s lex_hybrid8192=0.08935s lex_plain=0.01332s
+2026-11-17T23:57:51-05:00 [226/870] main gaussian_continuous_s3_load done (7.1 min elapsed) 
+2026-11-17T23:57:52-05:00 [227/870] main gaussian_continuous_s3_k4 done (7.1 min elapsed) Ckmeans.1d.dp=0.01201s ckmeans_exact=0.008957s lex_hybrid16384=0.01101s lex_hybrid4096=0.01118s lex_hybrid8192=0.0112s lex_plain=0.01193s
+2026-11-17T23:57:53-05:00 [228/870] main gaussian_continuous_s3_k8 done (7.1 min elapsed) Ckmeans.1d.dp=0.02301s ckmeans_exact=0.0155s lex_hybrid16384=0.01245s lex_hybrid4096=0.01157s lex_hybrid8192=0.01191s lex_plain=0.01316s
+2026-11-17T23:57:55-05:00 [229/870] main gaussian_continuous_s3_k16 done (7.1 min elapsed) Ckmeans.1d.dp=0.04606s ckmeans_exact=0.0287s lex_hybrid16384=0.01548s lex_hybrid4096=0.01235s lex_hybrid8192=0.01321s lex_plain=0.01353s
+2026-11-17T23:57:56-05:00 [230/870] main gaussian_continuous_s3_k32 done (7.2 min elapsed) Ckmeans.1d.dp=0.0907s ckmeans_exact=0.05457s lex_hybrid16384=0.0213s lex_hybrid4096=0.01362s lex_hybrid8192=0.0161s lex_plain=0.01284s
+2026-11-17T23:57:59-05:00 [231/870] main gaussian_continuous_s3_k64 done (7.2 min elapsed) Ckmeans.1d.dp=0.1758s ckmeans_exact=0.1045s lex_hybrid16384=0.03257s lex_hybrid4096=0.01598s lex_hybrid8192=0.0215s lex_plain=0.01322s
+2026-11-17T23:58:02-05:00 [232/870] main gaussian_continuous_s3_k128 done (7.3 min elapsed) Ckmeans.1d.dp=0.3351s ckmeans_exact=0.2035s lex_hybrid16384=0.0545s lex_hybrid4096=0.02082s lex_hybrid8192=0.03185s lex_plain=0.01369s
+2026-11-17T23:58:09-05:00 [233/870] main gaussian_continuous_s3_k256 done (7.4 min elapsed) Ckmeans.1d.dp=0.6555s ckmeans_exact=0.3952s lex_hybrid16384=0.09786s lex_hybrid4096=0.03001s lex_hybrid8192=0.05174s lex_plain=0.01345s
+2026-11-17T23:58:20-05:00 [234/870] main gaussian_continuous_s3_k512 done (7.6 min elapsed) Ckmeans.1d.dp=1.301s ckmeans_exact=0.7673s lex_hybrid16384=0.18s lex_hybrid4096=0.04681s lex_hybrid8192=0.08936s lex_plain=0.014s
+2026-11-17T23:58:20-05:00 [235/870] main exponential_continuous_s3_load done (7.6 min elapsed) 
+2026-11-17T23:58:21-05:00 [236/870] main exponential_continuous_s3_k4 done (7.6 min elapsed) Ckmeans.1d.dp=0.01284s ckmeans_exact=0.009002s lex_hybrid16384=0.01095s lex_hybrid4096=0.01125s lex_hybrid8192=0.01119s lex_plain=0.01281s
+2026-11-17T23:58:23-05:00 [237/870] main exponential_continuous_s3_k8 done (7.6 min elapsed) Ckmeans.1d.dp=0.02443s ckmeans_exact=0.01555s lex_hybrid16384=0.01254s lex_hybrid4096=0.01165s lex_hybrid8192=0.01193s lex_plain=0.01268s
+2026-11-17T23:58:24-05:00 [238/870] main exponential_continuous_s3_k16 done (7.6 min elapsed) Ckmeans.1d.dp=0.04782s ckmeans_exact=0.02837s lex_hybrid16384=0.01546s lex_hybrid4096=0.01227s lex_hybrid8192=0.01345s lex_plain=0.01295s
+2026-11-17T23:58:26-05:00 [239/870] main exponential_continuous_s3_k32 done (7.6 min elapsed) Ckmeans.1d.dp=0.09306s ckmeans_exact=0.05377s lex_hybrid16384=0.02131s lex_hybrid4096=0.01367s lex_hybrid8192=0.0161s lex_plain=0.01456s
+2026-11-17T23:58:28-05:00 [240/870] main exponential_continuous_s3_k64 done (7.7 min elapsed) Ckmeans.1d.dp=0.1788s ckmeans_exact=0.1028s lex_hybrid16384=0.0328s lex_hybrid4096=0.01601s lex_hybrid8192=0.02144s lex_plain=0.01643s
+2026-11-17T23:58:32-05:00 [241/870] main exponential_continuous_s3_k128 done (7.7 min elapsed) Ckmeans.1d.dp=0.3387s ckmeans_exact=0.1987s lex_hybrid16384=0.0544s lex_hybrid4096=0.02084s lex_hybrid8192=0.03155s lex_plain=0.01625s
+2026-11-17T23:58:38-05:00 [242/870] main exponential_continuous_s3_k256 done (7.9 min elapsed) Ckmeans.1d.dp=0.6625s ckmeans_exact=0.3835s lex_hybrid16384=0.09618s lex_hybrid4096=0.02972s lex_hybrid8192=0.05122s lex_plain=0.01448s
+2026-11-17T23:58:49-05:00 [243/870] main exponential_continuous_s3_k512 done (8.0 min elapsed) Ckmeans.1d.dp=1.333s ckmeans_exact=0.7412s lex_hybrid16384=0.1771s lex_hybrid4096=0.04657s lex_hybrid8192=0.08837s lex_plain=0.01515s
+2026-11-17T23:58:50-05:00 [244/870] main weibull_continuous_s3_load done (8.0 min elapsed) 
+2026-11-17T23:58:51-05:00 [245/870] main weibull_continuous_s3_k4 done (8.1 min elapsed) Ckmeans.1d.dp=0.01255s ckmeans_exact=0.008909s lex_hybrid16384=0.01084s lex_hybrid4096=0.01115s lex_hybrid8192=0.0111s lex_plain=0.01268s
+2026-11-17T23:58:52-05:00 [246/870] main weibull_continuous_s3_k8 done (8.1 min elapsed) Ckmeans.1d.dp=0.02404s ckmeans_exact=0.01557s lex_hybrid16384=0.01243s lex_hybrid4096=0.01148s lex_hybrid8192=0.01177s lex_plain=0.01431s
+2026-11-17T23:58:53-05:00 [247/870] main weibull_continuous_s3_k16 done (8.1 min elapsed) Ckmeans.1d.dp=0.04749s ckmeans_exact=0.02861s lex_hybrid16384=0.01537s lex_hybrid4096=0.01213s lex_hybrid8192=0.01325s lex_plain=0.01306s
+2026-11-17T23:58:55-05:00 [248/870] main weibull_continuous_s3_k32 done (8.1 min elapsed) Ckmeans.1d.dp=0.09235s ckmeans_exact=0.05398s lex_hybrid16384=0.02121s lex_hybrid4096=0.01375s lex_hybrid8192=0.01604s lex_plain=0.01255s
+2026-11-17T23:58:57-05:00 [249/870] main weibull_continuous_s3_k64 done (8.2 min elapsed) Ckmeans.1d.dp=0.1771s ckmeans_exact=0.1032s lex_hybrid16384=0.03264s lex_hybrid4096=0.0161s lex_hybrid8192=0.02137s lex_plain=0.0135s
+2026-11-17T23:59:01-05:00 [250/870] main weibull_continuous_s3_k128 done (8.2 min elapsed) Ckmeans.1d.dp=0.336s ckmeans_exact=0.2002s lex_hybrid16384=0.05409s lex_hybrid4096=0.02079s lex_hybrid8192=0.03155s lex_plain=0.01432s
+2026-11-17T23:59:07-05:00 [251/870] main weibull_continuous_s3_k256 done (8.3 min elapsed) Ckmeans.1d.dp=0.6602s ckmeans_exact=0.3873s lex_hybrid16384=0.09659s lex_hybrid4096=0.02969s lex_hybrid8192=0.05104s lex_plain=0.01417s
+2026-11-17T23:59:19-05:00 [252/870] main weibull_continuous_s3_k512 done (8.5 min elapsed) Ckmeans.1d.dp=1.321s ckmeans_exact=0.7493s lex_hybrid16384=0.1788s lex_hybrid4096=0.04621s lex_hybrid8192=0.08835s lex_plain=0.01527s
+2026-11-17T23:59:19-05:00 [253/870] main lognormal_continuous_s3_load done (8.5 min elapsed) 
+2026-11-17T23:59:20-05:00 [254/870] main lognormal_continuous_s3_k4 done (8.5 min elapsed) Ckmeans.1d.dp=0.01287s ckmeans_exact=0.009135s lex_hybrid16384=0.0112s lex_hybrid4096=0.01137s lex_hybrid8192=0.0114s lex_plain=0.01192s
+2026-11-17T23:59:21-05:00 [255/870] main lognormal_continuous_s3_k8 done (8.6 min elapsed) Ckmeans.1d.dp=0.02457s ckmeans_exact=0.0156s lex_hybrid16384=0.01266s lex_hybrid4096=0.0117s lex_hybrid8192=0.01195s lex_plain=0.01582s
+2026-11-17T23:59:22-05:00 [256/870] main lognormal_continuous_s3_k16 done (8.6 min elapsed) Ckmeans.1d.dp=0.04809s ckmeans_exact=0.02851s lex_hybrid16384=0.01559s lex_hybrid4096=0.01247s lex_hybrid8192=0.01339s lex_plain=0.01913s
+2026-11-17T23:59:24-05:00 [257/870] main lognormal_continuous_s3_k32 done (8.6 min elapsed) Ckmeans.1d.dp=0.09304s ckmeans_exact=0.05383s lex_hybrid16384=0.02149s lex_hybrid4096=0.01371s lex_hybrid8192=0.01611s lex_plain=0.01374s
+2026-11-17T23:59:26-05:00 [258/870] main lognormal_continuous_s3_k64 done (8.7 min elapsed) Ckmeans.1d.dp=0.1782s ckmeans_exact=0.1028s lex_hybrid16384=0.03258s lex_hybrid4096=0.01612s lex_hybrid8192=0.02136s lex_plain=0.01398s
+2026-11-17T23:59:30-05:00 [259/870] main lognormal_continuous_s3_k128 done (8.7 min elapsed) Ckmeans.1d.dp=0.3385s ckmeans_exact=0.1985s lex_hybrid16384=0.05435s lex_hybrid4096=0.02109s lex_hybrid8192=0.03171s lex_plain=0.01504s
+2026-11-17T23:59:36-05:00 [260/870] main lognormal_continuous_s3_k256 done (8.8 min elapsed) Ckmeans.1d.dp=0.6642s ckmeans_exact=0.3842s lex_hybrid16384=0.09574s lex_hybrid4096=0.02991s lex_hybrid8192=0.0511s lex_plain=0.01613s
+2026-11-17T23:59:48-05:00 [261/870] main lognormal_continuous_s3_k512 done (9.0 min elapsed) Ckmeans.1d.dp=1.352s ckmeans_exact=0.7422s lex_hybrid16384=0.1775s lex_hybrid4096=0.04632s lex_hybrid8192=0.08841s lex_plain=0.01536s
+2026-11-17T23:59:48-05:00 [262/870] main gmm_continuous_s3_load done (9.0 min elapsed) 
+2026-11-17T23:59:49-05:00 [263/870] main gmm_continuous_s3_k4 done (9.0 min elapsed) Ckmeans.1d.dp=0.0122s ckmeans_exact=0.008881s lex_hybrid16384=0.01092s lex_hybrid4096=0.01128s lex_hybrid8192=0.01107s lex_plain=0.01166s
+2026-11-17T23:59:50-05:00 [264/870] main gmm_continuous_s3_k8 done (9.1 min elapsed) Ckmeans.1d.dp=0.02331s ckmeans_exact=0.01564s lex_hybrid16384=0.0124s lex_hybrid4096=0.01154s lex_hybrid8192=0.01181s lex_plain=0.0129s
+2026-11-17T23:59:52-05:00 [265/870] main gmm_continuous_s3_k16 done (9.1 min elapsed) Ckmeans.1d.dp=0.04619s ckmeans_exact=0.02866s lex_hybrid16384=0.0154s lex_hybrid4096=0.01221s lex_hybrid8192=0.01333s lex_plain=0.01451s
+2026-11-17T23:59:53-05:00 [266/870] main gmm_continuous_s3_k32 done (9.1 min elapsed) Ckmeans.1d.dp=0.09094s ckmeans_exact=0.05411s lex_hybrid16384=0.02121s lex_hybrid4096=0.01358s lex_hybrid8192=0.01613s lex_plain=0.01288s
+2026-11-17T23:59:56-05:00 [267/870] main gmm_continuous_s3_k64 done (9.1 min elapsed) Ckmeans.1d.dp=0.1767s ckmeans_exact=0.1037s lex_hybrid16384=0.03256s lex_hybrid4096=0.01606s lex_hybrid8192=0.02129s lex_plain=0.01393s
+2026-11-17T23:59:59-05:00 [268/870] main gmm_continuous_s3_k128 done (9.2 min elapsed) Ckmeans.1d.dp=0.3343s ckmeans_exact=0.2008s lex_hybrid16384=0.05447s lex_hybrid4096=0.02088s lex_hybrid8192=0.03159s lex_plain=0.0131s
+2026-11-18T00:00:06-05:00 [269/870] main gmm_continuous_s3_k256 done (9.3 min elapsed) Ckmeans.1d.dp=0.6726s ckmeans_exact=0.3895s lex_hybrid16384=0.09641s lex_hybrid4096=0.03s lex_hybrid8192=0.05144s lex_plain=0.01437s
+2026-11-18T00:00:17-05:00 [270/870] main gmm_continuous_s3_k512 done (9.5 min elapsed) Ckmeans.1d.dp=1.314s ckmeans_exact=0.7548s lex_hybrid16384=0.1792s lex_hybrid4096=0.04654s lex_hybrid8192=0.08875s lex_plain=0.01457s
+2026-11-18T00:00:17-05:00 [271/870] main wg_mixture_continuous_s3_load done (9.5 min elapsed) 
+2026-11-18T00:00:18-05:00 [272/870] main wg_mixture_continuous_s3_k4 done (9.5 min elapsed) Ckmeans.1d.dp=0.01129s ckmeans_exact=0.008965s lex_hybrid16384=0.01096s lex_hybrid4096=0.01119s lex_hybrid8192=0.01112s lex_plain=0.01236s
+2026-11-18T00:00:19-05:00 [273/870] main wg_mixture_continuous_s3_k8 done (9.5 min elapsed) Ckmeans.1d.dp=0.02133s ckmeans_exact=0.01546s lex_hybrid16384=0.01254s lex_hybrid4096=0.01155s lex_hybrid8192=0.01183s lex_plain=0.01243s
+2026-11-18T00:00:21-05:00 [274/870] main wg_mixture_continuous_s3_k16 done (9.6 min elapsed) Ckmeans.1d.dp=0.04333s ckmeans_exact=0.02823s lex_hybrid16384=0.0154s lex_hybrid4096=0.01207s lex_hybrid8192=0.01328s lex_plain=0.01238s
+2026-11-18T00:00:22-05:00 [275/870] main wg_mixture_continuous_s3_k32 done (9.6 min elapsed) Ckmeans.1d.dp=0.08667s ckmeans_exact=0.05398s lex_hybrid16384=0.02136s lex_hybrid4096=0.01346s lex_hybrid8192=0.01595s lex_plain=0.01527s
+2026-11-18T00:00:25-05:00 [276/870] main wg_mixture_continuous_s3_k64 done (9.6 min elapsed) Ckmeans.1d.dp=0.1713s ckmeans_exact=0.1042s lex_hybrid16384=0.03279s lex_hybrid4096=0.01602s lex_hybrid8192=0.02139s lex_plain=0.01559s
+2026-11-18T00:00:28-05:00 [277/870] main wg_mixture_continuous_s3_k128 done (9.7 min elapsed) Ckmeans.1d.dp=0.3305s ckmeans_exact=0.2027s lex_hybrid16384=0.05465s lex_hybrid4096=0.02095s lex_hybrid8192=0.03169s lex_plain=0.01364s
+2026-11-18T00:00:35-05:00 [278/870] main wg_mixture_continuous_s3_k256 done (9.8 min elapsed) Ckmeans.1d.dp=0.6512s ckmeans_exact=0.3942s lex_hybrid16384=0.09678s lex_hybrid4096=0.02975s lex_hybrid8192=0.05132s lex_plain=0.01437s
+2026-11-18T00:00:46-05:00 [279/870] main wg_mixture_continuous_s3_k512 done (10.0 min elapsed) Ckmeans.1d.dp=1.303s ckmeans_exact=0.76s lex_hybrid16384=0.1795s lex_hybrid4096=0.0464s lex_hybrid8192=0.08941s lex_plain=0.01563s
+2026-11-18T00:00:46-05:00 [280/870] main bimodal_gaussian_continuous_s3_load done (10.0 min elapsed) 
+2026-11-18T00:00:47-05:00 [281/870] main bimodal_gaussian_continuous_s3_k4 done (10.0 min elapsed) Ckmeans.1d.dp=0.01089s ckmeans_exact=0.00862s lex_hybrid16384=0.01079s lex_hybrid4096=0.0111s lex_hybrid8192=0.01126s lex_plain=0.01346s
+2026-11-18T00:00:49-05:00 [282/870] main bimodal_gaussian_continuous_s3_k8 done (10.0 min elapsed) Ckmeans.1d.dp=0.02081s ckmeans_exact=0.01535s lex_hybrid16384=0.0124s lex_hybrid4096=0.01144s lex_hybrid8192=0.01182s lex_plain=0.01233s
+2026-11-18T00:00:50-05:00 [283/870] main bimodal_gaussian_continuous_s3_k16 done (10.0 min elapsed) Ckmeans.1d.dp=0.04263s ckmeans_exact=0.02825s lex_hybrid16384=0.0154s lex_hybrid4096=0.01217s lex_hybrid8192=0.01329s lex_plain=0.01216s
+2026-11-18T00:00:51-05:00 [284/870] main bimodal_gaussian_continuous_s3_k32 done (10.1 min elapsed) Ckmeans.1d.dp=0.08661s ckmeans_exact=0.05376s lex_hybrid16384=0.02107s lex_hybrid4096=0.0135s lex_hybrid8192=0.01588s lex_plain=0.01418s
+2026-11-18T00:00:54-05:00 [285/870] main bimodal_gaussian_continuous_s3_k64 done (10.1 min elapsed) Ckmeans.1d.dp=0.1729s ckmeans_exact=0.1039s lex_hybrid16384=0.03236s lex_hybrid4096=0.01617s lex_hybrid8192=0.02133s lex_plain=0.01328s
+2026-11-18T00:00:58-05:00 [286/870] main bimodal_gaussian_continuous_s3_k128 done (10.2 min elapsed) Ckmeans.1d.dp=0.3303s ckmeans_exact=0.2019s lex_hybrid16384=0.05418s lex_hybrid4096=0.02093s lex_hybrid8192=0.03166s lex_plain=0.01364s
+2026-11-18T00:01:04-05:00 [287/870] main bimodal_gaussian_continuous_s3_k256 done (10.3 min elapsed) Ckmeans.1d.dp=0.6544s ckmeans_exact=0.3921s lex_hybrid16384=0.09648s lex_hybrid4096=0.02979s lex_hybrid8192=0.05152s lex_plain=0.01437s
+2026-11-18T00:01:15-05:00 [288/870] main bimodal_gaussian_continuous_s3_k512 done (10.5 min elapsed) Ckmeans.1d.dp=1.313s ckmeans_exact=0.7571s lex_hybrid16384=0.1787s lex_hybrid4096=0.04669s lex_hybrid8192=0.08915s lex_plain=0.01466s
+2026-11-18T00:01:15-05:00 [289/870] main mixed_continuous_s3_load done (10.5 min elapsed) 
+2026-11-18T00:01:16-05:00 [290/870] main mixed_continuous_s3_k4 done (10.5 min elapsed) Ckmeans.1d.dp=0.01091s ckmeans_exact=0.008732s lex_hybrid16384=0.01085s lex_hybrid4096=0.01126s lex_hybrid8192=0.01132s lex_plain=0.01274s
+2026-11-18T00:01:18-05:00 [291/870] main mixed_continuous_s3_k8 done (10.5 min elapsed) Ckmeans.1d.dp=0.02012s ckmeans_exact=0.01512s lex_hybrid16384=0.01236s lex_hybrid4096=0.0116s lex_hybrid8192=0.01196s lex_plain=0.01239s
+2026-11-18T00:01:19-05:00 [292/870] main mixed_continuous_s3_k16 done (10.5 min elapsed) Ckmeans.1d.dp=0.04091s ckmeans_exact=0.02821s lex_hybrid16384=0.01581s lex_hybrid4096=0.01214s lex_hybrid8192=0.01316s lex_plain=0.01368s
+2026-11-18T00:01:21-05:00 [293/870] main mixed_continuous_s3_k32 done (10.6 min elapsed) Ckmeans.1d.dp=0.0822s ckmeans_exact=0.05362s lex_hybrid16384=0.02108s lex_hybrid4096=0.01354s lex_hybrid8192=0.01591s lex_plain=0.01324s
+2026-11-18T00:01:23-05:00 [294/870] main mixed_continuous_s3_k64 done (10.6 min elapsed) Ckmeans.1d.dp=0.1655s ckmeans_exact=0.1035s lex_hybrid16384=0.03223s lex_hybrid4096=0.01591s lex_hybrid8192=0.02142s lex_plain=0.01269s
+2026-11-18T00:01:27-05:00 [295/870] main mixed_continuous_s3_k128 done (10.7 min elapsed) Ckmeans.1d.dp=0.3228s ckmeans_exact=0.2021s lex_hybrid16384=0.05445s lex_hybrid4096=0.02083s lex_hybrid8192=0.03166s lex_plain=0.01361s
+2026-11-18T00:01:33-05:00 [296/870] main mixed_continuous_s3_k256 done (10.8 min elapsed) Ckmeans.1d.dp=0.6447s ckmeans_exact=0.3929s lex_hybrid16384=0.09667s lex_hybrid4096=0.02977s lex_hybrid8192=0.05121s lex_plain=0.01416s
+2026-11-18T00:01:44-05:00 [297/870] main mixed_continuous_s3_k512 done (11.0 min elapsed) Ckmeans.1d.dp=1.321s ckmeans_exact=0.7623s lex_hybrid16384=0.1805s lex_hybrid4096=0.04653s lex_hybrid8192=0.08963s lex_plain=0.01375s
+2026-11-18T00:01:44-05:00 [298/870] main truncated_continuous_s3_load done (11.0 min elapsed) 
+2026-11-18T00:01:45-05:00 [299/870] main truncated_continuous_s3_k4 done (11.0 min elapsed) Ckmeans.1d.dp=0.01118s ckmeans_exact=0.00871s lex_hybrid16384=0.0108s lex_hybrid4096=0.0111s lex_hybrid8192=0.011s lex_plain=0.01221s
+2026-11-18T00:01:47-05:00 [300/870] main truncated_continuous_s3_k8 done (11.0 min elapsed) Ckmeans.1d.dp=0.02125s ckmeans_exact=0.01524s lex_hybrid16384=0.01247s lex_hybrid4096=0.01146s lex_hybrid8192=0.0119s lex_plain=0.01218s
+2026-11-18T00:01:48-05:00 [301/870] main truncated_continuous_s3_k16 done (11.0 min elapsed) Ckmeans.1d.dp=0.04257s ckmeans_exact=0.02816s lex_hybrid16384=0.01548s lex_hybrid4096=0.01233s lex_hybrid8192=0.01334s lex_plain=0.01244s
+2026-11-18T00:01:50-05:00 [302/870] main truncated_continuous_s3_k32 done (11.0 min elapsed) Ckmeans.1d.dp=0.08625s ckmeans_exact=0.05353s lex_hybrid16384=0.02099s lex_hybrid4096=0.01369s lex_hybrid8192=0.0161s lex_plain=0.01241s
+2026-11-18T00:01:52-05:00 [303/870] main truncated_continuous_s3_k64 done (11.1 min elapsed) Ckmeans.1d.dp=0.1715s ckmeans_exact=0.1033s lex_hybrid16384=0.03228s lex_hybrid4096=0.01581s lex_hybrid8192=0.02138s lex_plain=0.01428s
+2026-11-18T00:01:56-05:00 [304/870] main truncated_continuous_s3_k128 done (11.1 min elapsed) Ckmeans.1d.dp=0.3294s ckmeans_exact=0.2003s lex_hybrid16384=0.05405s lex_hybrid4096=0.02064s lex_hybrid8192=0.03138s lex_plain=0.01509s
+2026-11-18T00:02:02-05:00 [305/870] main truncated_continuous_s3_k256 done (11.2 min elapsed) Ckmeans.1d.dp=0.65s ckmeans_exact=0.389s lex_hybrid16384=0.09617s lex_hybrid4096=0.02968s lex_hybrid8192=0.05095s lex_plain=0.01406s
+2026-11-18T00:02:13-05:00 [306/870] main truncated_continuous_s3_k512 done (11.4 min elapsed) Ckmeans.1d.dp=1.308s ckmeans_exact=0.7508s lex_hybrid16384=0.1786s lex_hybrid4096=0.04652s lex_hybrid8192=0.08901s lex_plain=0.01388s
+2026-11-18T00:02:13-05:00 [307/870] main triangular_discrete_s3_load done (11.4 min elapsed) 
+2026-11-18T00:02:14-05:00 [308/870] main triangular_discrete_s3_k4 done (11.5 min elapsed) Ckmeans.1d.dp=0.009632s ckmeans_exact=0.003147s lex_hybrid16384=0.003138s lex_hybrid4096=0.003151s lex_hybrid8192=0.003351s lex_plain=0.003454s
+2026-11-18T00:02:15-05:00 [309/870] main triangular_discrete_s3_k8 done (11.5 min elapsed) Ckmeans.1d.dp=0.017s ckmeans_exact=0.003485s lex_hybrid16384=0.003729s lex_hybrid4096=0.003507s lex_hybrid8192=0.003698s lex_plain=0.003541s
+2026-11-18T00:02:16-05:00 [310/870] main triangular_discrete_s3_k16 done (11.5 min elapsed) Ckmeans.1d.dp=0.03306s ckmeans_exact=0.004144s lex_hybrid16384=0.004299s lex_hybrid4096=0.004333s lex_hybrid8192=0.004327s lex_plain=0.003448s
+2026-11-18T00:02:17-05:00 [311/870] main triangular_discrete_s3_k32 done (11.5 min elapsed) Ckmeans.1d.dp=0.06422s ckmeans_exact=0.00536s lex_hybrid16384=0.005483s lex_hybrid4096=0.005534s lex_hybrid8192=0.005511s lex_plain=0.003495s
+2026-11-18T00:02:19-05:00 [312/870] main triangular_discrete_s3_k64 done (11.5 min elapsed) Ckmeans.1d.dp=0.1253s ckmeans_exact=0.007598s lex_hybrid16384=0.007679s lex_hybrid4096=0.007718s lex_hybrid8192=0.007806s lex_plain=0.003632s
+2026-11-18T00:02:21-05:00 [313/870] main triangular_discrete_s3_k128 done (11.6 min elapsed) Ckmeans.1d.dp=0.2416s ckmeans_exact=0.01208s lex_hybrid16384=0.01216s lex_hybrid4096=0.01222s lex_hybrid8192=0.01209s lex_plain=0.00351s
+2026-11-18T00:02:24-05:00 [314/870] main triangular_discrete_s3_k256 done (11.6 min elapsed) Ckmeans.1d.dp=0.4845s ckmeans_exact=0.02035s lex_hybrid16384=0.02037s lex_hybrid4096=0.02033s lex_hybrid8192=0.01999s lex_plain=0.00352s
+2026-11-18T00:02:29-05:00 [315/870] main triangular_discrete_s3_k512 done (11.7 min elapsed) Ckmeans.1d.dp=0.9585s ckmeans_exact=0.03459s lex_hybrid16384=0.0344s lex_hybrid4096=0.03547s lex_hybrid8192=0.03461s lex_plain=0.003839s
+2026-11-18T00:02:29-05:00 [316/870] main spike_uniform_discrete_s3_load done (11.7 min elapsed) 
+2026-11-18T00:02:30-05:00 [317/870] main spike_uniform_discrete_s3_k4 done (11.7 min elapsed) Ckmeans.1d.dp=0.008597s ckmeans_exact=0.003086s lex_hybrid16384=0.003088s lex_hybrid4096=0.0031s lex_hybrid8192=0.003061s lex_plain=0.003397s
+2026-11-18T00:02:31-05:00 [318/870] main spike_uniform_discrete_s3_k8 done (11.7 min elapsed) Ckmeans.1d.dp=0.01376s ckmeans_exact=0.003406s lex_hybrid16384=0.00346s lex_hybrid4096=0.003478s lex_hybrid8192=0.003408s lex_plain=0.003383s
+2026-11-18T00:02:32-05:00 [319/870] main spike_uniform_discrete_s3_k16 done (11.7 min elapsed) Ckmeans.1d.dp=0.02413s ckmeans_exact=0.004096s lex_hybrid16384=0.004083s lex_hybrid4096=0.004099s lex_hybrid8192=0.004079s lex_plain=0.003391s
+2026-11-18T00:02:33-05:00 [320/870] main spike_uniform_discrete_s3_k32 done (11.8 min elapsed) Ckmeans.1d.dp=0.04416s ckmeans_exact=0.00541s lex_hybrid16384=0.005295s lex_hybrid4096=0.005351s lex_hybrid8192=0.005355s lex_plain=0.003365s
+2026-11-18T00:02:34-05:00 [321/870] main spike_uniform_discrete_s3_k64 done (11.8 min elapsed) Ckmeans.1d.dp=0.08435s ckmeans_exact=0.00778s lex_hybrid16384=0.007739s lex_hybrid4096=0.007749s lex_hybrid8192=0.007728s lex_plain=0.003344s
+2026-11-18T00:02:36-05:00 [322/870] main spike_uniform_discrete_s3_k128 done (11.8 min elapsed) Ckmeans.1d.dp=0.1615s ckmeans_exact=0.01242s lex_hybrid16384=0.01237s lex_hybrid4096=0.01244s lex_hybrid8192=0.01249s lex_plain=0.003415s
+2026-11-18T00:02:38-05:00 [323/870] main spike_uniform_discrete_s3_k256 done (11.9 min elapsed) Ckmeans.1d.dp=0.3168s ckmeans_exact=0.02127s lex_hybrid16384=0.02096s lex_hybrid4096=0.0212s lex_hybrid8192=0.02116s lex_plain=0.003374s
+2026-11-18T00:02:42-05:00 [324/870] main spike_uniform_discrete_s3_k512 done (11.9 min elapsed) Ckmeans.1d.dp=0.6136s ckmeans_exact=0.03695s lex_hybrid16384=0.03676s lex_hybrid4096=0.03748s lex_hybrid8192=0.03713s lex_plain=0.003461s
+2026-11-18T00:02:42-05:00 [325/870] main uniform_continuous_s4_load done (11.9 min elapsed) 
+2026-11-18T00:02:44-05:00 [326/870] main uniform_continuous_s4_k4 done (11.9 min elapsed) Ckmeans.1d.dp=0.02445s ckmeans_exact=0.01882s lex_hybrid16384=0.02354s lex_hybrid4096=0.02405s lex_hybrid8192=0.02387s lex_plain=0.02758s
+2026-11-18T00:02:45-05:00 [327/870] main uniform_continuous_s4_k8 done (12.0 min elapsed) Ckmeans.1d.dp=0.04611s ckmeans_exact=0.03303s lex_hybrid16384=0.02487s lex_hybrid4096=0.02426s lex_hybrid8192=0.02437s lex_plain=0.02542s
+2026-11-18T00:02:47-05:00 [328/870] main uniform_continuous_s4_k16 done (12.0 min elapsed) Ckmeans.1d.dp=0.09055s ckmeans_exact=0.05951s lex_hybrid16384=0.02822s lex_hybrid4096=0.02461s lex_hybrid8192=0.02598s lex_plain=0.02742s
+2026-11-18T00:02:50-05:00 [329/870] main uniform_continuous_s4_k32 done (12.0 min elapsed) Ckmeans.1d.dp=0.1785s ckmeans_exact=0.1133s lex_hybrid16384=0.0339s lex_hybrid4096=0.02618s lex_hybrid8192=0.0286s lex_plain=0.02713s
+2026-11-18T00:02:53-05:00 [330/870] main uniform_continuous_s4_k64 done (12.1 min elapsed) Ckmeans.1d.dp=0.3428s ckmeans_exact=0.2172s lex_hybrid16384=0.04514s lex_hybrid4096=0.0287s lex_hybrid8192=0.0338s lex_plain=0.02734s
+2026-11-18T00:03:00-05:00 [331/870] main uniform_continuous_s4_k128 done (12.2 min elapsed) Ckmeans.1d.dp=0.6632s ckmeans_exact=0.4202s lex_hybrid16384=0.0667s lex_hybrid4096=0.03349s lex_hybrid8192=0.04413s lex_plain=0.0278s
+2026-11-18T00:03:11-05:00 [332/870] main uniform_continuous_s4_k256 done (12.4 min elapsed) Ckmeans.1d.dp=1.314s ckmeans_exact=0.8152s lex_hybrid16384=0.1092s lex_hybrid4096=0.04252s lex_hybrid8192=0.06403s lex_plain=0.02728s
+2026-11-18T00:03:32-05:00 [333/870] main uniform_continuous_s4_k512 done (12.8 min elapsed) Ckmeans.1d.dp=2.594s ckmeans_exact=1.583s lex_hybrid16384=0.1914s lex_hybrid4096=0.05881s lex_hybrid8192=0.1016s lex_plain=0.02961s
+2026-11-18T00:03:32-05:00 [334/870] main gaussian_continuous_s4_load done (12.8 min elapsed) 
+2026-11-18T00:03:34-05:00 [335/870] main gaussian_continuous_s4_k4 done (12.8 min elapsed) Ckmeans.1d.dp=0.02436s ckmeans_exact=0.01872s lex_hybrid16384=0.02419s lex_hybrid4096=0.02395s lex_hybrid8192=0.02423s lex_plain=0.02804s
+2026-11-18T00:03:35-05:00 [336/870] main gaussian_continuous_s4_k8 done (12.8 min elapsed) Ckmeans.1d.dp=0.04628s ckmeans_exact=0.03304s lex_hybrid16384=0.02523s lex_hybrid4096=0.02451s lex_hybrid8192=0.02509s lex_plain=0.0266s
+2026-11-18T00:03:37-05:00 [337/870] main gaussian_continuous_s4_k16 done (12.8 min elapsed) Ckmeans.1d.dp=0.09226s ckmeans_exact=0.06036s lex_hybrid16384=0.02826s lex_hybrid4096=0.02513s lex_hybrid8192=0.02607s lex_plain=0.02813s
+2026-11-18T00:03:40-05:00 [338/870] main gaussian_continuous_s4_k32 done (12.9 min elapsed) Ckmeans.1d.dp=0.1826s ckmeans_exact=0.1143s lex_hybrid16384=0.03422s lex_hybrid4096=0.02661s lex_hybrid8192=0.02876s lex_plain=0.02919s
+2026-11-18T00:03:44-05:00 [339/870] main gaussian_continuous_s4_k64 done (13.0 min elapsed) Ckmeans.1d.dp=0.3477s ckmeans_exact=0.2208s lex_hybrid16384=0.0456s lex_hybrid4096=0.02907s lex_hybrid8192=0.03395s lex_plain=0.02697s
+2026-11-18T00:03:50-05:00 [340/870] main gaussian_continuous_s4_k128 done (13.1 min elapsed) Ckmeans.1d.dp=0.6756s ckmeans_exact=0.4275s lex_hybrid16384=0.06744s lex_hybrid4096=0.03371s lex_hybrid8192=0.04457s lex_plain=0.03016s
+2026-11-18T00:04:02-05:00 [341/870] main gaussian_continuous_s4_k256 done (13.3 min elapsed) Ckmeans.1d.dp=1.339s ckmeans_exact=0.8274s lex_hybrid16384=0.1103s lex_hybrid4096=0.043s lex_hybrid8192=0.06438s lex_plain=0.02955s
+2026-11-18T00:04:23-05:00 [342/870] main gaussian_continuous_s4_k512 done (13.6 min elapsed) Ckmeans.1d.dp=2.601s ckmeans_exact=1.612s lex_hybrid16384=0.1912s lex_hybrid4096=0.05977s lex_hybrid8192=0.1023s lex_plain=0.03087s
+2026-11-18T00:04:23-05:00 [343/870] main exponential_continuous_s4_load done (13.6 min elapsed) 
+2026-11-18T00:04:25-05:00 [344/870] main exponential_continuous_s4_k4 done (13.6 min elapsed) Ckmeans.1d.dp=0.02574s ckmeans_exact=0.01886s lex_hybrid16384=0.02415s lex_hybrid4096=0.02426s lex_hybrid8192=0.02416s lex_plain=0.03309s
+2026-11-18T00:04:26-05:00 [345/870] main exponential_continuous_s4_k8 done (13.7 min elapsed) Ckmeans.1d.dp=0.04927s ckmeans_exact=0.03291s lex_hybrid16384=0.02567s lex_hybrid4096=0.02483s lex_hybrid8192=0.02513s lex_plain=0.02625s
+2026-11-18T00:04:28-05:00 [346/870] main exponential_continuous_s4_k16 done (13.7 min elapsed) Ckmeans.1d.dp=0.09606s ckmeans_exact=0.05975s lex_hybrid16384=0.0285s lex_hybrid4096=0.02546s lex_hybrid8192=0.02631s lex_plain=0.03091s
+2026-11-18T00:04:31-05:00 [347/870] main exponential_continuous_s4_k32 done (13.7 min elapsed) Ckmeans.1d.dp=0.1875s ckmeans_exact=0.1131s lex_hybrid16384=0.03448s lex_hybrid4096=0.02666s lex_hybrid8192=0.02935s lex_plain=0.03577s
+2026-11-18T00:04:35-05:00 [348/870] main exponential_continuous_s4_k64 done (13.8 min elapsed) Ckmeans.1d.dp=0.3516s ckmeans_exact=0.216s lex_hybrid16384=0.04543s lex_hybrid4096=0.02897s lex_hybrid8192=0.03428s lex_plain=0.03473s
+2026-11-18T00:04:41-05:00 [349/870] main exponential_continuous_s4_k128 done (13.9 min elapsed) Ckmeans.1d.dp=0.6737s ckmeans_exact=0.4169s lex_hybrid16384=0.067s lex_hybrid4096=0.03443s lex_hybrid8192=0.04442s lex_plain=0.0293s
+2026-11-18T00:04:53-05:00 [350/870] main exponential_continuous_s4_k256 done (14.1 min elapsed) Ckmeans.1d.dp=1.353s ckmeans_exact=0.8058s lex_hybrid16384=0.1094s lex_hybrid4096=0.04342s lex_hybrid8192=0.0642s lex_plain=0.03105s
+2026-11-18T00:05:14-05:00 [351/870] main exponential_continuous_s4_k512 done (14.4 min elapsed) Ckmeans.1d.dp=2.633s ckmeans_exact=1.565s lex_hybrid16384=0.1902s lex_hybrid4096=0.06034s lex_hybrid8192=0.102s lex_plain=0.03305s
+2026-11-18T00:05:14-05:00 [352/870] main weibull_continuous_s4_load done (14.5 min elapsed) 
+2026-11-18T00:05:15-05:00 [353/870] main weibull_continuous_s4_k4 done (14.5 min elapsed) Ckmeans.1d.dp=0.02503s ckmeans_exact=0.01895s lex_hybrid16384=0.02348s lex_hybrid4096=0.02376s lex_hybrid8192=0.02368s lex_plain=0.02548s
+2026-11-18T00:05:17-05:00 [354/870] main weibull_continuous_s4_k8 done (14.5 min elapsed) Ckmeans.1d.dp=0.04824s ckmeans_exact=0.03252s lex_hybrid16384=0.0253s lex_hybrid4096=0.02411s lex_hybrid8192=0.02429s lex_plain=0.02713s
+2026-11-18T00:05:19-05:00 [355/870] main weibull_continuous_s4_k16 done (14.5 min elapsed) Ckmeans.1d.dp=0.09445s ckmeans_exact=0.05949s lex_hybrid16384=0.02774s lex_hybrid4096=0.02454s lex_hybrid8192=0.02572s lex_plain=0.0295s
+2026-11-18T00:05:22-05:00 [356/870] main weibull_continuous_s4_k32 done (14.6 min elapsed) Ckmeans.1d.dp=0.184s ckmeans_exact=0.1128s lex_hybrid16384=0.03383s lex_hybrid4096=0.02602s lex_hybrid8192=0.02848s lex_plain=0.03391s
+2026-11-18T00:05:26-05:00 [357/870] main weibull_continuous_s4_k64 done (14.6 min elapsed) Ckmeans.1d.dp=0.3482s ckmeans_exact=0.2174s lex_hybrid16384=0.04501s lex_hybrid4096=0.02893s lex_hybrid8192=0.03407s lex_plain=0.03152s
+2026-11-18T00:05:32-05:00 [358/870] main weibull_continuous_s4_k128 done (14.8 min elapsed) Ckmeans.1d.dp=0.6714s ckmeans_exact=0.4209s lex_hybrid16384=0.06663s lex_hybrid4096=0.0333s lex_hybrid8192=0.04399s lex_plain=0.02877s
+2026-11-18T00:05:43-05:00 [359/870] main weibull_continuous_s4_k256 done (14.9 min elapsed) Ckmeans.1d.dp=1.346s ckmeans_exact=0.8133s lex_hybrid16384=0.1095s lex_hybrid4096=0.04274s lex_hybrid8192=0.0638s lex_plain=0.02925s
+2026-11-18T00:06:04-05:00 [360/870] main weibull_continuous_s4_k512 done (15.3 min elapsed) Ckmeans.1d.dp=2.611s ckmeans_exact=1.578s lex_hybrid16384=0.1901s lex_hybrid4096=0.05944s lex_hybrid8192=0.1019s lex_plain=0.03275s
+2026-11-18T00:06:05-05:00 [361/870] main lognormal_continuous_s4_load done (15.3 min elapsed) 
+2026-11-18T00:06:06-05:00 [362/870] main lognormal_continuous_s4_k4 done (15.3 min elapsed) Ckmeans.1d.dp=0.02586s ckmeans_exact=0.01906s lex_hybrid16384=0.02453s lex_hybrid4096=0.02463s lex_hybrid8192=0.02448s lex_plain=0.02617s
+2026-11-18T00:06:08-05:00 [363/870] main lognormal_continuous_s4_k8 done (15.3 min elapsed) Ckmeans.1d.dp=0.04935s ckmeans_exact=0.03286s lex_hybrid16384=0.026s lex_hybrid4096=0.02493s lex_hybrid8192=0.02527s lex_plain=0.03039s
+2026-11-18T00:06:10-05:00 [364/870] main lognormal_continuous_s4_k16 done (15.4 min elapsed) Ckmeans.1d.dp=0.09664s ckmeans_exact=0.06009s lex_hybrid16384=0.02889s lex_hybrid4096=0.0255s lex_hybrid8192=0.02656s lex_plain=0.03117s
+2026-11-18T00:06:12-05:00 [365/870] main lognormal_continuous_s4_k32 done (15.4 min elapsed) Ckmeans.1d.dp=0.1875s ckmeans_exact=0.1134s lex_hybrid16384=0.03468s lex_hybrid4096=0.02694s lex_hybrid8192=0.02936s lex_plain=0.03029s
+2026-11-18T00:06:16-05:00 [366/870] main lognormal_continuous_s4_k64 done (15.5 min elapsed) Ckmeans.1d.dp=0.35s ckmeans_exact=0.2166s lex_hybrid16384=0.04552s lex_hybrid4096=0.02941s lex_hybrid8192=0.03462s lex_plain=0.04064s
+2026-11-18T00:06:23-05:00 [367/870] main lognormal_continuous_s4_k128 done (15.6 min elapsed) Ckmeans.1d.dp=0.6741s ckmeans_exact=0.4174s lex_hybrid16384=0.06726s lex_hybrid4096=0.03428s lex_hybrid8192=0.04492s lex_plain=0.0336s
+2026-11-18T00:06:34-05:00 [368/870] main lognormal_continuous_s4_k256 done (15.8 min elapsed) Ckmeans.1d.dp=1.334s ckmeans_exact=0.8061s lex_hybrid16384=0.1089s lex_hybrid4096=0.04349s lex_hybrid8192=0.06411s lex_plain=0.03366s
+2026-11-18T00:06:55-05:00 [369/870] main lognormal_continuous_s4_k512 done (16.1 min elapsed) Ckmeans.1d.dp=2.63s ckmeans_exact=1.566s lex_hybrid16384=0.19s lex_hybrid4096=0.05983s lex_hybrid8192=0.1011s lex_plain=0.0341s
+2026-11-18T00:06:55-05:00 [370/870] main gmm_continuous_s4_load done (16.1 min elapsed) 
+2026-11-18T00:06:57-05:00 [371/870] main gmm_continuous_s4_k4 done (16.2 min elapsed) Ckmeans.1d.dp=0.02459s ckmeans_exact=0.01903s lex_hybrid16384=0.02417s lex_hybrid4096=0.02413s lex_hybrid8192=0.02415s lex_plain=0.02761s
+2026-11-18T00:06:58-05:00 [372/870] main gmm_continuous_s4_k8 done (16.2 min elapsed) Ckmeans.1d.dp=0.04677s ckmeans_exact=0.03283s lex_hybrid16384=0.02546s lex_hybrid4096=0.0246s lex_hybrid8192=0.0248s lex_plain=0.02774s
+2026-11-18T00:07:00-05:00 [373/870] main gmm_continuous_s4_k16 done (16.2 min elapsed) Ckmeans.1d.dp=0.09261s ckmeans_exact=0.06014s lex_hybrid16384=0.02846s lex_hybrid4096=0.02522s lex_hybrid8192=0.02629s lex_plain=0.02765s
+2026-11-18T00:07:03-05:00 [374/870] main gmm_continuous_s4_k32 done (16.3 min elapsed) Ckmeans.1d.dp=0.1821s ckmeans_exact=0.1139s lex_hybrid16384=0.03433s lex_hybrid4096=0.02651s lex_hybrid8192=0.02907s lex_plain=0.02856s
+2026-11-18T00:07:07-05:00 [375/870] main gmm_continuous_s4_k64 done (16.3 min elapsed) Ckmeans.1d.dp=0.3467s ckmeans_exact=0.219s lex_hybrid16384=0.04515s lex_hybrid4096=0.02914s lex_hybrid8192=0.03427s lex_plain=0.03069s
+2026-11-18T00:07:13-05:00 [376/870] main gmm_continuous_s4_k128 done (16.4 min elapsed) Ckmeans.1d.dp=0.669s ckmeans_exact=0.4224s lex_hybrid16384=0.06722s lex_hybrid4096=0.03389s lex_hybrid8192=0.04455s lex_plain=0.03003s
+2026-11-18T00:07:25-05:00 [377/870] main gmm_continuous_s4_k256 done (16.6 min elapsed) Ckmeans.1d.dp=1.341s ckmeans_exact=0.8177s lex_hybrid16384=0.1094s lex_hybrid4096=0.04326s lex_hybrid8192=0.06432s lex_plain=0.03218s
+2026-11-18T00:07:46-05:00 [378/870] main gmm_continuous_s4_k512 done (17.0 min elapsed) Ckmeans.1d.dp=2.619s ckmeans_exact=1.59s lex_hybrid16384=0.1913s lex_hybrid4096=0.06012s lex_hybrid8192=0.1026s lex_plain=0.03115s
+2026-11-18T00:07:46-05:00 [379/870] main wg_mixture_continuous_s4_load done (17.0 min elapsed) 
+2026-11-18T00:07:48-05:00 [380/870] main wg_mixture_continuous_s4_k4 done (17.0 min elapsed) Ckmeans.1d.dp=0.02319s ckmeans_exact=0.019s lex_hybrid16384=0.02394s lex_hybrid4096=0.02413s lex_hybrid8192=0.02419s lex_plain=0.02843s
+2026-11-18T00:07:49-05:00 [381/870] main wg_mixture_continuous_s4_k8 done (17.0 min elapsed) Ckmeans.1d.dp=0.04298s ckmeans_exact=0.03235s lex_hybrid16384=0.02548s lex_hybrid4096=0.02457s lex_hybrid8192=0.02485s lex_plain=0.02603s
+2026-11-18T00:07:51-05:00 [382/870] main wg_mixture_continuous_s4_k16 done (17.1 min elapsed) Ckmeans.1d.dp=0.0871s ckmeans_exact=0.0598s lex_hybrid16384=0.02845s lex_hybrid4096=0.02531s lex_hybrid8192=0.02629s lex_plain=0.02697s
+2026-11-18T00:07:54-05:00 [383/870] main wg_mixture_continuous_s4_k32 done (17.1 min elapsed) Ckmeans.1d.dp=0.1738s ckmeans_exact=0.1136s lex_hybrid16384=0.03429s lex_hybrid4096=0.0267s lex_hybrid8192=0.02898s lex_plain=0.02799s
+2026-11-18T00:07:58-05:00 [384/870] main wg_mixture_continuous_s4_k64 done (17.2 min elapsed) Ckmeans.1d.dp=0.3362s ckmeans_exact=0.2193s lex_hybrid16384=0.04556s lex_hybrid4096=0.02914s lex_hybrid8192=0.03434s lex_plain=0.02851s
+2026-11-18T00:08:04-05:00 [385/870] main wg_mixture_continuous_s4_k128 done (17.3 min elapsed) Ckmeans.1d.dp=0.6573s ckmeans_exact=0.4316s lex_hybrid16384=0.06749s lex_hybrid4096=0.03542s lex_hybrid8192=0.04498s lex_plain=0.02796s
+2026-11-18T00:08:16-05:00 [386/870] main wg_mixture_continuous_s4_k256 done (17.5 min elapsed) Ckmeans.1d.dp=1.327s ckmeans_exact=0.8243s lex_hybrid16384=0.1095s lex_hybrid4096=0.04312s lex_hybrid8192=0.06434s lex_plain=0.03019s
+2026-11-18T00:08:37-05:00 [387/870] main wg_mixture_continuous_s4_k512 done (17.8 min elapsed) Ckmeans.1d.dp=2.575s ckmeans_exact=1.603s lex_hybrid16384=0.1917s lex_hybrid4096=0.06041s lex_hybrid8192=0.1027s lex_plain=0.03162s
+2026-11-18T00:08:37-05:00 [388/870] main bimodal_gaussian_continuous_s4_load done (17.8 min elapsed) 
+2026-11-18T00:08:38-05:00 [389/870] main bimodal_gaussian_continuous_s4_k4 done (17.9 min elapsed) Ckmeans.1d.dp=0.022s ckmeans_exact=0.01879s lex_hybrid16384=0.02377s lex_hybrid4096=0.02415s lex_hybrid8192=0.02399s lex_plain=0.02718s
+2026-11-18T00:08:40-05:00 [390/870] main bimodal_gaussian_continuous_s4_k8 done (17.9 min elapsed) Ckmeans.1d.dp=0.04167s ckmeans_exact=0.03233s lex_hybrid16384=0.02532s lex_hybrid4096=0.02447s lex_hybrid8192=0.02478s lex_plain=0.02688s
+2026-11-18T00:08:42-05:00 [391/870] main bimodal_gaussian_continuous_s4_k16 done (17.9 min elapsed) Ckmeans.1d.dp=0.08548s ckmeans_exact=0.05918s lex_hybrid16384=0.0282s lex_hybrid4096=0.02508s lex_hybrid8192=0.02605s lex_plain=0.02647s
+2026-11-18T00:08:44-05:00 [392/870] main bimodal_gaussian_continuous_s4_k32 done (18.0 min elapsed) Ckmeans.1d.dp=0.1736s ckmeans_exact=0.1131s lex_hybrid16384=0.03398s lex_hybrid4096=0.02637s lex_hybrid8192=0.02889s lex_plain=0.02947s
+2026-11-18T00:08:48-05:00 [393/870] main bimodal_gaussian_continuous_s4_k64 done (18.0 min elapsed) Ckmeans.1d.dp=0.3367s ckmeans_exact=0.2179s lex_hybrid16384=0.04523s lex_hybrid4096=0.02891s lex_hybrid8192=0.03407s lex_plain=0.02678s
+2026-11-18T00:08:55-05:00 [394/870] main bimodal_gaussian_continuous_s4_k128 done (18.1 min elapsed) Ckmeans.1d.dp=0.6598s ckmeans_exact=0.4234s lex_hybrid16384=0.0668s lex_hybrid4096=0.03367s lex_hybrid8192=0.04445s lex_plain=0.03077s
+2026-11-18T00:09:06-05:00 [395/870] main bimodal_gaussian_continuous_s4_k256 done (18.3 min elapsed) Ckmeans.1d.dp=1.301s ckmeans_exact=0.8209s lex_hybrid16384=0.1098s lex_hybrid4096=0.04313s lex_hybrid8192=0.06409s lex_plain=0.03173s
+2026-11-18T00:09:27-05:00 [396/870] main bimodal_gaussian_continuous_s4_k512 done (18.7 min elapsed) Ckmeans.1d.dp=2.599s ckmeans_exact=1.594s lex_hybrid16384=0.1919s lex_hybrid4096=0.06034s lex_hybrid8192=0.1019s lex_plain=0.03164s
+2026-11-18T00:09:27-05:00 [397/870] main mixed_continuous_s4_load done (18.7 min elapsed) 
+2026-11-18T00:09:29-05:00 [398/870] main mixed_continuous_s4_k4 done (18.7 min elapsed) Ckmeans.1d.dp=0.02227s ckmeans_exact=0.01867s lex_hybrid16384=0.02388s lex_hybrid4096=0.02417s lex_hybrid8192=0.02406s lex_plain=0.02716s
+2026-11-18T00:09:30-05:00 [399/870] main mixed_continuous_s4_k8 done (18.7 min elapsed) Ckmeans.1d.dp=0.04058s ckmeans_exact=0.03246s lex_hybrid16384=0.02538s lex_hybrid4096=0.0246s lex_hybrid8192=0.02481s lex_plain=0.02611s
+2026-11-18T00:09:32-05:00 [400/870] main mixed_continuous_s4_k16 done (18.8 min elapsed) Ckmeans.1d.dp=0.08139s ckmeans_exact=0.0591s lex_hybrid16384=0.02833s lex_hybrid4096=0.02533s lex_hybrid8192=0.02625s lex_plain=0.02764s
+2026-11-18T00:09:35-05:00 [401/870] main mixed_continuous_s4_k32 done (18.8 min elapsed) Ckmeans.1d.dp=0.1655s ckmeans_exact=0.1127s lex_hybrid16384=0.034s lex_hybrid4096=0.0265s lex_hybrid8192=0.02879s lex_plain=0.03069s
+2026-11-18T00:09:39-05:00 [402/870] main mixed_continuous_s4_k64 done (18.9 min elapsed) Ckmeans.1d.dp=0.3275s ckmeans_exact=0.2184s lex_hybrid16384=0.0454s lex_hybrid4096=0.02925s lex_hybrid8192=0.03433s lex_plain=0.02832s
+2026-11-18T00:09:45-05:00 [403/870] main mixed_continuous_s4_k128 done (19.0 min elapsed) Ckmeans.1d.dp=0.651s ckmeans_exact=0.426s lex_hybrid16384=0.0674s lex_hybrid4096=0.03402s lex_hybrid8192=0.04457s lex_plain=0.03194s
+2026-11-18T00:09:56-05:00 [404/870] main mixed_continuous_s4_k256 done (19.2 min elapsed) Ckmeans.1d.dp=1.318s ckmeans_exact=0.825s lex_hybrid16384=0.1094s lex_hybrid4096=0.043s lex_hybrid8192=0.06435s lex_plain=0.03012s
+2026-11-18T00:10:18-05:00 [405/870] main mixed_continuous_s4_k512 done (19.5 min elapsed) Ckmeans.1d.dp=2.579s ckmeans_exact=1.609s lex_hybrid16384=0.1923s lex_hybrid4096=0.06028s lex_hybrid8192=0.1028s lex_plain=0.03179s
+2026-11-18T00:10:18-05:00 [406/870] main truncated_continuous_s4_load done (19.5 min elapsed) 
+2026-11-18T00:10:19-05:00 [407/870] main truncated_continuous_s4_k4 done (19.5 min elapsed) Ckmeans.1d.dp=0.02291s ckmeans_exact=0.01862s lex_hybrid16384=0.02388s lex_hybrid4096=0.02415s lex_hybrid8192=0.02403s lex_plain=0.02518s
+2026-11-18T00:10:21-05:00 [408/870] main truncated_continuous_s4_k8 done (19.6 min elapsed) Ckmeans.1d.dp=0.04306s ckmeans_exact=0.03225s lex_hybrid16384=0.02521s lex_hybrid4096=0.02454s lex_hybrid8192=0.02475s lex_plain=0.0275s
+2026-11-18T00:10:23-05:00 [409/870] main truncated_continuous_s4_k16 done (19.6 min elapsed) Ckmeans.1d.dp=0.08615s ckmeans_exact=0.0594s lex_hybrid16384=0.02818s lex_hybrid4096=0.02511s lex_hybrid8192=0.02617s lex_plain=0.02743s
+2026-11-18T00:10:25-05:00 [410/870] main truncated_continuous_s4_k32 done (19.6 min elapsed) Ckmeans.1d.dp=0.1733s ckmeans_exact=0.1131s lex_hybrid16384=0.03405s lex_hybrid4096=0.0264s lex_hybrid8192=0.02887s lex_plain=0.02855s
+2026-11-18T00:10:29-05:00 [411/870] main truncated_continuous_s4_k64 done (19.7 min elapsed) Ckmeans.1d.dp=0.3374s ckmeans_exact=0.2178s lex_hybrid16384=0.04509s lex_hybrid4096=0.02891s lex_hybrid8192=0.03398s lex_plain=0.02779s
+2026-11-18T00:10:36-05:00 [412/870] main truncated_continuous_s4_k128 done (19.8 min elapsed) Ckmeans.1d.dp=0.6617s ckmeans_exact=0.422s lex_hybrid16384=0.06704s lex_hybrid4096=0.03368s lex_hybrid8192=0.04416s lex_plain=0.0298s
+2026-11-18T00:10:47-05:00 [413/870] main truncated_continuous_s4_k256 done (20.0 min elapsed) Ckmeans.1d.dp=1.34s ckmeans_exact=0.818s lex_hybrid16384=0.1093s lex_hybrid4096=0.04326s lex_hybrid8192=0.06405s lex_plain=0.03078s
+2026-11-18T00:11:08-05:00 [414/870] main truncated_continuous_s4_k512 done (20.4 min elapsed) Ckmeans.1d.dp=2.619s ckmeans_exact=1.592s lex_hybrid16384=0.1914s lex_hybrid4096=0.06106s lex_hybrid8192=0.1018s lex_plain=0.03084s
+2026-11-18T00:11:08-05:00 [415/870] main triangular_discrete_s4_load done (20.4 min elapsed) 
+2026-11-18T00:11:09-05:00 [416/870] main triangular_discrete_s4_k4 done (20.4 min elapsed) Ckmeans.1d.dp=0.0178s ckmeans_exact=0.006343s lex_hybrid16384=0.00632s lex_hybrid4096=0.006317s lex_hybrid8192=0.006311s lex_plain=0.006527s
+2026-11-18T00:11:10-05:00 [417/870] main triangular_discrete_s4_k8 done (20.4 min elapsed) Ckmeans.1d.dp=0.03111s ckmeans_exact=0.006647s lex_hybrid16384=0.006664s lex_hybrid4096=0.006652s lex_hybrid8192=0.006684s lex_plain=0.006661s
+2026-11-18T00:11:11-05:00 [418/870] main triangular_discrete_s4_k16 done (20.4 min elapsed) Ckmeans.1d.dp=0.05895s ckmeans_exact=0.007298s lex_hybrid16384=0.007317s lex_hybrid4096=0.007297s lex_hybrid8192=0.007299s lex_plain=0.006595s
+2026-11-18T00:11:13-05:00 [419/870] main triangular_discrete_s4_k32 done (20.4 min elapsed) Ckmeans.1d.dp=0.1141s ckmeans_exact=0.008515s lex_hybrid16384=0.008457s lex_hybrid4096=0.008517s lex_hybrid8192=0.008517s lex_plain=0.006655s
+2026-11-18T00:11:15-05:00 [420/870] main triangular_discrete_s4_k64 done (20.5 min elapsed) Ckmeans.1d.dp=0.2152s ckmeans_exact=0.01097s lex_hybrid16384=0.01091s lex_hybrid4096=0.01091s lex_hybrid8192=0.01099s lex_plain=0.006686s
+2026-11-18T00:11:17-05:00 [421/870] main triangular_discrete_s4_k128 done (20.5 min elapsed) Ckmeans.1d.dp=0.418s ckmeans_exact=0.01548s lex_hybrid16384=0.01533s lex_hybrid4096=0.01548s lex_hybrid8192=0.01538s lex_plain=0.006635s
+2026-11-18T00:11:22-05:00 [422/870] main triangular_discrete_s4_k256 done (20.6 min elapsed) Ckmeans.1d.dp=0.8392s ckmeans_exact=0.02379s lex_hybrid16384=0.02419s lex_hybrid4096=0.02377s lex_hybrid8192=0.02391s lex_plain=0.00668s
+2026-11-18T00:11:30-05:00 [423/870] main triangular_discrete_s4_k512 done (20.7 min elapsed) Ckmeans.1d.dp=1.661s ckmeans_exact=0.03999s lex_hybrid16384=0.03905s lex_hybrid4096=0.03902s lex_hybrid8192=0.03912s lex_plain=0.006818s
+2026-11-18T00:11:30-05:00 [424/870] main spike_uniform_discrete_s4_load done (20.7 min elapsed) 
+2026-11-18T00:11:31-05:00 [425/870] main spike_uniform_discrete_s4_k4 done (20.7 min elapsed) Ckmeans.1d.dp=0.0178s ckmeans_exact=0.006464s lex_hybrid16384=0.006419s lex_hybrid4096=0.006508s lex_hybrid8192=0.006483s lex_plain=0.006668s
+2026-11-18T00:11:32-05:00 [426/870] main spike_uniform_discrete_s4_k8 done (20.8 min elapsed) Ckmeans.1d.dp=0.02691s ckmeans_exact=0.006738s lex_hybrid16384=0.006737s lex_hybrid4096=0.006755s lex_hybrid8192=0.006718s lex_plain=0.006711s
+2026-11-18T00:11:34-05:00 [427/870] main spike_uniform_discrete_s4_k16 done (20.8 min elapsed) Ckmeans.1d.dp=0.04644s ckmeans_exact=0.007478s lex_hybrid16384=0.007474s lex_hybrid4096=0.007413s lex_hybrid8192=0.007384s lex_plain=0.006699s
+2026-11-18T00:11:35-05:00 [428/870] main spike_uniform_discrete_s4_k32 done (20.8 min elapsed) Ckmeans.1d.dp=0.08288s ckmeans_exact=0.008701s lex_hybrid16384=0.008732s lex_hybrid4096=0.008703s lex_hybrid8192=0.008714s lex_plain=0.00671s
+2026-11-18T00:11:36-05:00 [429/870] main spike_uniform_discrete_s4_k64 done (20.8 min elapsed) Ckmeans.1d.dp=0.1529s ckmeans_exact=0.01114s lex_hybrid16384=0.0111s lex_hybrid4096=0.01118s lex_hybrid8192=0.0111s lex_plain=0.006707s
+2026-11-18T00:11:39-05:00 [430/870] main spike_uniform_discrete_s4_k128 done (20.9 min elapsed) Ckmeans.1d.dp=0.2931s ckmeans_exact=0.01585s lex_hybrid16384=0.01584s lex_hybrid4096=0.0158s lex_hybrid8192=0.01591s lex_plain=0.006747s
+2026-11-18T00:11:42-05:00 [431/870] main spike_uniform_discrete_s4_k256 done (20.9 min elapsed) Ckmeans.1d.dp=0.5672s ckmeans_exact=0.02453s lex_hybrid16384=0.02434s lex_hybrid4096=0.02477s lex_hybrid8192=0.02453s lex_plain=0.006892s
+2026-11-18T00:11:48-05:00 [432/870] main spike_uniform_discrete_s4_k512 done (21.0 min elapsed) Ckmeans.1d.dp=1.103s ckmeans_exact=0.04127s lex_hybrid16384=0.04031s lex_hybrid4096=0.04134s lex_hybrid8192=0.04031s lex_plain=0.007083s
+2026-11-18T00:11:48-05:00 [433/870] main uniform_continuous_s5_load done (21.0 min elapsed) 
+2026-11-18T00:11:51-05:00 [434/870] main uniform_continuous_s5_k4 done (21.1 min elapsed) Ckmeans.1d.dp=0.05061s ckmeans_exact=0.04027s lex_hybrid16384=0.05099s lex_hybrid4096=0.05187s lex_hybrid8192=0.05119s lex_plain=0.05543s
+2026-11-18T00:11:53-05:00 [435/870] main uniform_continuous_s5_k8 done (21.1 min elapsed) Ckmeans.1d.dp=0.09407s ckmeans_exact=0.06915s lex_hybrid16384=0.05238s lex_hybrid4096=0.05161s lex_hybrid8192=0.05213s lex_plain=0.05772s
+2026-11-18T00:11:56-05:00 [436/870] main uniform_continuous_s5_k16 done (21.2 min elapsed) Ckmeans.1d.dp=0.1829s ckmeans_exact=0.1257s lex_hybrid16384=0.05533s lex_hybrid4096=0.05205s lex_hybrid8192=0.05316s lex_plain=0.05599s
+2026-11-18T00:12:01-05:00 [437/870] main uniform_continuous_s5_k32 done (21.2 min elapsed) Ckmeans.1d.dp=0.3548s ckmeans_exact=0.2367s lex_hybrid16384=0.06085s lex_hybrid4096=0.05347s lex_hybrid8192=0.05566s lex_plain=0.05961s
+2026-11-18T00:12:08-05:00 [438/870] main uniform_continuous_s5_k64 done (21.4 min elapsed) Ckmeans.1d.dp=0.6887s ckmeans_exact=0.4551s lex_hybrid16384=0.07201s lex_hybrid4096=0.05646s lex_hybrid8192=0.06103s lex_plain=0.06039s
+2026-11-18T00:12:20-05:00 [439/870] main uniform_continuous_s5_k128 done (21.6 min elapsed) Ckmeans.1d.dp=1.341s ckmeans_exact=0.8804s lex_hybrid16384=0.09368s lex_hybrid4096=0.06084s lex_hybrid8192=0.07111s lex_plain=0.06136s
+2026-11-18T00:12:42-05:00 [440/870] main uniform_continuous_s5_k256 done (21.9 min elapsed) Ckmeans.1d.dp=2.623s ckmeans_exact=1.71s lex_hybrid16384=0.1359s lex_hybrid4096=0.07013s lex_hybrid8192=0.0912s lex_plain=0.05987s
+2026-11-18T00:13:23-05:00 [441/870] main uniform_continuous_s5_k512 done (22.6 min elapsed) Ckmeans.1d.dp=5.296s ckmeans_exact=3.338s lex_hybrid16384=0.2179s lex_hybrid4096=0.08813s lex_hybrid8192=0.1292s lex_plain=0.0637s
+2026-11-18T00:13:23-05:00 [442/870] main gaussian_continuous_s5_load done (22.6 min elapsed) 
+2026-11-18T00:13:25-05:00 [443/870] main gaussian_continuous_s5_k4 done (22.6 min elapsed) Ckmeans.1d.dp=0.04924s ckmeans_exact=0.04025s lex_hybrid16384=0.05135s lex_hybrid4096=0.05154s lex_hybrid8192=0.05146s lex_plain=0.05955s
+2026-11-18T00:13:28-05:00 [444/870] main gaussian_continuous_s5_k8 done (22.7 min elapsed) Ckmeans.1d.dp=0.09364s ckmeans_exact=0.06917s lex_hybrid16384=0.05297s lex_hybrid4096=0.05185s lex_hybrid8192=0.05214s lex_plain=0.06094s
+2026-11-18T00:13:31-05:00 [445/870] main gaussian_continuous_s5_k16 done (22.7 min elapsed) Ckmeans.1d.dp=0.1853s ckmeans_exact=0.1262s lex_hybrid16384=0.05566s lex_hybrid4096=0.0529s lex_hybrid8192=0.05351s lex_plain=0.05562s
+2026-11-18T00:13:36-05:00 [446/870] main gaussian_continuous_s5_k32 done (22.8 min elapsed) Ckmeans.1d.dp=0.3611s ckmeans_exact=0.2405s lex_hybrid16384=0.06172s lex_hybrid4096=0.05375s lex_hybrid8192=0.0564s lex_plain=0.06711s
+2026-11-18T00:13:43-05:00 [447/870] main gaussian_continuous_s5_k64 done (22.9 min elapsed) Ckmeans.1d.dp=0.7001s ckmeans_exact=0.4622s lex_hybrid16384=0.0729s lex_hybrid4096=0.05649s lex_hybrid8192=0.06173s lex_plain=0.05864s
+2026-11-18T00:13:55-05:00 [448/870] main gaussian_continuous_s5_k128 done (23.1 min elapsed) Ckmeans.1d.dp=1.366s ckmeans_exact=0.8937s lex_hybrid16384=0.0943s lex_hybrid4096=0.06147s lex_hybrid8192=0.07216s lex_plain=0.06401s
+2026-11-18T00:14:17-05:00 [449/870] main gaussian_continuous_s5_k256 done (23.5 min elapsed) Ckmeans.1d.dp=2.636s ckmeans_exact=1.741s lex_hybrid16384=0.1375s lex_hybrid4096=0.0715s lex_hybrid8192=0.09208s lex_plain=0.06165s
+2026-11-18T00:14:58-05:00 [450/870] main gaussian_continuous_s5_k512 done (24.2 min elapsed) Ckmeans.1d.dp=5.234s ckmeans_exact=3.391s lex_hybrid16384=0.2208s lex_hybrid4096=0.08763s lex_hybrid8192=0.1299s lex_plain=0.06572s
+2026-11-18T00:14:58-05:00 [451/870] main exponential_continuous_s5_load done (24.2 min elapsed) 
+2026-11-18T00:15:01-05:00 [452/870] main exponential_continuous_s5_k4 done (24.2 min elapsed) Ckmeans.1d.dp=0.05283s ckmeans_exact=0.04056s lex_hybrid16384=0.05192s lex_hybrid4096=0.05212s lex_hybrid8192=0.05208s lex_plain=0.05867s
+2026-11-18T00:15:03-05:00 [453/870] main exponential_continuous_s5_k8 done (24.3 min elapsed) Ckmeans.1d.dp=0.1003s ckmeans_exact=0.06935s lex_hybrid16384=0.05353s lex_hybrid4096=0.05238s lex_hybrid8192=0.05268s lex_plain=0.06949s
+2026-11-18T00:15:07-05:00 [454/870] main exponential_continuous_s5_k16 done (24.3 min elapsed) Ckmeans.1d.dp=0.1926s ckmeans_exact=0.1256s lex_hybrid16384=0.05598s lex_hybrid4096=0.0529s lex_hybrid8192=0.05417s lex_plain=0.06389s
+2026-11-18T00:15:11-05:00 [455/870] main exponential_continuous_s5_k32 done (24.4 min elapsed) Ckmeans.1d.dp=0.3706s ckmeans_exact=0.2372s lex_hybrid16384=0.06184s lex_hybrid4096=0.05453s lex_hybrid8192=0.05694s lex_plain=0.06957s
+2026-11-18T00:15:18-05:00 [456/870] main exponential_continuous_s5_k64 done (24.5 min elapsed) Ckmeans.1d.dp=0.704s ckmeans_exact=0.4538s lex_hybrid16384=0.07303s lex_hybrid4096=0.05711s lex_hybrid8192=0.06228s lex_plain=0.06438s
+2026-11-18T00:15:30-05:00 [457/870] main exponential_continuous_s5_k128 done (24.7 min elapsed) Ckmeans.1d.dp=1.362s ckmeans_exact=0.8736s lex_hybrid16384=0.09476s lex_hybrid4096=0.06182s lex_hybrid8192=0.07225s lex_plain=0.06311s
+2026-11-18T00:15:52-05:00 [458/870] main exponential_continuous_s5_k256 done (25.1 min elapsed) Ckmeans.1d.dp=2.652s ckmeans_exact=1.695s lex_hybrid16384=0.1372s lex_hybrid4096=0.07159s lex_hybrid8192=0.09228s lex_plain=0.06539s
+2026-11-18T00:16:33-05:00 [459/870] main exponential_continuous_s5_k512 done (25.8 min elapsed) Ckmeans.1d.dp=5.282s ckmeans_exact=3.298s lex_hybrid16384=0.2198s lex_hybrid4096=0.09072s lex_hybrid8192=0.13s lex_plain=0.08218s
+2026-11-18T00:16:33-05:00 [460/870] main weibull_continuous_s5_load done (25.8 min elapsed) 
+2026-11-18T00:16:36-05:00 [461/870] main weibull_continuous_s5_k4 done (25.8 min elapsed) Ckmeans.1d.dp=0.05205s ckmeans_exact=0.04053s lex_hybrid16384=0.05159s lex_hybrid4096=0.05184s lex_hybrid8192=0.05168s lex_plain=0.05838s
+2026-11-18T00:16:38-05:00 [462/870] main weibull_continuous_s5_k8 done (25.9 min elapsed) Ckmeans.1d.dp=0.0991s ckmeans_exact=0.06942s lex_hybrid16384=0.05301s lex_hybrid4096=0.05216s lex_hybrid8192=0.05261s lex_plain=0.06158s
+2026-11-18T00:16:42-05:00 [463/870] main weibull_continuous_s5_k16 done (25.9 min elapsed) Ckmeans.1d.dp=0.1914s ckmeans_exact=0.1261s lex_hybrid16384=0.05574s lex_hybrid4096=0.05286s lex_hybrid8192=0.05366s lex_plain=0.06077s
+2026-11-18T00:16:46-05:00 [464/870] main weibull_continuous_s5_k32 done (26.0 min elapsed) Ckmeans.1d.dp=0.3682s ckmeans_exact=0.2386s lex_hybrid16384=0.06181s lex_hybrid4096=0.05451s lex_hybrid8192=0.05664s lex_plain=0.05595s
+2026-11-18T00:16:53-05:00 [465/870] main weibull_continuous_s5_k64 done (26.1 min elapsed) Ckmeans.1d.dp=0.7048s ckmeans_exact=0.4575s lex_hybrid16384=0.0727s lex_hybrid4096=0.05678s lex_hybrid8192=0.06177s lex_plain=0.06394s
+2026-11-18T00:17:06-05:00 [466/870] main weibull_continuous_s5_k128 done (26.3 min elapsed) Ckmeans.1d.dp=1.356s ckmeans_exact=0.8821s lex_hybrid16384=0.09459s lex_hybrid4096=0.06163s lex_hybrid8192=0.07192s lex_plain=0.07078s
+2026-11-18T00:17:27-05:00 [467/870] main weibull_continuous_s5_k256 done (26.7 min elapsed) Ckmeans.1d.dp=2.639s ckmeans_exact=1.708s lex_hybrid16384=0.1363s lex_hybrid4096=0.07069s lex_hybrid8192=0.09156s lex_plain=0.06388s
+2026-11-18T00:18:08-05:00 [468/870] main weibull_continuous_s5_k512 done (27.4 min elapsed) Ckmeans.1d.dp=5.221s ckmeans_exact=3.325s lex_hybrid16384=0.2187s lex_hybrid4096=0.08836s lex_hybrid8192=0.1305s lex_plain=0.06219s
+2026-11-18T00:18:08-05:00 [469/870] main lognormal_continuous_s5_load done (27.4 min elapsed) 
+2026-11-18T00:18:11-05:00 [470/870] main lognormal_continuous_s5_k4 done (27.4 min elapsed) Ckmeans.1d.dp=0.05302s ckmeans_exact=0.04005s lex_hybrid16384=0.05195s lex_hybrid4096=0.05221s lex_hybrid8192=0.0526s lex_plain=0.05919s
+2026-11-18T00:18:13-05:00 [471/870] main lognormal_continuous_s5_k8 done (27.4 min elapsed) Ckmeans.1d.dp=0.1005s ckmeans_exact=0.06913s lex_hybrid16384=0.05366s lex_hybrid4096=0.05262s lex_hybrid8192=0.053s lex_plain=0.0587s
+2026-11-18T00:18:17-05:00 [472/870] main lognormal_continuous_s5_k16 done (27.5 min elapsed) Ckmeans.1d.dp=0.195s ckmeans_exact=0.126s lex_hybrid16384=0.05632s lex_hybrid4096=0.05328s lex_hybrid8192=0.05435s lex_plain=0.06088s
+2026-11-18T00:18:21-05:00 [473/870] main lognormal_continuous_s5_k32 done (27.6 min elapsed) Ckmeans.1d.dp=0.3714s ckmeans_exact=0.2385s lex_hybrid16384=0.06223s lex_hybrid4096=0.0545s lex_hybrid8192=0.057s lex_plain=0.06303s
+2026-11-18T00:18:29-05:00 [474/870] main lognormal_continuous_s5_k64 done (27.7 min elapsed) Ckmeans.1d.dp=0.7058s ckmeans_exact=0.455s lex_hybrid16384=0.07306s lex_hybrid4096=0.05732s lex_hybrid8192=0.06243s lex_plain=0.07255s
+2026-11-18T00:18:41-05:00 [475/870] main lognormal_continuous_s5_k128 done (27.9 min elapsed) Ckmeans.1d.dp=1.359s ckmeans_exact=0.8767s lex_hybrid16384=0.09456s lex_hybrid4096=0.06217s lex_hybrid8192=0.07238s lex_plain=0.08137s
+2026-11-18T00:19:03-05:00 [476/870] main lognormal_continuous_s5_k256 done (28.3 min elapsed) Ckmeans.1d.dp=2.648s ckmeans_exact=1.701s lex_hybrid16384=0.1368s lex_hybrid4096=0.07313s lex_hybrid8192=0.09248s lex_plain=0.07579s
+2026-11-18T00:19:44-05:00 [477/870] main lognormal_continuous_s5_k512 done (28.9 min elapsed) Ckmeans.1d.dp=5.262s ckmeans_exact=3.307s lex_hybrid16384=0.2185s lex_hybrid4096=0.09217s lex_hybrid8192=0.1298s lex_plain=0.07871s
+2026-11-18T00:19:44-05:00 [478/870] main gmm_continuous_s5_load done (28.9 min elapsed) 
+2026-11-18T00:19:46-05:00 [479/870] main gmm_continuous_s5_k4 done (29.0 min elapsed) Ckmeans.1d.dp=0.05047s ckmeans_exact=0.03985s lex_hybrid16384=0.05113s lex_hybrid4096=0.05137s lex_hybrid8192=0.05154s lex_plain=0.05553s
+2026-11-18T00:19:49-05:00 [480/870] main gmm_continuous_s5_k8 done (29.0 min elapsed) Ckmeans.1d.dp=0.09586s ckmeans_exact=0.06849s lex_hybrid16384=0.05253s lex_hybrid4096=0.05188s lex_hybrid8192=0.05198s lex_plain=0.06701s
+2026-11-18T00:19:52-05:00 [481/870] main gmm_continuous_s5_k16 done (29.1 min elapsed) Ckmeans.1d.dp=0.1879s ckmeans_exact=0.1263s lex_hybrid16384=0.05601s lex_hybrid4096=0.05303s lex_hybrid8192=0.05371s lex_plain=0.05827s
+2026-11-18T00:19:57-05:00 [482/870] main gmm_continuous_s5_k32 done (29.2 min elapsed) Ckmeans.1d.dp=0.3624s ckmeans_exact=0.2399s lex_hybrid16384=0.06107s lex_hybrid4096=0.05376s lex_hybrid8192=0.0562s lex_plain=0.05787s
+2026-11-18T00:20:04-05:00 [483/870] main gmm_continuous_s5_k64 done (29.3 min elapsed) Ckmeans.1d.dp=0.6981s ckmeans_exact=0.4597s lex_hybrid16384=0.07249s lex_hybrid4096=0.05625s lex_hybrid8192=0.06147s lex_plain=0.06417s
+2026-11-18T00:20:16-05:00 [484/870] main gmm_continuous_s5_k128 done (29.5 min elapsed) Ckmeans.1d.dp=1.355s ckmeans_exact=0.8871s lex_hybrid16384=0.0944s lex_hybrid4096=0.06139s lex_hybrid8192=0.07171s lex_plain=0.06365s
+2026-11-18T00:20:38-05:00 [485/870] main gmm_continuous_s5_k256 done (29.8 min elapsed) Ckmeans.1d.dp=2.658s ckmeans_exact=1.721s lex_hybrid16384=0.1366s lex_hybrid4096=0.07034s lex_hybrid8192=0.09181s lex_plain=0.0637s
+2026-11-18T00:21:19-05:00 [486/870] main gmm_continuous_s5_k512 done (30.5 min elapsed) Ckmeans.1d.dp=5.292s ckmeans_exact=3.353s lex_hybrid16384=0.2187s lex_hybrid4096=0.08929s lex_hybrid8192=0.1299s lex_plain=0.06577s
+2026-11-18T00:21:19-05:00 [487/870] main wg_mixture_continuous_s5_load done (30.5 min elapsed) 
+2026-11-18T00:21:21-05:00 [488/870] main wg_mixture_continuous_s5_k4 done (30.6 min elapsed) Ckmeans.1d.dp=0.04714s ckmeans_exact=0.03936s lex_hybrid16384=0.05114s lex_hybrid4096=0.05153s lex_hybrid8192=0.0515s lex_plain=0.05824s
+2026-11-18T00:21:24-05:00 [489/870] main wg_mixture_continuous_s5_k8 done (30.6 min elapsed) Ckmeans.1d.dp=0.0868s ckmeans_exact=0.06817s lex_hybrid16384=0.05282s lex_hybrid4096=0.05204s lex_hybrid8192=0.0523s lex_plain=0.05742s
+2026-11-18T00:21:27-05:00 [490/870] main wg_mixture_continuous_s5_k16 done (30.7 min elapsed) Ckmeans.1d.dp=0.1749s ckmeans_exact=0.1252s lex_hybrid16384=0.05551s lex_hybrid4096=0.05256s lex_hybrid8192=0.05386s lex_plain=0.05538s
+2026-11-18T00:21:32-05:00 [491/870] main wg_mixture_continuous_s5_k32 done (30.7 min elapsed) Ckmeans.1d.dp=0.3469s ckmeans_exact=0.2378s lex_hybrid16384=0.06145s lex_hybrid4096=0.05404s lex_hybrid8192=0.05631s lex_plain=0.06436s
+2026-11-18T00:21:39-05:00 [492/870] main wg_mixture_continuous_s5_k64 done (30.9 min elapsed) Ckmeans.1d.dp=0.6828s ckmeans_exact=0.4608s lex_hybrid16384=0.07265s lex_hybrid4096=0.05659s lex_hybrid8192=0.06143s lex_plain=0.06625s
+2026-11-18T00:21:51-05:00 [493/870] main wg_mixture_continuous_s5_k128 done (31.1 min elapsed) Ckmeans.1d.dp=1.332s ckmeans_exact=0.8914s lex_hybrid16384=0.09432s lex_hybrid4096=0.06126s lex_hybrid8192=0.072s lex_plain=0.06494s
+2026-11-18T00:22:13-05:00 [494/870] main wg_mixture_continuous_s5_k256 done (31.4 min elapsed) Ckmeans.1d.dp=2.615s ckmeans_exact=1.74s lex_hybrid16384=0.1368s lex_hybrid4096=0.07098s lex_hybrid8192=0.09175s lex_plain=0.0702s
+2026-11-18T00:22:54-05:00 [495/870] main wg_mixture_continuous_s5_k512 done (32.1 min elapsed) Ckmeans.1d.dp=5.241s ckmeans_exact=3.384s lex_hybrid16384=0.2191s lex_hybrid4096=0.08818s lex_hybrid8192=0.1301s lex_plain=0.06717s
+2026-11-18T00:22:54-05:00 [496/870] main bimodal_gaussian_continuous_s5_load done (32.1 min elapsed) 
+2026-11-18T00:22:56-05:00 [497/870] main bimodal_gaussian_continuous_s5_k4 done (32.2 min elapsed) Ckmeans.1d.dp=0.04496s ckmeans_exact=0.03899s lex_hybrid16384=0.05084s lex_hybrid4096=0.05128s lex_hybrid8192=0.05114s lex_plain=0.06015s
+2026-11-18T00:22:59-05:00 [498/870] main bimodal_gaussian_continuous_s5_k8 done (32.2 min elapsed) Ckmeans.1d.dp=0.08578s ckmeans_exact=0.06745s lex_hybrid16384=0.05236s lex_hybrid4096=0.0517s lex_hybrid8192=0.05196s lex_plain=0.05801s
+2026-11-18T00:23:02-05:00 [499/870] main bimodal_gaussian_continuous_s5_k16 done (32.3 min elapsed) Ckmeans.1d.dp=0.1724s ckmeans_exact=0.1243s lex_hybrid16384=0.05537s lex_hybrid4096=0.0522s lex_hybrid8192=0.05338s lex_plain=0.06026s
+2026-11-18T00:23:06-05:00 [500/870] main bimodal_gaussian_continuous_s5_k32 done (32.3 min elapsed) Ckmeans.1d.dp=0.344s ckmeans_exact=0.2367s lex_hybrid16384=0.06085s lex_hybrid4096=0.05363s lex_hybrid8192=0.05601s lex_plain=0.05631s
+2026-11-18T00:23:14-05:00 [501/870] main bimodal_gaussian_continuous_s5_k64 done (32.4 min elapsed) Ckmeans.1d.dp=0.681s ckmeans_exact=0.4577s lex_hybrid16384=0.07197s lex_hybrid4096=0.05602s lex_hybrid8192=0.06106s lex_plain=0.06267s
+2026-11-18T00:23:26-05:00 [502/870] main bimodal_gaussian_continuous_s5_k128 done (32.6 min elapsed) Ckmeans.1d.dp=1.339s ckmeans_exact=0.8877s lex_hybrid16384=0.09431s lex_hybrid4096=0.0612s lex_hybrid8192=0.07189s lex_plain=0.05956s
+2026-11-18T00:23:47-05:00 [503/870] main bimodal_gaussian_continuous_s5_k256 done (33.0 min elapsed) Ckmeans.1d.dp=2.612s ckmeans_exact=1.728s lex_hybrid16384=0.1366s lex_hybrid4096=0.07033s lex_hybrid8192=0.09163s lex_plain=0.06523s
+2026-11-18T00:24:28-05:00 [504/870] main bimodal_gaussian_continuous_s5_k512 done (33.7 min elapsed) Ckmeans.1d.dp=5.199s ckmeans_exact=3.369s lex_hybrid16384=0.2192s lex_hybrid4096=0.08813s lex_hybrid8192=0.1297s lex_plain=0.06637s
+2026-11-18T00:24:29-05:00 [505/870] main mixed_continuous_s5_load done (33.7 min elapsed) 
+2026-11-18T00:24:31-05:00 [506/870] main mixed_continuous_s5_k4 done (33.7 min elapsed) Ckmeans.1d.dp=0.04586s ckmeans_exact=0.03973s lex_hybrid16384=0.05137s lex_hybrid4096=0.05152s lex_hybrid8192=0.05139s lex_plain=0.05566s
+2026-11-18T00:24:33-05:00 [507/870] main mixed_continuous_s5_k8 done (33.8 min elapsed) Ckmeans.1d.dp=0.08227s ckmeans_exact=0.06798s lex_hybrid16384=0.05257s lex_hybrid4096=0.05201s lex_hybrid8192=0.05204s lex_plain=0.05492s
+2026-11-18T00:24:36-05:00 [508/870] main mixed_continuous_s5_k16 done (33.8 min elapsed) Ckmeans.1d.dp=0.1641s ckmeans_exact=0.1239s lex_hybrid16384=0.05565s lex_hybrid4096=0.05273s lex_hybrid8192=0.05342s lex_plain=0.05746s
+2026-11-18T00:24:41-05:00 [509/870] main mixed_continuous_s5_k32 done (33.9 min elapsed) Ckmeans.1d.dp=0.3308s ckmeans_exact=0.2365s lex_hybrid16384=0.06142s lex_hybrid4096=0.05379s lex_hybrid8192=0.05609s lex_plain=0.06215s
+2026-11-18T00:24:48-05:00 [510/870] main mixed_continuous_s5_k64 done (34.0 min elapsed) Ckmeans.1d.dp=0.6586s ckmeans_exact=0.4567s lex_hybrid16384=0.07223s lex_hybrid4096=0.05613s lex_hybrid8192=0.06135s lex_plain=0.06493s
+2026-11-18T00:25:00-05:00 [511/870] main mixed_continuous_s5_k128 done (34.2 min elapsed) Ckmeans.1d.dp=1.307s ckmeans_exact=0.887s lex_hybrid16384=0.09411s lex_hybrid4096=0.06122s lex_hybrid8192=0.07156s lex_plain=0.0602s
+2026-11-18T00:25:22-05:00 [512/870] main mixed_continuous_s5_k256 done (34.6 min elapsed) Ckmeans.1d.dp=2.609s ckmeans_exact=1.735s lex_hybrid16384=0.1361s lex_hybrid4096=0.07088s lex_hybrid8192=0.09171s lex_plain=0.06762s
+2026-11-18T00:26:03-05:00 [513/870] main mixed_continuous_s5_k512 done (35.3 min elapsed) Ckmeans.1d.dp=5.194s ckmeans_exact=3.385s lex_hybrid16384=0.2191s lex_hybrid4096=0.08837s lex_hybrid8192=0.1298s lex_plain=0.06398s
+2026-11-18T00:26:03-05:00 [514/870] main truncated_continuous_s5_load done (35.3 min elapsed) 
+2026-11-18T00:26:05-05:00 [515/870] main truncated_continuous_s5_k4 done (35.3 min elapsed) Ckmeans.1d.dp=0.04725s ckmeans_exact=0.03955s lex_hybrid16384=0.0514s lex_hybrid4096=0.05184s lex_hybrid8192=0.05154s lex_plain=0.06175s
+2026-11-18T00:26:08-05:00 [516/870] main truncated_continuous_s5_k8 done (35.3 min elapsed) Ckmeans.1d.dp=0.08829s ckmeans_exact=0.06798s lex_hybrid16384=0.05272s lex_hybrid4096=0.05214s lex_hybrid8192=0.05208s lex_plain=0.05634s
+2026-11-18T00:26:11-05:00 [517/870] main truncated_continuous_s5_k16 done (35.4 min elapsed) Ckmeans.1d.dp=0.1743s ckmeans_exact=0.1251s lex_hybrid16384=0.05592s lex_hybrid4096=0.05269s lex_hybrid8192=0.05374s lex_plain=0.06099s
+2026-11-18T00:26:15-05:00 [518/870] main truncated_continuous_s5_k32 done (35.5 min elapsed) Ckmeans.1d.dp=0.3462s ckmeans_exact=0.2371s lex_hybrid16384=0.06142s lex_hybrid4096=0.05419s lex_hybrid8192=0.05625s lex_plain=0.05913s
+2026-11-18T00:26:22-05:00 [519/870] main truncated_continuous_s5_k64 done (35.6 min elapsed) Ckmeans.1d.dp=0.6791s ckmeans_exact=0.4572s lex_hybrid16384=0.07254s lex_hybrid4096=0.05657s lex_hybrid8192=0.06181s lex_plain=0.05964s
+2026-11-18T00:26:35-05:00 [520/870] main truncated_continuous_s5_k128 done (35.8 min elapsed) Ckmeans.1d.dp=1.346s ckmeans_exact=0.883s lex_hybrid16384=0.09422s lex_hybrid4096=0.06145s lex_hybrid8192=0.07192s lex_plain=0.06291s
+2026-11-18T00:26:56-05:00 [521/870] main truncated_continuous_s5_k256 done (36.2 min elapsed) Ckmeans.1d.dp=2.631s ckmeans_exact=1.716s lex_hybrid16384=0.1376s lex_hybrid4096=0.07101s lex_hybrid8192=0.09157s lex_plain=0.06397s
+2026-11-18T00:27:38-05:00 [522/870] main truncated_continuous_s5_k512 done (36.8 min elapsed) Ckmeans.1d.dp=5.279s ckmeans_exact=3.353s lex_hybrid16384=0.2181s lex_hybrid4096=0.08858s lex_hybrid8192=0.1303s lex_plain=0.06797s
+2026-11-18T00:27:38-05:00 [523/870] main triangular_discrete_s5_load done (36.8 min elapsed) 
+2026-11-18T00:27:39-05:00 [524/870] main triangular_discrete_s5_k4 done (36.9 min elapsed) Ckmeans.1d.dp=0.0347s ckmeans_exact=0.01232s lex_hybrid16384=0.01236s lex_hybrid4096=0.01234s lex_hybrid8192=0.01237s lex_plain=0.01263s
+2026-11-18T00:27:40-05:00 [525/870] main triangular_discrete_s5_k8 done (36.9 min elapsed) Ckmeans.1d.dp=0.05917s ckmeans_exact=0.01269s lex_hybrid16384=0.01267s lex_hybrid4096=0.01268s lex_hybrid8192=0.0127s lex_plain=0.01264s
+2026-11-18T00:27:42-05:00 [526/870] main triangular_discrete_s5_k16 done (36.9 min elapsed) Ckmeans.1d.dp=0.1082s ckmeans_exact=0.01342s lex_hybrid16384=0.01335s lex_hybrid4096=0.01328s lex_hybrid8192=0.01331s lex_plain=0.01262s
+2026-11-18T00:27:44-05:00 [527/870] main triangular_discrete_s5_k32 done (36.9 min elapsed) Ckmeans.1d.dp=0.2024s ckmeans_exact=0.01457s lex_hybrid16384=0.0146s lex_hybrid4096=0.0147s lex_hybrid8192=0.01458s lex_plain=0.01279s
+2026-11-18T00:27:46-05:00 [528/870] main triangular_discrete_s5_k64 done (37.0 min elapsed) Ckmeans.1d.dp=0.387s ckmeans_exact=0.01704s lex_hybrid16384=0.01703s lex_hybrid4096=0.01696s lex_hybrid8192=0.01707s lex_plain=0.01288s
+2026-11-18T00:27:51-05:00 [529/870] main triangular_discrete_s5_k128 done (37.1 min elapsed) Ckmeans.1d.dp=0.7519s ckmeans_exact=0.02144s lex_hybrid16384=0.02142s lex_hybrid4096=0.02145s lex_hybrid8192=0.02154s lex_plain=0.01284s
+2026-11-18T00:27:58-05:00 [530/870] main triangular_discrete_s5_k256 done (37.2 min elapsed) Ckmeans.1d.dp=1.47s ckmeans_exact=0.03004s lex_hybrid16384=0.02967s lex_hybrid4096=0.02976s lex_hybrid8192=0.0298s lex_plain=0.01268s
+2026-11-18T00:28:12-05:00 [531/870] main triangular_discrete_s5_k512 done (37.4 min elapsed) Ckmeans.1d.dp=2.883s ckmeans_exact=0.04488s lex_hybrid16384=0.04603s lex_hybrid4096=0.04584s lex_hybrid8192=0.04522s lex_plain=0.01274s
+2026-11-18T00:28:12-05:00 [532/870] main spike_uniform_discrete_s5_load done (37.4 min elapsed) 
+2026-11-18T00:28:13-05:00 [533/870] main spike_uniform_discrete_s5_k4 done (37.4 min elapsed) Ckmeans.1d.dp=0.03607s ckmeans_exact=0.01149s lex_hybrid16384=0.01148s lex_hybrid4096=0.01157s lex_hybrid8192=0.01154s lex_plain=0.01174s
+2026-11-18T00:28:14-05:00 [534/870] main spike_uniform_discrete_s5_k8 done (37.5 min elapsed) Ckmeans.1d.dp=0.05352s ckmeans_exact=0.01191s lex_hybrid16384=0.01192s lex_hybrid4096=0.01189s lex_hybrid8192=0.01193s lex_plain=0.01188s
+2026-11-18T00:28:16-05:00 [535/870] main spike_uniform_discrete_s5_k16 done (37.5 min elapsed) Ckmeans.1d.dp=0.08801s ckmeans_exact=0.01254s lex_hybrid16384=0.01256s lex_hybrid4096=0.01253s lex_hybrid8192=0.01253s lex_plain=0.01187s
+2026-11-18T00:28:17-05:00 [536/870] main spike_uniform_discrete_s5_k32 done (37.5 min elapsed) Ckmeans.1d.dp=0.1513s ckmeans_exact=0.01376s lex_hybrid16384=0.01378s lex_hybrid4096=0.01376s lex_hybrid8192=0.01385s lex_plain=0.01194s
+2026-11-18T00:28:20-05:00 [537/870] main spike_uniform_discrete_s5_k64 done (37.5 min elapsed) Ckmeans.1d.dp=0.2768s ckmeans_exact=0.01616s lex_hybrid16384=0.01621s lex_hybrid4096=0.01616s lex_hybrid8192=0.0162s lex_plain=0.01194s
+2026-11-18T00:28:23-05:00 [538/870] main spike_uniform_discrete_s5_k128 done (37.6 min elapsed) Ckmeans.1d.dp=0.5335s ckmeans_exact=0.02081s lex_hybrid16384=0.02083s lex_hybrid4096=0.02084s lex_hybrid8192=0.02094s lex_plain=0.01182s
+2026-11-18T00:28:29-05:00 [539/870] main spike_uniform_discrete_s5_k256 done (37.7 min elapsed) Ckmeans.1d.dp=1.024s ckmeans_exact=0.02957s lex_hybrid16384=0.02952s lex_hybrid4096=0.02953s lex_hybrid8192=0.02958s lex_plain=0.01202s
+2026-11-18T00:28:38-05:00 [540/870] main spike_uniform_discrete_s5_k512 done (37.9 min elapsed) Ckmeans.1d.dp=1.991s ckmeans_exact=0.04594s lex_hybrid16384=0.04516s lex_hybrid4096=0.04611s lex_hybrid8192=0.04516s lex_plain=0.012s
+2026-11-18T00:28:39-05:00 [541/870] main uniform_continuous_s6_load done (37.9 min elapsed) 
+2026-11-18T00:28:43-05:00 [542/870] main uniform_continuous_s6_k4 done (37.9 min elapsed) Ckmeans.1d.dp=0.1058s ckmeans_exact=0.08579s lex_hybrid16384=0.1149s lex_hybrid4096=0.1167s lex_hybrid8192=0.1159s lex_plain=0.1279s
+2026-11-18T00:28:47-05:00 [543/870] main uniform_continuous_s6_k8 done (38.0 min elapsed) Ckmeans.1d.dp=0.1938s ckmeans_exact=0.1471s lex_hybrid16384=0.1165s lex_hybrid4096=0.1164s lex_hybrid8192=0.1165s lex_plain=0.1271s
+2026-11-18T00:28:53-05:00 [544/870] main uniform_continuous_s6_k16 done (38.1 min elapsed) Ckmeans.1d.dp=0.3686s ckmeans_exact=0.2656s lex_hybrid16384=0.1198s lex_hybrid4096=0.1172s lex_hybrid8192=0.1178s lex_plain=0.1297s
+2026-11-18T00:29:02-05:00 [545/870] main uniform_continuous_s6_k32 done (38.3 min elapsed) Ckmeans.1d.dp=0.7152s ckmeans_exact=0.4975s lex_hybrid16384=0.1253s lex_hybrid4096=0.1176s lex_hybrid8192=0.1202s lex_plain=0.1313s
+2026-11-18T00:29:16-05:00 [546/870] main uniform_continuous_s6_k64 done (38.5 min elapsed) Ckmeans.1d.dp=1.397s ckmeans_exact=0.9551s lex_hybrid16384=0.1363s lex_hybrid4096=0.1198s lex_hybrid8192=0.1255s lex_plain=0.1478s
+2026-11-18T00:29:40-05:00 [547/870] main uniform_continuous_s6_k128 done (38.9 min elapsed) Ckmeans.1d.dp=2.71s ckmeans_exact=1.847s lex_hybrid16384=0.1577s lex_hybrid4096=0.1253s lex_hybrid8192=0.1361s lex_plain=0.1388s
+2026-11-18T00:30:23-05:00 [548/870] main uniform_continuous_s6_k256 done (39.6 min elapsed) Ckmeans.1d.dp=5.365s ckmeans_exact=3.605s lex_hybrid16384=0.1999s lex_hybrid4096=0.1344s lex_hybrid8192=0.1557s lex_plain=0.1362s
+2026-11-18T00:31:46-05:00 [549/870] main uniform_continuous_s6_k512 done (41.0 min elapsed) Ckmeans.1d.dp=10.71s ckmeans_exact=7.018s lex_hybrid16384=0.2821s lex_hybrid4096=0.1534s lex_hybrid8192=0.1937s lex_plain=0.1364s
+2026-11-18T00:31:46-05:00 [550/870] main gaussian_continuous_s6_load done (41.0 min elapsed) 
+2026-11-18T00:31:50-05:00 [551/870] main gaussian_continuous_s6_k4 done (41.1 min elapsed) Ckmeans.1d.dp=0.1046s ckmeans_exact=0.0859s lex_hybrid16384=0.1162s lex_hybrid4096=0.1169s lex_hybrid8192=0.116s lex_plain=0.1279s
+2026-11-18T00:31:55-05:00 [552/870] main gaussian_continuous_s6_k8 done (41.1 min elapsed) Ckmeans.1d.dp=0.1964s ckmeans_exact=0.1474s lex_hybrid16384=0.1181s lex_hybrid4096=0.1169s lex_hybrid8192=0.1183s lex_plain=0.1279s
+2026-11-18T00:32:01-05:00 [553/870] main gaussian_continuous_s6_k16 done (41.2 min elapsed) Ckmeans.1d.dp=0.3741s ckmeans_exact=0.2678s lex_hybrid16384=0.1209s lex_hybrid4096=0.1174s lex_hybrid8192=0.1188s lex_plain=0.1359s
+2026-11-18T00:32:10-05:00 [554/870] main gaussian_continuous_s6_k32 done (41.4 min elapsed) Ckmeans.1d.dp=0.7278s ckmeans_exact=0.5034s lex_hybrid16384=0.1266s lex_hybrid4096=0.119s lex_hybrid8192=0.1217s lex_plain=0.1327s
+2026-11-18T00:32:24-05:00 [555/870] main gaussian_continuous_s6_k64 done (41.6 min elapsed) Ckmeans.1d.dp=1.417s ckmeans_exact=0.9674s lex_hybrid16384=0.1374s lex_hybrid4096=0.1208s lex_hybrid8192=0.1265s lex_plain=0.1399s
+2026-11-18T00:32:48-05:00 [556/870] main gaussian_continuous_s6_k128 done (42.0 min elapsed) Ckmeans.1d.dp=2.734s ckmeans_exact=1.875s lex_hybrid16384=0.159s lex_hybrid4096=0.1258s lex_hybrid8192=0.1367s lex_plain=0.1382s
+2026-11-18T00:33:32-05:00 [557/870] main gaussian_continuous_s6_k256 done (42.7 min elapsed) Ckmeans.1d.dp=5.348s ckmeans_exact=3.655s lex_hybrid16384=0.2008s lex_hybrid4096=0.1351s lex_hybrid8192=0.1572s lex_plain=0.1394s
+2026-11-18T00:34:55-05:00 [558/870] main gaussian_continuous_s6_k512 done (44.1 min elapsed) Ckmeans.1d.dp=10.83s ckmeans_exact=7.102s lex_hybrid16384=0.2829s lex_hybrid4096=0.1548s lex_hybrid8192=0.1937s lex_plain=0.1545s
+2026-11-18T00:34:55-05:00 [559/870] main exponential_continuous_s6_load done (44.1 min elapsed) 
+2026-11-18T00:34:59-05:00 [560/870] main exponential_continuous_s6_k4 done (44.2 min elapsed) Ckmeans.1d.dp=0.1097s ckmeans_exact=0.0848s lex_hybrid16384=0.1151s lex_hybrid4096=0.1152s lex_hybrid8192=0.1155s lex_plain=0.1442s
+2026-11-18T00:35:04-05:00 [561/870] main exponential_continuous_s6_k8 done (44.3 min elapsed) Ckmeans.1d.dp=0.2058s ckmeans_exact=0.1458s lex_hybrid16384=0.1166s lex_hybrid4096=0.1157s lex_hybrid8192=0.1166s lex_plain=0.1395s
+2026-11-18T00:35:10-05:00 [562/870] main exponential_continuous_s6_k16 done (44.4 min elapsed) Ckmeans.1d.dp=0.3886s ckmeans_exact=0.2618s lex_hybrid16384=0.1194s lex_hybrid4096=0.116s lex_hybrid8192=0.1179s lex_plain=0.1359s
+2026-11-18T00:35:19-05:00 [563/870] main exponential_continuous_s6_k32 done (44.5 min elapsed) Ckmeans.1d.dp=0.7447s ckmeans_exact=0.4948s lex_hybrid16384=0.1271s lex_hybrid4096=0.1183s lex_hybrid8192=0.1212s lex_plain=0.1486s
+2026-11-18T00:35:33-05:00 [564/870] main exponential_continuous_s6_k64 done (44.8 min elapsed) Ckmeans.1d.dp=1.436s ckmeans_exact=0.9472s lex_hybrid16384=0.1368s lex_hybrid4096=0.1206s lex_hybrid8192=0.1263s lex_plain=0.1687s
+2026-11-18T00:35:57-05:00 [565/870] main exponential_continuous_s6_k128 done (45.2 min elapsed) Ckmeans.1d.dp=2.745s ckmeans_exact=1.833s lex_hybrid16384=0.1594s lex_hybrid4096=0.1261s lex_hybrid8192=0.1366s lex_plain=0.1513s
+2026-11-18T00:36:41-05:00 [566/870] main exponential_continuous_s6_k256 done (45.9 min elapsed) Ckmeans.1d.dp=5.407s ckmeans_exact=3.56s lex_hybrid16384=0.2017s lex_hybrid4096=0.1362s lex_hybrid8192=0.1577s lex_plain=0.1647s
+2026-11-18T00:38:03-05:00 [567/870] main exponential_continuous_s6_k512 done (47.3 min elapsed) Ckmeans.1d.dp=10.72s ckmeans_exact=6.919s lex_hybrid16384=0.284s lex_hybrid4096=0.1578s lex_hybrid8192=0.1949s lex_plain=0.1567s
+2026-11-18T00:38:03-05:00 [568/870] main weibull_continuous_s6_load done (47.3 min elapsed) 
+2026-11-18T00:38:07-05:00 [569/870] main weibull_continuous_s6_k4 done (47.3 min elapsed) Ckmeans.1d.dp=0.1093s ckmeans_exact=0.08622s lex_hybrid16384=0.1171s lex_hybrid4096=0.1183s lex_hybrid8192=0.1161s lex_plain=0.1229s
+2026-11-18T00:38:12-05:00 [570/870] main weibull_continuous_s6_k8 done (47.4 min elapsed) Ckmeans.1d.dp=0.2032s ckmeans_exact=0.1464s lex_hybrid16384=0.1171s lex_hybrid4096=0.1166s lex_hybrid8192=0.1174s lex_plain=0.1333s
+2026-11-18T00:38:18-05:00 [571/870] main weibull_continuous_s6_k16 done (47.5 min elapsed) Ckmeans.1d.dp=0.384s ckmeans_exact=0.2648s lex_hybrid16384=0.1206s lex_hybrid4096=0.1171s lex_hybrid8192=0.1178s lex_plain=0.1359s
+2026-11-18T00:38:27-05:00 [572/870] main weibull_continuous_s6_k32 done (47.7 min elapsed) Ckmeans.1d.dp=0.741s ckmeans_exact=0.4973s lex_hybrid16384=0.1257s lex_hybrid4096=0.1188s lex_hybrid8192=0.1209s lex_plain=0.1403s
+2026-11-18T00:38:41-05:00 [573/870] main weibull_continuous_s6_k64 done (47.9 min elapsed) Ckmeans.1d.dp=1.425s ckmeans_exact=0.9533s lex_hybrid16384=0.1374s lex_hybrid4096=0.1214s lex_hybrid8192=0.1274s lex_plain=0.1659s
+2026-11-18T00:39:05-05:00 [574/870] main weibull_continuous_s6_k128 done (48.3 min elapsed) Ckmeans.1d.dp=2.749s ckmeans_exact=1.847s lex_hybrid16384=0.1591s lex_hybrid4096=0.1266s lex_hybrid8192=0.1375s lex_plain=0.1466s
+2026-11-18T00:39:49-05:00 [575/870] main weibull_continuous_s6_k256 done (49.0 min elapsed) Ckmeans.1d.dp=5.484s ckmeans_exact=3.596s lex_hybrid16384=0.2016s lex_hybrid4096=0.1362s lex_hybrid8192=0.157s lex_plain=0.1399s
+2026-11-18T00:41:11-05:00 [576/870] main weibull_continuous_s6_k512 done (50.4 min elapsed) Ckmeans.1d.dp=10.72s ckmeans_exact=6.995s lex_hybrid16384=0.2821s lex_hybrid4096=0.1568s lex_hybrid8192=0.1958s lex_plain=0.1427s
+2026-11-18T00:41:12-05:00 [577/870] main lognormal_continuous_s6_load done (50.4 min elapsed) 
+2026-11-18T00:41:16-05:00 [578/870] main lognormal_continuous_s6_k4 done (50.5 min elapsed) Ckmeans.1d.dp=0.11s ckmeans_exact=0.08542s lex_hybrid16384=0.1167s lex_hybrid4096=0.1169s lex_hybrid8192=0.1169s lex_plain=0.1187s
+2026-11-18T00:41:21-05:00 [579/870] main lognormal_continuous_s6_k8 done (50.6 min elapsed) Ckmeans.1d.dp=0.2047s ckmeans_exact=0.1454s lex_hybrid16384=0.1183s lex_hybrid4096=0.1169s lex_hybrid8192=0.1173s lex_plain=0.1501s
+2026-11-18T00:41:27-05:00 [580/870] main lognormal_continuous_s6_k16 done (50.7 min elapsed) Ckmeans.1d.dp=0.3869s ckmeans_exact=0.2647s lex_hybrid16384=0.1214s lex_hybrid4096=0.1179s lex_hybrid8192=0.1193s lex_plain=0.1494s
+2026-11-18T00:41:36-05:00 [581/870] main lognormal_continuous_s6_k32 done (50.8 min elapsed) Ckmeans.1d.dp=0.7467s ckmeans_exact=0.4969s lex_hybrid16384=0.1279s lex_hybrid4096=0.1197s lex_hybrid8192=0.122s lex_plain=0.159s
+2026-11-18T00:41:50-05:00 [582/870] main lognormal_continuous_s6_k64 done (51.1 min elapsed) Ckmeans.1d.dp=1.436s ckmeans_exact=0.9485s lex_hybrid16384=0.1393s lex_hybrid4096=0.1218s lex_hybrid8192=0.1273s lex_plain=0.1632s
+2026-11-18T00:42:14-05:00 [583/870] main lognormal_continuous_s6_k128 done (51.5 min elapsed) Ckmeans.1d.dp=2.778s ckmeans_exact=1.836s lex_hybrid16384=0.1597s lex_hybrid4096=0.1283s lex_hybrid8192=0.1376s lex_plain=0.1541s
+2026-11-18T00:42:58-05:00 [584/870] main lognormal_continuous_s6_k256 done (52.2 min elapsed) Ckmeans.1d.dp=5.426s ckmeans_exact=3.566s lex_hybrid16384=0.2039s lex_hybrid4096=0.1402s lex_hybrid8192=0.1584s lex_plain=0.181s
+2026-11-18T00:44:20-05:00 [585/870] main lognormal_continuous_s6_k512 done (53.6 min elapsed) Ckmeans.1d.dp=10.71s ckmeans_exact=6.924s lex_hybrid16384=0.282s lex_hybrid4096=0.1592s lex_hybrid8192=0.1969s lex_plain=0.1862s
+2026-11-18T00:44:21-05:00 [586/870] main gmm_continuous_s6_load done (53.6 min elapsed) 
+2026-11-18T00:44:25-05:00 [587/870] main gmm_continuous_s6_k4 done (53.6 min elapsed) Ckmeans.1d.dp=0.1033s ckmeans_exact=0.08459s lex_hybrid16384=0.1152s lex_hybrid4096=0.1158s lex_hybrid8192=0.1161s lex_plain=0.1279s
+2026-11-18T00:44:29-05:00 [588/870] main gmm_continuous_s6_k8 done (53.7 min elapsed) Ckmeans.1d.dp=0.1941s ckmeans_exact=0.1455s lex_hybrid16384=0.1163s lex_hybrid4096=0.1155s lex_hybrid8192=0.1157s lex_plain=0.1266s
+2026-11-18T00:44:35-05:00 [589/870] main gmm_continuous_s6_k16 done (53.8 min elapsed) Ckmeans.1d.dp=0.3749s ckmeans_exact=0.2642s lex_hybrid16384=0.1192s lex_hybrid4096=0.1163s lex_hybrid8192=0.1173s lex_plain=0.1351s
+2026-11-18T00:44:44-05:00 [590/870] main gmm_continuous_s6_k32 done (54.0 min elapsed) Ckmeans.1d.dp=0.7322s ckmeans_exact=0.5011s lex_hybrid16384=0.1255s lex_hybrid4096=0.1185s lex_hybrid8192=0.12s lex_plain=0.1338s
+2026-11-18T00:44:58-05:00 [591/870] main gmm_continuous_s6_k64 done (54.2 min elapsed) Ckmeans.1d.dp=1.413s ckmeans_exact=0.9572s lex_hybrid16384=0.1362s lex_hybrid4096=0.1209s lex_hybrid8192=0.1255s lex_plain=0.1371s
+2026-11-18T00:45:22-05:00 [592/870] main gmm_continuous_s6_k128 done (54.6 min elapsed) Ckmeans.1d.dp=2.74s ckmeans_exact=1.856s lex_hybrid16384=0.1591s lex_hybrid4096=0.1261s lex_hybrid8192=0.1373s lex_plain=0.1463s
+2026-11-18T00:46:06-05:00 [593/870] main gmm_continuous_s6_k256 done (55.3 min elapsed) Ckmeans.1d.dp=5.326s ckmeans_exact=3.619s lex_hybrid16384=0.2008s lex_hybrid4096=0.1356s lex_hybrid8192=0.1564s lex_plain=0.1419s
+2026-11-18T00:47:28-05:00 [594/870] main gmm_continuous_s6_k512 done (56.7 min elapsed) Ckmeans.1d.dp=10.67s ckmeans_exact=7.038s lex_hybrid16384=0.2828s lex_hybrid4096=0.1549s lex_hybrid8192=0.1946s lex_plain=0.1586s
+2026-11-18T00:47:29-05:00 [595/870] main wg_mixture_continuous_s6_load done (56.7 min elapsed) 
+2026-11-18T00:47:33-05:00 [596/870] main wg_mixture_continuous_s6_k4 done (56.8 min elapsed) Ckmeans.1d.dp=0.09799s ckmeans_exact=0.0841s lex_hybrid16384=0.1143s lex_hybrid4096=0.1151s lex_hybrid8192=0.1158s lex_plain=0.1291s
+2026-11-18T00:47:37-05:00 [597/870] main wg_mixture_continuous_s6_k8 done (56.8 min elapsed) Ckmeans.1d.dp=0.1778s ckmeans_exact=0.1435s lex_hybrid16384=0.1161s lex_hybrid4096=0.1152s lex_hybrid8192=0.1157s lex_plain=0.1237s
+2026-11-18T00:47:43-05:00 [598/870] main wg_mixture_continuous_s6_k16 done (56.9 min elapsed) Ckmeans.1d.dp=0.3471s ckmeans_exact=0.2613s lex_hybrid16384=0.1194s lex_hybrid4096=0.1163s lex_hybrid8192=0.1172s lex_plain=0.1306s
+2026-11-18T00:47:52-05:00 [599/870] main wg_mixture_continuous_s6_k32 done (57.1 min elapsed) Ckmeans.1d.dp=0.6956s ckmeans_exact=0.4965s lex_hybrid16384=0.125s lex_hybrid4096=0.1177s lex_hybrid8192=0.1196s lex_plain=0.1329s
+2026-11-18T00:48:06-05:00 [600/870] main wg_mixture_continuous_s6_k64 done (57.3 min elapsed) Ckmeans.1d.dp=1.378s ckmeans_exact=0.9577s lex_hybrid16384=0.1358s lex_hybrid4096=0.1203s lex_hybrid8192=0.1252s lex_plain=0.1644s
+2026-11-18T00:48:29-05:00 [601/870] main wg_mixture_continuous_s6_k128 done (57.7 min elapsed) Ckmeans.1d.dp=2.703s ckmeans_exact=1.863s lex_hybrid16384=0.1577s lex_hybrid4096=0.1254s lex_hybrid8192=0.1363s lex_plain=0.1492s
+2026-11-18T00:49:13-05:00 [602/870] main wg_mixture_continuous_s6_k256 done (58.4 min elapsed) Ckmeans.1d.dp=5.312s ckmeans_exact=3.634s lex_hybrid16384=0.2004s lex_hybrid4096=0.1352s lex_hybrid8192=0.156s lex_plain=0.1486s
+2026-11-18T00:50:36-05:00 [603/870] main wg_mixture_continuous_s6_k512 done (59.8 min elapsed) Ckmeans.1d.dp=10.68s ckmeans_exact=7.094s lex_hybrid16384=0.2819s lex_hybrid4096=0.1557s lex_hybrid8192=0.1941s lex_plain=0.1582s
+2026-11-18T00:50:36-05:00 [604/870] main bimodal_gaussian_continuous_s6_load done (59.8 min elapsed) 
+2026-11-18T00:50:40-05:00 [605/870] main bimodal_gaussian_continuous_s6_k4 done (59.9 min elapsed) Ckmeans.1d.dp=0.09349s ckmeans_exact=0.08299s lex_hybrid16384=0.1143s lex_hybrid4096=0.1147s lex_hybrid8192=0.1146s lex_plain=0.1265s
+2026-11-18T00:50:45-05:00 [606/870] main bimodal_gaussian_continuous_s6_k8 done (60.0 min elapsed) Ckmeans.1d.dp=0.1751s ckmeans_exact=0.1421s lex_hybrid16384=0.1147s lex_hybrid4096=0.1143s lex_hybrid8192=0.1153s lex_plain=0.1321s
+2026-11-18T00:50:50-05:00 [607/870] main bimodal_gaussian_continuous_s6_k16 done (60.1 min elapsed) Ckmeans.1d.dp=0.3429s ckmeans_exact=0.2604s lex_hybrid16384=0.1182s lex_hybrid4096=0.1159s lex_hybrid8192=0.1156s lex_plain=0.1215s
+2026-11-18T00:50:59-05:00 [608/870] main bimodal_gaussian_continuous_s6_k32 done (60.2 min elapsed) Ckmeans.1d.dp=0.6936s ckmeans_exact=0.494s lex_hybrid16384=0.1241s lex_hybrid4096=0.1172s lex_hybrid8192=0.1189s lex_plain=0.1268s
+2026-11-18T00:51:13-05:00 [609/870] main bimodal_gaussian_continuous_s6_k64 done (60.4 min elapsed) Ckmeans.1d.dp=1.377s ckmeans_exact=0.9502s lex_hybrid16384=0.1349s lex_hybrid4096=0.1191s lex_hybrid8192=0.1244s lex_plain=0.1344s
+2026-11-18T00:51:36-05:00 [610/870] main bimodal_gaussian_continuous_s6_k128 done (60.8 min elapsed) Ckmeans.1d.dp=2.692s ckmeans_exact=1.859s lex_hybrid16384=0.1575s lex_hybrid4096=0.1247s lex_hybrid8192=0.135s lex_plain=0.1358s
+2026-11-18T00:52:20-05:00 [611/870] main bimodal_gaussian_continuous_s6_k256 done (61.6 min elapsed) Ckmeans.1d.dp=5.3s ckmeans_exact=3.624s lex_hybrid16384=0.1994s lex_hybrid4096=0.134s lex_hybrid8192=0.1547s lex_plain=0.1315s
+2026-11-18T00:53:43-05:00 [612/870] main bimodal_gaussian_continuous_s6_k512 done (62.9 min elapsed) Ckmeans.1d.dp=10.67s ckmeans_exact=7.087s lex_hybrid16384=0.283s lex_hybrid4096=0.1537s lex_hybrid8192=0.1932s lex_plain=0.1412s
+2026-11-18T00:53:43-05:00 [613/870] main mixed_continuous_s6_load done (62.9 min elapsed) 
+2026-11-18T00:53:47-05:00 [614/870] main mixed_continuous_s6_k4 done (63.0 min elapsed) Ckmeans.1d.dp=0.09601s ckmeans_exact=0.08424s lex_hybrid16384=0.1142s lex_hybrid4096=0.1152s lex_hybrid8192=0.1134s lex_plain=0.1245s
+2026-11-18T00:53:52-05:00 [615/870] main mixed_continuous_s6_k8 done (63.1 min elapsed) Ckmeans.1d.dp=0.1728s ckmeans_exact=0.142s lex_hybrid16384=0.1154s lex_hybrid4096=0.1153s lex_hybrid8192=0.1143s lex_plain=0.1263s
+2026-11-18T00:53:58-05:00 [616/870] main mixed_continuous_s6_k16 done (63.2 min elapsed) Ckmeans.1d.dp=0.3279s ckmeans_exact=0.2591s lex_hybrid16384=0.1186s lex_hybrid4096=0.1155s lex_hybrid8192=0.1166s lex_plain=0.1323s
+2026-11-18T00:54:06-05:00 [617/870] main mixed_continuous_s6_k32 done (63.3 min elapsed) Ckmeans.1d.dp=0.6639s ckmeans_exact=0.493s lex_hybrid16384=0.1251s lex_hybrid4096=0.1167s lex_hybrid8192=0.1195s lex_plain=0.1338s
+2026-11-18T00:54:20-05:00 [618/870] main mixed_continuous_s6_k64 done (63.5 min elapsed) Ckmeans.1d.dp=1.326s ckmeans_exact=0.9508s lex_hybrid16384=0.1373s lex_hybrid4096=0.1201s lex_hybrid8192=0.1257s lex_plain=0.139s
+2026-11-18T00:54:43-05:00 [619/870] main mixed_continuous_s6_k128 done (63.9 min elapsed) Ckmeans.1d.dp=2.621s ckmeans_exact=1.858s lex_hybrid16384=0.1585s lex_hybrid4096=0.1254s lex_hybrid8192=0.1366s lex_plain=0.1408s
+2026-11-18T00:55:26-05:00 [620/870] main mixed_continuous_s6_k256 done (64.7 min elapsed) Ckmeans.1d.dp=5.291s ckmeans_exact=3.621s lex_hybrid16384=0.2002s lex_hybrid4096=0.1347s lex_hybrid8192=0.1565s lex_plain=0.145s
+2026-11-18T00:56:49-05:00 [621/870] main mixed_continuous_s6_k512 done (66.0 min elapsed) Ckmeans.1d.dp=10.59s ckmeans_exact=7.108s lex_hybrid16384=0.2818s lex_hybrid4096=0.1548s lex_hybrid8192=0.194s lex_plain=0.1447s
+2026-11-18T00:56:49-05:00 [622/870] main truncated_continuous_s6_load done (66.0 min elapsed) 
+2026-11-18T00:56:53-05:00 [623/870] main truncated_continuous_s6_k4 done (66.1 min elapsed) Ckmeans.1d.dp=0.09719s ckmeans_exact=0.08443s lex_hybrid16384=0.1147s lex_hybrid4096=0.116s lex_hybrid8192=0.1154s lex_plain=0.1218s
+2026-11-18T00:56:58-05:00 [624/870] main truncated_continuous_s6_k8 done (66.2 min elapsed) Ckmeans.1d.dp=0.1791s ckmeans_exact=0.1436s lex_hybrid16384=0.1164s lex_hybrid4096=0.1158s lex_hybrid8192=0.1158s lex_plain=0.129s
+2026-11-18T00:57:04-05:00 [625/870] main truncated_continuous_s6_k16 done (66.3 min elapsed) Ckmeans.1d.dp=0.3472s ckmeans_exact=0.2608s lex_hybrid16384=0.1191s lex_hybrid4096=0.1163s lex_hybrid8192=0.1172s lex_plain=0.1287s
+2026-11-18T00:57:12-05:00 [626/870] main truncated_continuous_s6_k32 done (66.4 min elapsed) Ckmeans.1d.dp=0.6936s ckmeans_exact=0.4935s lex_hybrid16384=0.1255s lex_hybrid4096=0.1174s lex_hybrid8192=0.1199s lex_plain=0.1346s
+2026-11-18T00:57:26-05:00 [627/870] main truncated_continuous_s6_k64 done (66.7 min elapsed) Ckmeans.1d.dp=1.377s ckmeans_exact=0.9486s lex_hybrid16384=0.1365s lex_hybrid4096=0.1214s lex_hybrid8192=0.1262s lex_plain=0.1404s
+2026-11-18T00:57:50-05:00 [628/870] main truncated_continuous_s6_k128 done (67.0 min elapsed) Ckmeans.1d.dp=2.676s ckmeans_exact=1.848s lex_hybrid16384=0.159s lex_hybrid4096=0.1263s lex_hybrid8192=0.1356s lex_plain=0.1383s
+2026-11-18T00:58:33-05:00 [629/870] main truncated_continuous_s6_k256 done (67.8 min elapsed) Ckmeans.1d.dp=5.308s ckmeans_exact=3.607s lex_hybrid16384=0.2009s lex_hybrid4096=0.1357s lex_hybrid8192=0.1561s lex_plain=0.1387s
+2026-11-18T00:59:56-05:00 [630/870] main truncated_continuous_s6_k512 done (69.1 min elapsed) Ckmeans.1d.dp=10.65s ckmeans_exact=7.028s lex_hybrid16384=0.2819s lex_hybrid4096=0.1573s lex_hybrid8192=0.1949s lex_plain=0.1464s
+2026-11-18T00:59:56-05:00 [631/870] main triangular_discrete_s6_load done (69.1 min elapsed) 
+2026-11-18T00:59:57-05:00 [632/870] main triangular_discrete_s6_k4 done (69.2 min elapsed) Ckmeans.1d.dp=0.06866s ckmeans_exact=0.02433s lex_hybrid16384=0.02432s lex_hybrid4096=0.02415s lex_hybrid8192=0.02407s lex_plain=0.02438s
+2026-11-18T00:59:59-05:00 [633/870] main triangular_discrete_s6_k8 done (69.2 min elapsed) Ckmeans.1d.dp=0.1147s ckmeans_exact=0.02459s lex_hybrid16384=0.02458s lex_hybrid4096=0.02451s lex_hybrid8192=0.02451s lex_plain=0.02442s
+2026-11-18T01:00:02-05:00 [634/870] main triangular_discrete_s6_k16 done (69.2 min elapsed) Ckmeans.1d.dp=0.201s ckmeans_exact=0.02509s lex_hybrid16384=0.02518s lex_hybrid4096=0.02525s lex_hybrid8192=0.02513s lex_plain=0.02443s
+2026-11-18T01:00:04-05:00 [635/870] main triangular_discrete_s6_k32 done (69.3 min elapsed) Ckmeans.1d.dp=0.3727s ckmeans_exact=0.02632s lex_hybrid16384=0.02636s lex_hybrid4096=0.02631s lex_hybrid8192=0.02653s lex_plain=0.02453s
+2026-11-18T01:00:09-05:00 [636/870] main triangular_discrete_s6_k64 done (69.4 min elapsed) Ckmeans.1d.dp=0.7154s ckmeans_exact=0.02873s lex_hybrid16384=0.02877s lex_hybrid4096=0.02871s lex_hybrid8192=0.02868s lex_plain=0.02454s
+2026-11-18T01:00:16-05:00 [637/870] main triangular_discrete_s6_k128 done (69.5 min elapsed) Ckmeans.1d.dp=1.379s ckmeans_exact=0.03322s lex_hybrid16384=0.0332s lex_hybrid4096=0.03322s lex_hybrid8192=0.03306s lex_plain=0.02454s
+2026-11-18T01:00:29-05:00 [638/870] main triangular_discrete_s6_k256 done (69.7 min elapsed) Ckmeans.1d.dp=2.705s ckmeans_exact=0.04168s lex_hybrid16384=0.04177s lex_hybrid4096=0.04163s lex_hybrid8192=0.0417s lex_plain=0.02474s
+2026-11-18T01:00:52-05:00 [639/870] main triangular_discrete_s6_k512 done (70.1 min elapsed) Ckmeans.1d.dp=5.324s ckmeans_exact=0.05694s lex_hybrid16384=0.05753s lex_hybrid4096=0.05786s lex_hybrid8192=0.05681s lex_plain=0.02481s
+2026-11-18T01:00:52-05:00 [640/870] main spike_uniform_discrete_s6_load done (70.1 min elapsed) 
+2026-11-18T01:00:54-05:00 [641/870] main spike_uniform_discrete_s6_k4 done (70.1 min elapsed) Ckmeans.1d.dp=0.06524s ckmeans_exact=0.02207s lex_hybrid16384=0.02214s lex_hybrid4096=0.02221s lex_hybrid8192=0.02217s lex_plain=0.02239s
+2026-11-18T01:00:56-05:00 [642/870] main spike_uniform_discrete_s6_k8 done (70.1 min elapsed) Ckmeans.1d.dp=0.102s ckmeans_exact=0.02244s lex_hybrid16384=0.02271s lex_hybrid4096=0.02248s lex_hybrid8192=0.02247s lex_plain=0.02231s
+2026-11-18T01:00:58-05:00 [643/870] main spike_uniform_discrete_s6_k16 done (70.2 min elapsed) Ckmeans.1d.dp=0.1589s ckmeans_exact=0.02297s lex_hybrid16384=0.02308s lex_hybrid4096=0.02315s lex_hybrid8192=0.02319s lex_plain=0.02247s
+2026-11-18T01:01:00-05:00 [644/870] main spike_uniform_discrete_s6_k32 done (70.2 min elapsed) Ckmeans.1d.dp=0.2814s ckmeans_exact=0.0243s lex_hybrid16384=0.02449s lex_hybrid4096=0.02433s lex_hybrid8192=0.0244s lex_plain=0.02253s
+2026-11-18T01:01:04-05:00 [645/870] main spike_uniform_discrete_s6_k64 done (70.3 min elapsed) Ckmeans.1d.dp=0.5202s ckmeans_exact=0.02672s lex_hybrid16384=0.02675s lex_hybrid4096=0.02685s lex_hybrid8192=0.02674s lex_plain=0.02249s
+2026-11-18T01:01:09-05:00 [646/870] main spike_uniform_discrete_s6_k128 done (70.4 min elapsed) Ckmeans.1d.dp=0.9949s ckmeans_exact=0.03144s lex_hybrid16384=0.03128s lex_hybrid4096=0.03161s lex_hybrid8192=0.03151s lex_plain=0.02259s
+2026-11-18T01:01:19-05:00 [647/870] main spike_uniform_discrete_s6_k256 done (70.5 min elapsed) Ckmeans.1d.dp=1.927s ckmeans_exact=0.04027s lex_hybrid16384=0.04053s lex_hybrid4096=0.04039s lex_hybrid8192=0.04021s lex_plain=0.02263s
+2026-11-18T01:01:36-05:00 [648/870] main spike_uniform_discrete_s6_k512 done (70.8 min elapsed) Ckmeans.1d.dp=3.75s ckmeans_exact=0.05661s lex_hybrid16384=0.05578s lex_hybrid4096=0.05684s lex_hybrid8192=0.05675s lex_plain=0.02246s
+2026-11-18T01:01:36-05:00 [649/870] main uniform_continuous_s7_load done (70.8 min elapsed) 
+2026-11-18T01:01:47-05:00 [650/870] main uniform_continuous_s7_k4 done (71.0 min elapsed) Ckmeans.1d.dp=0.216s ckmeans_exact=0.1749s lex_hybrid1024=0.2777s lex_hybrid16384=0.2796s lex_hybrid2048=0.2803s lex_hybrid4096=0.2772s lex_hybrid8192=0.2824s lex_plain=0.2855s
+2026-11-18T01:02:00-05:00 [651/870] main uniform_continuous_s7_k8 done (71.2 min elapsed) Ckmeans.1d.dp=0.3923s ckmeans_exact=0.2985s lex_hybrid1024=0.2826s lex_hybrid16384=0.2855s lex_hybrid2048=0.2831s lex_hybrid4096=0.2773s lex_hybrid8192=0.2814s lex_plain=0.2938s
+2026-11-18T01:02:15-05:00 [652/870] main uniform_continuous_s7_k16 done (71.5 min elapsed) Ckmeans.1d.dp=0.7427s ckmeans_exact=0.5459s lex_hybrid1024=0.2816s lex_hybrid16384=0.2818s lex_hybrid2048=0.277s lex_hybrid4096=0.2768s lex_hybrid8192=0.2853s lex_plain=0.2977s
+2026-11-18T01:02:36-05:00 [653/870] main uniform_continuous_s7_k32 done (71.8 min elapsed) Ckmeans.1d.dp=1.457s ckmeans_exact=1.03s lex_hybrid1024=0.282s lex_hybrid16384=0.2882s lex_hybrid2048=0.283s lex_hybrid4096=0.2838s lex_hybrid8192=0.2868s lex_plain=0.3138s
+2026-11-18T01:03:07-05:00 [654/870] main uniform_continuous_s7_k64 done (72.3 min elapsed) Ckmeans.1d.dp=2.847s ckmeans_exact=1.981s lex_hybrid1024=0.282s lex_hybrid16384=0.3035s lex_hybrid2048=0.2849s lex_hybrid4096=0.2805s lex_hybrid8192=0.2911s lex_plain=0.3187s
+2026-11-18T01:03:58-05:00 [655/870] main uniform_continuous_s7_k128 done (73.2 min elapsed) Ckmeans.1d.dp=5.525s ckmeans_exact=3.851s lex_hybrid1024=0.2913s lex_hybrid16384=0.3207s lex_hybrid2048=0.2925s lex_hybrid4096=0.2866s lex_hybrid8192=0.3012s lex_plain=0.3324s
+2026-11-18T01:05:30-05:00 [656/870] main uniform_continuous_s7_k256 done (74.7 min elapsed) Ckmeans.1d.dp=10.93s ckmeans_exact=7.513s lex_hybrid1024=0.3095s lex_hybrid16384=0.362s lex_hybrid2048=0.293s lex_hybrid4096=0.303s lex_hybrid8192=0.317s lex_plain=0.3117s
+2026-11-18T01:08:22-05:00 [657/870] main uniform_continuous_s7_k512 done (77.6 min elapsed) Ckmeans.1d.dp=21.84s ckmeans_exact=14.66s lex_hybrid1024=0.3313s lex_hybrid16384=0.4472s lex_hybrid2048=0.3053s lex_hybrid4096=0.3221s lex_hybrid8192=0.3587s lex_plain=0.3287s
+2026-11-18T01:08:22-05:00 [658/870] main gaussian_continuous_s7_load done (77.6 min elapsed) 
+2026-11-18T01:08:33-05:00 [659/870] main gaussian_continuous_s7_k4 done (77.8 min elapsed) Ckmeans.1d.dp=0.2127s ckmeans_exact=0.1712s lex_hybrid1024=0.2806s lex_hybrid16384=0.2778s lex_hybrid2048=0.2775s lex_hybrid4096=0.2795s lex_hybrid8192=0.2801s lex_plain=0.3387s
+2026-11-18T01:08:46-05:00 [660/870] main gaussian_continuous_s7_k8 done (78.0 min elapsed) Ckmeans.1d.dp=0.3895s ckmeans_exact=0.298s lex_hybrid1024=0.2781s lex_hybrid16384=0.2803s lex_hybrid2048=0.2813s lex_hybrid4096=0.2765s lex_hybrid8192=0.2827s lex_plain=0.3129s
+2026-11-18T01:09:01-05:00 [661/870] main gaussian_continuous_s7_k16 done (78.2 min elapsed) Ckmeans.1d.dp=0.7543s ckmeans_exact=0.549s lex_hybrid1024=0.281s lex_hybrid16384=0.2859s lex_hybrid2048=0.2838s lex_hybrid4096=0.2798s lex_hybrid8192=0.283s lex_plain=0.3069s
+2026-11-18T01:09:22-05:00 [662/870] main gaussian_continuous_s7_k32 done (78.6 min elapsed) Ckmeans.1d.dp=1.489s ckmeans_exact=1.042s lex_hybrid1024=0.2878s lex_hybrid16384=0.2939s lex_hybrid2048=0.2896s lex_hybrid4096=0.2888s lex_hybrid8192=0.2915s lex_plain=0.3258s
+2026-11-18T01:09:54-05:00 [663/870] main gaussian_continuous_s7_k64 done (79.1 min elapsed) Ckmeans.1d.dp=2.896s ckmeans_exact=2.009s lex_hybrid1024=0.2865s lex_hybrid16384=0.3025s lex_hybrid2048=0.2906s lex_hybrid4096=0.2896s lex_hybrid8192=0.2914s lex_plain=0.3043s
+2026-11-18T01:10:46-05:00 [664/870] main gaussian_continuous_s7_k128 done (80.0 min elapsed) Ckmeans.1d.dp=5.588s ckmeans_exact=3.902s lex_hybrid1024=0.2857s lex_hybrid16384=0.3259s lex_hybrid2048=0.2879s lex_hybrid4096=0.2932s lex_hybrid8192=0.2972s lex_plain=0.3394s
+2026-11-18T01:12:19-05:00 [665/870] main gaussian_continuous_s7_k256 done (81.5 min elapsed) Ckmeans.1d.dp=11.16s ckmeans_exact=7.604s lex_hybrid1024=0.298s lex_hybrid16384=0.3634s lex_hybrid2048=0.297s lex_hybrid4096=0.3005s lex_hybrid8192=0.3232s lex_plain=0.3576s
+2026-11-18T01:15:13-05:00 [666/870] main gaussian_continuous_s7_k512 done (84.4 min elapsed) Ckmeans.1d.dp=22.06s ckmeans_exact=14.87s lex_hybrid1024=0.3377s lex_hybrid16384=0.4466s lex_hybrid2048=0.3162s lex_hybrid4096=0.3233s lex_hybrid8192=0.3591s lex_plain=0.343s
+2026-11-18T01:15:13-05:00 [667/870] main exponential_continuous_s7_load done (84.4 min elapsed) 
+2026-11-18T01:15:25-05:00 [668/870] main exponential_continuous_s7_k4 done (84.6 min elapsed) Ckmeans.1d.dp=0.2241s ckmeans_exact=0.1724s lex_hybrid1024=0.2822s lex_hybrid16384=0.2823s lex_hybrid2048=0.2821s lex_hybrid4096=0.2777s lex_hybrid8192=0.2818s lex_plain=0.3317s
+2026-11-18T01:15:37-05:00 [669/870] main exponential_continuous_s7_k8 done (84.8 min elapsed) Ckmeans.1d.dp=0.4208s ckmeans_exact=0.2987s lex_hybrid1024=0.2823s lex_hybrid16384=0.2843s lex_hybrid2048=0.2857s lex_hybrid4096=0.2791s lex_hybrid8192=0.2863s lex_plain=0.3235s
+2026-11-18T01:15:53-05:00 [670/870] main exponential_continuous_s7_k16 done (85.1 min elapsed) Ckmeans.1d.dp=0.7863s ckmeans_exact=0.5462s lex_hybrid1024=0.2781s lex_hybrid16384=0.2842s lex_hybrid2048=0.284s lex_hybrid4096=0.2842s lex_hybrid8192=0.2798s lex_plain=0.3161s
+2026-11-18T01:16:14-05:00 [671/870] main exponential_continuous_s7_k32 done (85.4 min elapsed) Ckmeans.1d.dp=1.525s ckmeans_exact=1.027s lex_hybrid1024=0.2838s lex_hybrid16384=0.2928s lex_hybrid2048=0.2822s lex_hybrid4096=0.2861s lex_hybrid8192=0.2828s lex_plain=0.3103s
+2026-11-18T01:16:45-05:00 [672/870] main exponential_continuous_s7_k64 done (86.0 min elapsed) Ckmeans.1d.dp=2.922s ckmeans_exact=1.969s lex_hybrid1024=0.284s lex_hybrid16384=0.3001s lex_hybrid2048=0.2908s lex_hybrid4096=0.2828s lex_hybrid8192=0.2924s lex_plain=0.337s
+2026-11-18T01:17:37-05:00 [673/870] main exponential_continuous_s7_k128 done (86.8 min elapsed) Ckmeans.1d.dp=5.648s ckmeans_exact=3.818s lex_hybrid1024=0.2989s lex_hybrid16384=0.3226s lex_hybrid2048=0.2935s lex_hybrid4096=0.2946s lex_hybrid8192=0.3038s lex_plain=0.3269s
+2026-11-18T01:19:10-05:00 [674/870] main exponential_continuous_s7_k256 done (88.4 min elapsed) Ckmeans.1d.dp=11.32s ckmeans_exact=7.436s lex_hybrid1024=0.3097s lex_hybrid16384=0.37s lex_hybrid2048=0.3071s lex_hybrid4096=0.303s lex_hybrid8192=0.323s lex_plain=0.3736s
+2026-11-18T01:22:03-05:00 [675/870] main exponential_continuous_s7_k512 done (91.3 min elapsed) Ckmeans.1d.dp=22.01s ckmeans_exact=14.48s lex_hybrid1024=0.3724s lex_hybrid16384=0.4503s lex_hybrid2048=0.3296s lex_hybrid4096=0.3266s lex_hybrid8192=0.365s lex_plain=0.3821s
+2026-11-18T01:22:03-05:00 [676/870] main weibull_continuous_s7_load done (91.3 min elapsed) 
+2026-11-18T01:22:14-05:00 [677/870] main weibull_continuous_s7_k4 done (91.5 min elapsed) Ckmeans.1d.dp=0.2214s ckmeans_exact=0.1735s lex_hybrid1024=0.2792s lex_hybrid16384=0.278s lex_hybrid2048=0.2794s lex_hybrid4096=0.2816s lex_hybrid8192=0.2786s lex_plain=0.2982s
+2026-11-18T01:22:27-05:00 [678/870] main weibull_continuous_s7_k8 done (91.7 min elapsed) Ckmeans.1d.dp=0.4125s ckmeans_exact=0.3002s lex_hybrid1024=0.2781s lex_hybrid16384=0.2799s lex_hybrid2048=0.2824s lex_hybrid4096=0.2771s lex_hybrid8192=0.2794s lex_plain=0.3119s
+2026-11-18T01:22:42-05:00 [679/870] main weibull_continuous_s7_k16 done (91.9 min elapsed) Ckmeans.1d.dp=0.7788s ckmeans_exact=0.546s lex_hybrid1024=0.2773s lex_hybrid16384=0.2866s lex_hybrid2048=0.2822s lex_hybrid4096=0.2813s lex_hybrid8192=0.2798s lex_plain=0.3226s
+2026-11-18T01:23:03-05:00 [680/870] main weibull_continuous_s7_k32 done (92.3 min elapsed) Ckmeans.1d.dp=1.514s ckmeans_exact=1.03s lex_hybrid1024=0.2848s lex_hybrid16384=0.2886s lex_hybrid2048=0.2796s lex_hybrid4096=0.2839s lex_hybrid8192=0.2859s lex_plain=0.3264s
+2026-11-18T01:23:35-05:00 [681/870] main weibull_continuous_s7_k64 done (92.8 min elapsed) Ckmeans.1d.dp=2.909s ckmeans_exact=1.98s lex_hybrid1024=0.2818s lex_hybrid16384=0.3037s lex_hybrid2048=0.2861s lex_hybrid4096=0.2864s lex_hybrid8192=0.2877s lex_plain=0.3247s
+2026-11-18T01:24:27-05:00 [682/870] main weibull_continuous_s7_k128 done (93.7 min elapsed) Ckmeans.1d.dp=5.639s ckmeans_exact=3.839s lex_hybrid1024=0.2958s lex_hybrid16384=0.321s lex_hybrid2048=0.2858s lex_hybrid4096=0.2933s lex_hybrid8192=0.3003s lex_plain=0.3186s
+2026-11-18T01:25:59-05:00 [683/870] main weibull_continuous_s7_k256 done (95.2 min elapsed) Ckmeans.1d.dp=11.14s ckmeans_exact=7.502s lex_hybrid1024=0.2973s lex_hybrid16384=0.3606s lex_hybrid2048=0.2929s lex_hybrid4096=0.2976s lex_hybrid8192=0.3159s lex_plain=0.3391s
+2026-11-18T01:28:50-05:00 [684/870] main weibull_continuous_s7_k512 done (98.1 min elapsed) Ckmeans.1d.dp=21.88s ckmeans_exact=14.61s lex_hybrid1024=0.3324s lex_hybrid16384=0.4426s lex_hybrid2048=0.321s lex_hybrid4096=0.3202s lex_hybrid8192=0.3635s lex_plain=0.3482s
+2026-11-18T01:28:51-05:00 [685/870] main lognormal_continuous_s7_load done (98.1 min elapsed) 
+2026-11-18T01:29:02-05:00 [686/870] main lognormal_continuous_s7_k4 done (98.3 min elapsed) Ckmeans.1d.dp=0.2286s ckmeans_exact=0.1735s lex_hybrid1024=0.2795s lex_hybrid16384=0.2834s lex_hybrid2048=0.2784s lex_hybrid4096=0.2801s lex_hybrid8192=0.2863s lex_plain=0.3668s
+2026-11-18T01:29:15-05:00 [687/870] main lognormal_continuous_s7_k8 done (98.5 min elapsed) Ckmeans.1d.dp=0.4223s ckmeans_exact=0.2998s lex_hybrid1024=0.28s lex_hybrid16384=0.2815s lex_hybrid2048=0.2782s lex_hybrid4096=0.2845s lex_hybrid8192=0.2819s lex_plain=0.2991s
+2026-11-18T01:29:30-05:00 [688/870] main lognormal_continuous_s7_k16 done (98.7 min elapsed) Ckmeans.1d.dp=0.789s ckmeans_exact=0.546s lex_hybrid1024=0.2825s lex_hybrid16384=0.2839s lex_hybrid2048=0.2802s lex_hybrid4096=0.2856s lex_hybrid8192=0.2792s lex_plain=0.3416s
+2026-11-18T01:29:52-05:00 [689/870] main lognormal_continuous_s7_k32 done (99.1 min elapsed) Ckmeans.1d.dp=1.53s ckmeans_exact=1.03s lex_hybrid1024=0.2851s lex_hybrid16384=0.2882s lex_hybrid2048=0.2813s lex_hybrid4096=0.2845s lex_hybrid8192=0.286s lex_plain=0.3451s
+2026-11-18T01:30:23-05:00 [690/870] main lognormal_continuous_s7_k64 done (99.6 min elapsed) Ckmeans.1d.dp=2.931s ckmeans_exact=1.976s lex_hybrid1024=0.2904s lex_hybrid16384=0.3038s lex_hybrid2048=0.2846s lex_hybrid4096=0.2849s lex_hybrid8192=0.2896s lex_plain=0.3421s
+2026-11-18T01:31:15-05:00 [691/870] main lognormal_continuous_s7_k128 done (100.5 min elapsed) Ckmeans.1d.dp=5.602s ckmeans_exact=3.83s lex_hybrid1024=0.293s lex_hybrid16384=0.3235s lex_hybrid2048=0.2927s lex_hybrid4096=0.2916s lex_hybrid8192=0.2995s lex_plain=0.3664s
+2026-11-18T01:32:48-05:00 [692/870] main lognormal_continuous_s7_k256 done (102.0 min elapsed) Ckmeans.1d.dp=11.02s ckmeans_exact=7.465s lex_hybrid1024=0.3593s lex_hybrid16384=0.3694s lex_hybrid2048=0.3068s lex_hybrid4096=0.3027s lex_hybrid8192=0.3239s lex_plain=0.4569s
+2026-11-18T01:35:42-05:00 [693/870] main lognormal_continuous_s7_k512 done (104.9 min elapsed) Ckmeans.1d.dp=22.09s ckmeans_exact=14.5s lex_hybrid1024=0.4378s lex_hybrid16384=0.4482s lex_hybrid2048=0.3267s lex_hybrid4096=0.3302s lex_hybrid8192=0.362s lex_plain=0.4975s
+2026-11-18T01:35:43-05:00 [694/870] main gmm_continuous_s7_load done (104.9 min elapsed) 
+2026-11-18T01:35:54-05:00 [695/870] main gmm_continuous_s7_k4 done (105.1 min elapsed) Ckmeans.1d.dp=0.2156s ckmeans_exact=0.1723s lex_hybrid1024=0.2826s lex_hybrid16384=0.2787s lex_hybrid2048=0.2803s lex_hybrid4096=0.2817s lex_hybrid8192=0.2842s lex_plain=0.3292s
+2026-11-18T01:36:07-05:00 [696/870] main gmm_continuous_s7_k8 done (105.3 min elapsed) Ckmeans.1d.dp=0.3966s ckmeans_exact=0.298s lex_hybrid1024=0.2792s lex_hybrid16384=0.2804s lex_hybrid2048=0.2786s lex_hybrid4096=0.2827s lex_hybrid8192=0.2825s lex_plain=0.3607s
+2026-11-18T01:36:22-05:00 [697/870] main gmm_continuous_s7_k16 done (105.6 min elapsed) Ckmeans.1d.dp=0.7645s ckmeans_exact=0.5462s lex_hybrid1024=0.2845s lex_hybrid16384=0.2852s lex_hybrid2048=0.2787s lex_hybrid4096=0.2816s lex_hybrid8192=0.2839s lex_plain=0.3069s
+2026-11-18T01:36:43-05:00 [698/870] main gmm_continuous_s7_k32 done (105.9 min elapsed) Ckmeans.1d.dp=1.493s ckmeans_exact=1.033s lex_hybrid1024=0.2792s lex_hybrid16384=0.2932s lex_hybrid2048=0.2845s lex_hybrid4096=0.2808s lex_hybrid8192=0.2828s lex_plain=0.3471s
+2026-11-18T01:37:15-05:00 [699/870] main gmm_continuous_s7_k64 done (106.5 min elapsed) Ckmeans.1d.dp=2.938s ckmeans_exact=1.992s lex_hybrid1024=0.2816s lex_hybrid16384=0.3012s lex_hybrid2048=0.2848s lex_hybrid4096=0.2838s lex_hybrid8192=0.2925s lex_plain=0.3304s
+2026-11-18T01:38:07-05:00 [700/870] main gmm_continuous_s7_k128 done (107.3 min elapsed) Ckmeans.1d.dp=5.676s ckmeans_exact=3.872s lex_hybrid1024=0.2908s lex_hybrid16384=0.3232s lex_hybrid2048=0.287s lex_hybrid4096=0.2962s lex_hybrid8192=0.2992s lex_plain=0.3399s
+2026-11-18T01:39:40-05:00 [701/870] main gmm_continuous_s7_k256 done (108.9 min elapsed) Ckmeans.1d.dp=11.17s ckmeans_exact=7.559s lex_hybrid1024=0.3085s lex_hybrid16384=0.3721s lex_hybrid2048=0.2951s lex_hybrid4096=0.3037s lex_hybrid8192=0.3266s lex_plain=0.3538s
+2026-11-18T01:42:34-05:00 [702/870] main gmm_continuous_s7_k512 done (111.8 min elapsed) Ckmeans.1d.dp=22.12s ckmeans_exact=14.73s lex_hybrid1024=0.3299s lex_hybrid16384=0.4471s lex_hybrid2048=0.3198s lex_hybrid4096=0.3302s lex_hybrid8192=0.362s lex_plain=0.3773s
+2026-11-18T01:42:34-05:00 [703/870] main wg_mixture_continuous_s7_load done (111.8 min elapsed) 
+2026-11-18T01:42:46-05:00 [704/870] main wg_mixture_continuous_s7_k4 done (112.0 min elapsed) Ckmeans.1d.dp=0.2025s ckmeans_exact=0.171s lex_hybrid1024=0.2834s lex_hybrid16384=0.281s lex_hybrid2048=0.2802s lex_hybrid4096=0.2849s lex_hybrid8192=0.2821s lex_plain=0.3077s
+2026-11-18T01:42:58-05:00 [705/870] main wg_mixture_continuous_s7_k8 done (112.2 min elapsed) Ckmeans.1d.dp=0.3645s ckmeans_exact=0.2967s lex_hybrid1024=0.2827s lex_hybrid16384=0.2841s lex_hybrid2048=0.2915s lex_hybrid4096=0.2809s lex_hybrid8192=0.2841s lex_plain=0.316s
+2026-11-18T01:43:13-05:00 [706/870] main wg_mixture_continuous_s7_k16 done (112.4 min elapsed) Ckmeans.1d.dp=0.7105s ckmeans_exact=0.5437s lex_hybrid1024=0.2804s lex_hybrid16384=0.2835s lex_hybrid2048=0.2794s lex_hybrid4096=0.2808s lex_hybrid8192=0.2847s lex_plain=0.3086s
+2026-11-18T01:43:34-05:00 [707/870] main wg_mixture_continuous_s7_k32 done (112.8 min elapsed) Ckmeans.1d.dp=1.421s ckmeans_exact=1.033s lex_hybrid1024=0.2849s lex_hybrid16384=0.2932s lex_hybrid2048=0.2796s lex_hybrid4096=0.2879s lex_hybrid8192=0.2829s lex_plain=0.3191s
+2026-11-18T01:44:05-05:00 [708/870] main wg_mixture_continuous_s7_k64 done (113.3 min elapsed) Ckmeans.1d.dp=2.815s ckmeans_exact=1.997s lex_hybrid1024=0.2897s lex_hybrid16384=0.3033s lex_hybrid2048=0.2821s lex_hybrid4096=0.2875s lex_hybrid8192=0.2877s lex_plain=0.338s
+2026-11-18T01:44:57-05:00 [709/870] main wg_mixture_continuous_s7_k128 done (114.2 min elapsed) Ckmeans.1d.dp=5.527s ckmeans_exact=3.892s lex_hybrid1024=0.2939s lex_hybrid16384=0.3214s lex_hybrid2048=0.2875s lex_hybrid4096=0.2938s lex_hybrid8192=0.3009s lex_plain=0.3331s
+2026-11-18T01:46:30-05:00 [710/870] main wg_mixture_continuous_s7_k256 done (115.7 min elapsed) Ckmeans.1d.dp=11.11s ckmeans_exact=7.607s lex_hybrid1024=0.3041s lex_hybrid16384=0.3659s lex_hybrid2048=0.2958s lex_hybrid4096=0.3085s lex_hybrid8192=0.3202s lex_plain=0.3724s
+2026-11-18T01:49:24-05:00 [711/870] main wg_mixture_continuous_s7_k512 done (118.6 min elapsed) Ckmeans.1d.dp=22.1s ckmeans_exact=14.85s lex_hybrid1024=0.3283s lex_hybrid16384=0.4466s lex_hybrid2048=0.3206s lex_hybrid4096=0.3253s lex_hybrid8192=0.3629s lex_plain=0.35s
+2026-11-18T01:49:24-05:00 [712/870] main bimodal_gaussian_continuous_s7_load done (118.6 min elapsed) 
+2026-11-18T01:49:35-05:00 [713/870] main bimodal_gaussian_continuous_s7_k4 done (118.8 min elapsed) Ckmeans.1d.dp=0.1951s ckmeans_exact=0.1694s lex_hybrid1024=0.2768s lex_hybrid16384=0.2828s lex_hybrid2048=0.2816s lex_hybrid4096=0.2836s lex_hybrid8192=0.2818s lex_plain=0.3272s
+2026-11-18T01:49:47-05:00 [714/870] main bimodal_gaussian_continuous_s7_k8 done (119.0 min elapsed) Ckmeans.1d.dp=0.3563s ckmeans_exact=0.2934s lex_hybrid1024=0.2797s lex_hybrid16384=0.278s lex_hybrid2048=0.277s lex_hybrid4096=0.2816s lex_hybrid8192=0.277s lex_plain=0.3044s
+2026-11-18T01:50:02-05:00 [715/870] main bimodal_gaussian_continuous_s7_k16 done (119.3 min elapsed) Ckmeans.1d.dp=0.7038s ckmeans_exact=0.5411s lex_hybrid1024=0.2824s lex_hybrid16384=0.2817s lex_hybrid2048=0.2755s lex_hybrid4096=0.2793s lex_hybrid8192=0.2807s lex_plain=0.3088s
+2026-11-18T01:50:23-05:00 [716/870] main bimodal_gaussian_continuous_s7_k32 done (119.6 min elapsed) Ckmeans.1d.dp=1.43s ckmeans_exact=1.028s lex_hybrid1024=0.2785s lex_hybrid16384=0.2847s lex_hybrid2048=0.2843s lex_hybrid4096=0.2808s lex_hybrid8192=0.2845s lex_plain=0.33s
+2026-11-18T01:50:54-05:00 [717/870] main bimodal_gaussian_continuous_s7_k64 done (120.1 min elapsed) Ckmeans.1d.dp=2.823s ckmeans_exact=1.989s lex_hybrid1024=0.2841s lex_hybrid16384=0.3027s lex_hybrid2048=0.2862s lex_hybrid4096=0.2831s lex_hybrid8192=0.29s lex_plain=0.3347s
+2026-11-18T01:51:46-05:00 [718/870] main bimodal_gaussian_continuous_s7_k128 done (121.0 min elapsed) Ckmeans.1d.dp=5.549s ckmeans_exact=3.878s lex_hybrid1024=0.2885s lex_hybrid16384=0.3234s lex_hybrid2048=0.2917s lex_hybrid4096=0.2899s lex_hybrid8192=0.2999s lex_plain=0.3437s
+2026-11-18T01:53:19-05:00 [719/870] main bimodal_gaussian_continuous_s7_k256 done (122.5 min elapsed) Ckmeans.1d.dp=11.23s ckmeans_exact=7.573s lex_hybrid1024=0.3101s lex_hybrid16384=0.3622s lex_hybrid2048=0.2982s lex_hybrid4096=0.3051s lex_hybrid8192=0.3186s lex_plain=0.3416s
+2026-11-18T01:56:12-05:00 [720/870] main bimodal_gaussian_continuous_s7_k512 done (125.4 min elapsed) Ckmeans.1d.dp=21.82s ckmeans_exact=14.8s lex_hybrid1024=0.324s lex_hybrid16384=0.4497s lex_hybrid2048=0.3227s lex_hybrid4096=0.33s lex_hybrid8192=0.3574s lex_plain=0.3461s
+2026-11-18T01:56:12-05:00 [721/870] main mixed_continuous_s7_load done (125.4 min elapsed) 
+2026-11-18T01:56:23-05:00 [722/870] main mixed_continuous_s7_k4 done (125.6 min elapsed) Ckmeans.1d.dp=0.1949s ckmeans_exact=0.1699s lex_hybrid1024=0.2821s lex_hybrid16384=0.2824s lex_hybrid2048=0.2789s lex_hybrid4096=0.2789s lex_hybrid8192=0.2781s lex_plain=0.3111s
+2026-11-18T01:56:36-05:00 [723/870] main mixed_continuous_s7_k8 done (125.8 min elapsed) Ckmeans.1d.dp=0.3465s ckmeans_exact=0.2937s lex_hybrid1024=0.2799s lex_hybrid16384=0.281s lex_hybrid2048=0.2811s lex_hybrid4096=0.2795s lex_hybrid8192=0.2799s lex_plain=0.2903s
+2026-11-18T01:56:51-05:00 [724/870] main mixed_continuous_s7_k16 done (126.1 min elapsed) Ckmeans.1d.dp=0.6667s ckmeans_exact=0.5383s lex_hybrid1024=0.28s lex_hybrid16384=0.2828s lex_hybrid2048=0.2822s lex_hybrid4096=0.2815s lex_hybrid8192=0.2821s lex_plain=0.3283s
+2026-11-18T01:57:11-05:00 [725/870] main mixed_continuous_s7_k32 done (126.4 min elapsed) Ckmeans.1d.dp=1.36s ckmeans_exact=1.022s lex_hybrid1024=0.2812s lex_hybrid16384=0.2868s lex_hybrid2048=0.2796s lex_hybrid4096=0.2799s lex_hybrid8192=0.2806s lex_plain=0.3154s
+2026-11-18T01:57:41-05:00 [726/870] main mixed_continuous_s7_k64 done (126.9 min elapsed) Ckmeans.1d.dp=2.703s ckmeans_exact=1.982s lex_hybrid1024=0.287s lex_hybrid16384=0.2993s lex_hybrid2048=0.2874s lex_hybrid4096=0.2872s lex_hybrid8192=0.2903s lex_plain=0.3207s
+2026-11-18T01:58:32-05:00 [727/870] main mixed_continuous_s7_k128 done (127.8 min elapsed) Ckmeans.1d.dp=5.4s ckmeans_exact=3.868s lex_hybrid1024=0.2936s lex_hybrid16384=0.3196s lex_hybrid2048=0.2873s lex_hybrid4096=0.2914s lex_hybrid8192=0.2978s lex_plain=0.3373s
+2026-11-18T02:00:04-05:00 [728/870] main mixed_continuous_s7_k256 done (129.3 min elapsed) Ckmeans.1d.dp=10.87s ckmeans_exact=7.578s lex_hybrid1024=0.3024s lex_hybrid16384=0.3614s lex_hybrid2048=0.2939s lex_hybrid4096=0.2986s lex_hybrid8192=0.3224s lex_plain=0.3288s
+2026-11-18T02:02:57-05:00 [729/870] main mixed_continuous_s7_k512 done (132.2 min elapsed) Ckmeans.1d.dp=21.74s ckmeans_exact=14.83s lex_hybrid1024=0.3218s lex_hybrid16384=0.443s lex_hybrid2048=0.313s lex_hybrid4096=0.3236s lex_hybrid8192=0.361s lex_plain=0.3458s
+2026-11-18T02:02:57-05:00 [730/870] main truncated_continuous_s7_load done (132.2 min elapsed) 
+2026-11-18T02:03:08-05:00 [731/870] main truncated_continuous_s7_k4 done (132.3 min elapsed) Ckmeans.1d.dp=0.2008s ckmeans_exact=0.1708s lex_hybrid1024=0.2767s lex_hybrid16384=0.2798s lex_hybrid2048=0.2842s lex_hybrid4096=0.2768s lex_hybrid8192=0.2816s lex_plain=0.3102s
+2026-11-18T02:03:20-05:00 [732/870] main truncated_continuous_s7_k8 done (132.6 min elapsed) Ckmeans.1d.dp=0.3633s ckmeans_exact=0.2939s lex_hybrid1024=0.2766s lex_hybrid16384=0.2796s lex_hybrid2048=0.278s lex_hybrid4096=0.2829s lex_hybrid8192=0.2768s lex_plain=0.3021s
+2026-11-18T02:03:35-05:00 [733/870] main truncated_continuous_s7_k16 done (132.8 min elapsed) Ckmeans.1d.dp=0.7068s ckmeans_exact=0.5397s lex_hybrid1024=0.2786s lex_hybrid16384=0.2835s lex_hybrid2048=0.2785s lex_hybrid4096=0.28s lex_hybrid8192=0.2804s lex_plain=0.3113s
+2026-11-18T02:03:56-05:00 [734/870] main truncated_continuous_s7_k32 done (133.1 min elapsed) Ckmeans.1d.dp=1.407s ckmeans_exact=1.024s lex_hybrid1024=0.2828s lex_hybrid16384=0.2902s lex_hybrid2048=0.2794s lex_hybrid4096=0.2802s lex_hybrid8192=0.2848s lex_plain=0.3071s
+2026-11-18T02:04:26-05:00 [735/870] main truncated_continuous_s7_k64 done (133.7 min elapsed) Ckmeans.1d.dp=2.779s ckmeans_exact=1.979s lex_hybrid1024=0.2845s lex_hybrid16384=0.2981s lex_hybrid2048=0.2824s lex_hybrid4096=0.2823s lex_hybrid8192=0.2882s lex_plain=0.3248s
+2026-11-18T02:05:18-05:00 [736/870] main truncated_continuous_s7_k128 done (134.5 min elapsed) Ckmeans.1d.dp=5.494s ckmeans_exact=3.852s lex_hybrid1024=0.2875s lex_hybrid16384=0.3218s lex_hybrid2048=0.2877s lex_hybrid4096=0.2916s lex_hybrid8192=0.2984s lex_plain=0.3392s
+2026-11-18T02:06:50-05:00 [737/870] main truncated_continuous_s7_k256 done (136.1 min elapsed) Ckmeans.1d.dp=11.02s ckmeans_exact=7.515s lex_hybrid1024=0.2985s lex_hybrid16384=0.3665s lex_hybrid2048=0.2982s lex_hybrid4096=0.3012s lex_hybrid8192=0.3218s lex_plain=0.3572s
+2026-11-18T02:09:42-05:00 [738/870] main truncated_continuous_s7_k512 done (138.9 min elapsed) Ckmeans.1d.dp=21.93s ckmeans_exact=14.66s lex_hybrid1024=0.3491s lex_hybrid16384=0.4472s lex_hybrid2048=0.3097s lex_hybrid4096=0.325s lex_hybrid8192=0.3605s lex_plain=0.3512s
+2026-11-18T02:09:42-05:00 [739/870] main triangular_discrete_s7_load done (138.9 min elapsed) 
+2026-11-18T02:09:46-05:00 [740/870] main triangular_discrete_s7_k4 done (139.0 min elapsed) Ckmeans.1d.dp=0.1365s ckmeans_exact=0.04594s lex_hybrid1024=0.04637s lex_hybrid16384=0.04634s lex_hybrid2048=0.04624s lex_hybrid4096=0.04609s lex_hybrid8192=0.04638s lex_plain=0.04629s
+2026-11-18T02:09:49-05:00 [741/870] main triangular_discrete_s7_k8 done (139.0 min elapsed) Ckmeans.1d.dp=0.2272s ckmeans_exact=0.04638s lex_hybrid1024=0.04646s lex_hybrid16384=0.04649s lex_hybrid2048=0.04628s lex_hybrid4096=0.04658s lex_hybrid8192=0.0465s lex_plain=0.04661s
+2026-11-18T02:09:53-05:00 [742/870] main triangular_discrete_s7_k16 done (139.1 min elapsed) Ckmeans.1d.dp=0.3956s ckmeans_exact=0.04765s lex_hybrid1024=0.04661s lex_hybrid16384=0.0475s lex_hybrid2048=0.04687s lex_hybrid4096=0.0473s lex_hybrid8192=0.04724s lex_plain=0.04651s
+2026-11-18T02:09:59-05:00 [743/870] main triangular_discrete_s7_k32 done (139.2 min elapsed) Ckmeans.1d.dp=0.7396s ckmeans_exact=0.04851s lex_hybrid1024=0.04707s lex_hybrid16384=0.04874s lex_hybrid2048=0.04767s lex_hybrid4096=0.04838s lex_hybrid8192=0.04848s lex_plain=0.04651s
+2026-11-18T02:10:07-05:00 [744/870] main triangular_discrete_s7_k64 done (139.3 min elapsed) Ckmeans.1d.dp=1.418s ckmeans_exact=0.05078s lex_hybrid1024=0.04748s lex_hybrid16384=0.05079s lex_hybrid2048=0.04881s lex_hybrid4096=0.05087s lex_hybrid8192=0.05101s lex_plain=0.0467s
+2026-11-18T02:10:21-05:00 [745/870] main triangular_discrete_s7_k128 done (139.6 min elapsed) Ckmeans.1d.dp=2.746s ckmeans_exact=0.05524s lex_hybrid1024=0.04851s lex_hybrid16384=0.05546s lex_hybrid2048=0.05077s lex_hybrid4096=0.05529s lex_hybrid8192=0.05523s lex_plain=0.04687s
+2026-11-18T02:10:45-05:00 [746/870] main triangular_discrete_s7_k256 done (140.0 min elapsed) Ckmeans.1d.dp=5.377s ckmeans_exact=0.06394s lex_hybrid1024=0.05012s lex_hybrid16384=0.0641s lex_hybrid2048=0.05456s lex_hybrid4096=0.0639s lex_hybrid8192=0.06348s lex_plain=0.04674s
+2026-11-18T02:11:33-05:00 [747/870] main triangular_discrete_s7_k512 done (140.8 min elapsed) Ckmeans.1d.dp=11.2s ckmeans_exact=0.07901s lex_hybrid1024=0.05262s lex_hybrid16384=0.0788s lex_hybrid2048=0.06131s lex_hybrid4096=0.07838s lex_hybrid8192=0.0787s lex_plain=0.04658s
+2026-11-18T02:11:33-05:00 [748/870] main spike_uniform_discrete_s7_load done (140.8 min elapsed) 
+2026-11-18T02:11:37-05:00 [749/870] main spike_uniform_discrete_s7_k4 done (140.8 min elapsed) Ckmeans.1d.dp=0.1468s ckmeans_exact=0.0531s lex_hybrid1024=0.05302s lex_hybrid16384=0.05318s lex_hybrid2048=0.05314s lex_hybrid4096=0.05293s lex_hybrid8192=0.05311s lex_plain=0.05338s
+2026-11-18T02:11:40-05:00 [750/870] main spike_uniform_discrete_s7_k8 done (140.9 min elapsed) Ckmeans.1d.dp=0.2079s ckmeans_exact=0.0534s lex_hybrid1024=0.05316s lex_hybrid16384=0.05312s lex_hybrid2048=0.05332s lex_hybrid4096=0.05304s lex_hybrid8192=0.05339s lex_plain=0.05309s
+2026-11-18T02:11:44-05:00 [751/870] main spike_uniform_discrete_s7_k16 done (141.0 min elapsed) Ckmeans.1d.dp=0.3307s ckmeans_exact=0.05381s lex_hybrid1024=0.05337s lex_hybrid16384=0.05382s lex_hybrid2048=0.05372s lex_hybrid4096=0.05374s lex_hybrid8192=0.0539s lex_plain=0.05319s
+2026-11-18T02:11:50-05:00 [752/870] main spike_uniform_discrete_s7_k32 done (141.0 min elapsed) Ckmeans.1d.dp=0.5674s ckmeans_exact=0.05507s lex_hybrid1024=0.05365s lex_hybrid16384=0.05513s lex_hybrid2048=0.05408s lex_hybrid4096=0.05509s lex_hybrid8192=0.05521s lex_plain=0.05352s
+2026-11-18T02:11:57-05:00 [753/870] main spike_uniform_discrete_s7_k64 done (141.2 min elapsed) Ckmeans.1d.dp=1.029s ckmeans_exact=0.05721s lex_hybrid1024=0.0542s lex_hybrid16384=0.05737s lex_hybrid2048=0.0548s lex_hybrid4096=0.05769s lex_hybrid8192=0.05748s lex_plain=0.05327s
+2026-11-18T02:12:07-05:00 [754/870] main spike_uniform_discrete_s7_k128 done (141.3 min elapsed) Ckmeans.1d.dp=1.942s ckmeans_exact=0.06233s lex_hybrid1024=0.05522s lex_hybrid16384=0.06229s lex_hybrid2048=0.05783s lex_hybrid4096=0.06211s lex_hybrid8192=0.0623s lex_plain=0.05341s
+2026-11-18T02:12:26-05:00 [755/870] main spike_uniform_discrete_s7_k256 done (141.7 min elapsed) Ckmeans.1d.dp=3.868s ckmeans_exact=0.0707s lex_hybrid1024=0.057s lex_hybrid16384=0.07085s lex_hybrid2048=0.0616s lex_hybrid4096=0.071s lex_hybrid8192=0.07083s lex_plain=0.05358s
+2026-11-18T02:13:00-05:00 [756/870] main spike_uniform_discrete_s7_k512 done (142.2 min elapsed) Ckmeans.1d.dp=7.314s ckmeans_exact=0.08754s lex_hybrid1024=0.05929s lex_hybrid16384=0.08809s lex_hybrid2048=0.06849s lex_hybrid4096=0.08737s lex_hybrid8192=0.08755s lex_plain=0.05354s
+2026-11-18T02:13:00-05:00 [757/870] audio audio_s0_load done (142.2 min elapsed) 
+2026-11-18T02:14:44-05:00 [758/870] audio audio_s0_k4 done (144.0 min elapsed) Ckmeans.1d.dp=1.852s ckmeans_exact=1.372s lex_hybrid1024=2.907s lex_hybrid16384=2.913s lex_hybrid2048=2.906s lex_hybrid4096=2.905s lex_hybrid8192=2.916s lex_plain=3.073s
+2026-11-18T02:16:39-05:00 [759/870] audio audio_s0_k8 done (145.9 min elapsed) Ckmeans.1d.dp=3.253s ckmeans_exact=2.35s lex_hybrid1024=2.914s lex_hybrid16384=2.912s lex_hybrid2048=2.915s lex_hybrid4096=2.899s lex_hybrid8192=2.913s lex_plain=3.154s
+2026-11-18T02:18:58-05:00 [760/870] audio audio_s0_k16 done (148.2 min elapsed) Ckmeans.1d.dp=6.213s ckmeans_exact=4.312s lex_hybrid1024=2.907s lex_hybrid16384=2.904s lex_hybrid2048=2.907s lex_hybrid4096=2.91s lex_hybrid8192=2.905s lex_plain=3.68s
+2026-11-18T02:22:01-05:00 [761/870] audio audio_s0_k32 done (151.2 min elapsed) Ckmeans.1d.dp=12.1s ckmeans_exact=8.172s lex_hybrid1024=2.917s lex_hybrid16384=2.901s lex_hybrid2048=2.904s lex_hybrid4096=2.901s lex_hybrid8192=2.903s lex_plain=3.712s
+2026-11-18T02:26:27-05:00 [762/870] audio audio_s0_k64 done (155.7 min elapsed) Ckmeans.1d.dp=23.74s ckmeans_exact=15.72s lex_hybrid1024=2.935s lex_hybrid16384=2.912s lex_hybrid2048=2.92s lex_hybrid4096=2.904s lex_hybrid8192=2.909s lex_plain=3.512s
+2026-11-18T02:33:37-05:00 [763/870] audio audio_s0_k128 done (162.8 min elapsed) Ckmeans.1d.dp=45.71s ckmeans_exact=30.67s lex_hybrid1024=2.986s lex_hybrid16384=2.939s lex_hybrid2048=2.932s lex_hybrid4096=2.914s lex_hybrid8192=2.922s lex_plain=3.613s
+2026-11-18T02:46:08-05:00 [764/870] audio audio_s0_k256 done (175.3 min elapsed) Ckmeans.1d.dp=89.13s ckmeans_exact=59.93s lex_hybrid1024=3.03s lex_hybrid16384=2.985s lex_hybrid2048=2.985s lex_hybrid4096=3.037s lex_hybrid8192=2.948s lex_plain=3.577s
+2026-11-18T03:09:12-05:00 [765/870] audio audio_s0_k512 done (198.4 min elapsed) Ckmeans.1d.dp=174.5s ckmeans_exact=117.4s lex_hybrid1024=3.385s lex_hybrid16384=3.108s lex_hybrid2048=3.147s lex_hybrid4096=3.066s lex_hybrid8192=3.057s lex_plain=3.722s
+2026-11-18T03:09:12-05:00 [766/870] weighted uniform_continuous_s1_load_w done (198.4 min elapsed) 
+2026-11-18T03:09:13-05:00 [767/870] weighted uniform_continuous_s1_k8 done (198.4 min elapsed) Ckmeans.1d.dp=0.007745s ckmeans_exact=0.005338s lex_hybrid4096=0.003279s lex_plain=0.003136s
+2026-11-18T03:09:14-05:00 [768/870] weighted uniform_continuous_s1_k64 done (198.5 min elapsed) Ckmeans.1d.dp=0.06138s ckmeans_exact=0.03432s lex_hybrid4096=0.009644s lex_plain=0.002973s
+2026-11-18T03:09:16-05:00 [769/870] weighted uniform_continuous_s1_k256 done (198.5 min elapsed) Ckmeans.1d.dp=0.2559s ckmeans_exact=0.1262s lex_hybrid4096=0.02917s lex_plain=0.003302s
+2026-11-18T03:09:21-05:00 [770/870] weighted uniform_continuous_s1_k512 done (198.6 min elapsed) Ckmeans.1d.dp=0.4805s ckmeans_exact=0.2439s lex_hybrid4096=0.05272s lex_plain=0.003147s
+2026-11-18T03:09:21-05:00 [771/870] weighted gaussian_continuous_s1_load_w done (198.6 min elapsed) 
+2026-11-18T03:09:21-05:00 [772/870] weighted gaussian_continuous_s1_k8 done (198.6 min elapsed) Ckmeans.1d.dp=0.008004s ckmeans_exact=0.005413s lex_hybrid4096=0.003343s lex_plain=0.003069s
+2026-11-18T03:09:23-05:00 [773/870] weighted gaussian_continuous_s1_k64 done (198.6 min elapsed) Ckmeans.1d.dp=0.06261s ckmeans_exact=0.03494s lex_hybrid4096=0.009672s lex_plain=0.003295s
+2026-11-18T03:09:25-05:00 [774/870] weighted gaussian_continuous_s1_k256 done (198.6 min elapsed) Ckmeans.1d.dp=0.2486s ckmeans_exact=0.1291s lex_hybrid4096=0.02938s lex_plain=0.003264s
+2026-11-18T03:09:29-05:00 [775/870] weighted gaussian_continuous_s1_k512 done (198.7 min elapsed) Ckmeans.1d.dp=0.4785s ckmeans_exact=0.2456s lex_hybrid4096=0.0531s lex_plain=0.003386s
+2026-11-18T03:09:29-05:00 [776/870] weighted lognormal_continuous_s1_load_w done (198.7 min elapsed) 
+2026-11-18T03:09:30-05:00 [777/870] weighted lognormal_continuous_s1_k8 done (198.7 min elapsed) Ckmeans.1d.dp=0.008372s ckmeans_exact=0.005175s lex_hybrid4096=0.003389s lex_plain=0.0037s
+2026-11-18T03:09:31-05:00 [778/870] weighted lognormal_continuous_s1_k64 done (198.7 min elapsed) Ckmeans.1d.dp=0.06302s ckmeans_exact=0.03409s lex_hybrid4096=0.009589s lex_plain=0.003424s
+2026-11-18T03:09:34-05:00 [779/870] weighted lognormal_continuous_s1_k256 done (198.8 min elapsed) Ckmeans.1d.dp=0.2565s ckmeans_exact=0.124s lex_hybrid4096=0.02901s lex_plain=0.004547s
+2026-11-18T03:09:38-05:00 [780/870] weighted lognormal_continuous_s1_k512 done (198.9 min elapsed) Ckmeans.1d.dp=0.4809s ckmeans_exact=0.238s lex_hybrid4096=0.05217s lex_plain=0.003743s
+2026-11-18T03:09:38-05:00 [781/870] weighted uniform_continuous_s2_load_w done (198.9 min elapsed) 
+2026-11-18T03:09:39-05:00 [782/870] weighted uniform_continuous_s2_k8 done (198.9 min elapsed) Ckmeans.1d.dp=0.0153s ckmeans_exact=0.0113s lex_hybrid4096=0.006285s lex_plain=0.007279s
+2026-11-18T03:09:41-05:00 [783/870] weighted uniform_continuous_s2_k64 done (198.9 min elapsed) Ckmeans.1d.dp=0.1227s ckmeans_exact=0.07451s lex_hybrid4096=0.01263s lex_plain=0.00682s
+2026-11-18T03:09:45-05:00 [784/870] weighted uniform_continuous_s2_k256 done (199.0 min elapsed) Ckmeans.1d.dp=0.4941s ckmeans_exact=0.2749s lex_hybrid4096=0.03212s lex_plain=0.00676s
+2026-11-18T03:09:52-05:00 [785/870] weighted uniform_continuous_s2_k512 done (199.1 min elapsed) Ckmeans.1d.dp=0.9709s ckmeans_exact=0.5297s lex_hybrid4096=0.05595s lex_plain=0.006783s
+2026-11-18T03:09:52-05:00 [786/870] weighted gaussian_continuous_s2_load_w done (199.1 min elapsed) 
+2026-11-18T03:09:53-05:00 [787/870] weighted gaussian_continuous_s2_k8 done (199.1 min elapsed) Ckmeans.1d.dp=0.01551s ckmeans_exact=0.0112s lex_hybrid4096=0.006325s lex_plain=0.006765s
+2026-11-18T03:09:55-05:00 [788/870] weighted gaussian_continuous_s2_k64 done (199.1 min elapsed) Ckmeans.1d.dp=0.1258s ckmeans_exact=0.07566s lex_hybrid4096=0.01283s lex_plain=0.007025s
+2026-11-18T03:09:59-05:00 [789/870] weighted gaussian_continuous_s2_k256 done (199.2 min elapsed) Ckmeans.1d.dp=0.4988s ckmeans_exact=0.277s lex_hybrid4096=0.03248s lex_plain=0.007011s
+2026-11-18T03:10:07-05:00 [790/870] weighted gaussian_continuous_s2_k512 done (199.3 min elapsed) Ckmeans.1d.dp=0.9612s ckmeans_exact=0.5389s lex_hybrid4096=0.05663s lex_plain=0.007164s
+2026-11-18T03:10:07-05:00 [791/870] weighted lognormal_continuous_s2_load_w done (199.3 min elapsed) 
+2026-11-18T03:10:08-05:00 [792/870] weighted lognormal_continuous_s2_k8 done (199.4 min elapsed) Ckmeans.1d.dp=0.01657s ckmeans_exact=0.01105s lex_hybrid4096=0.006414s lex_plain=0.00785s
+2026-11-18T03:10:10-05:00 [793/870] weighted lognormal_continuous_s2_k64 done (199.4 min elapsed) Ckmeans.1d.dp=0.1267s ckmeans_exact=0.07304s lex_hybrid4096=0.01273s lex_plain=0.007749s
+2026-11-18T03:10:14-05:00 [794/870] weighted lognormal_continuous_s2_k256 done (199.4 min elapsed) Ckmeans.1d.dp=0.5012s ckmeans_exact=0.2678s lex_hybrid4096=0.03226s lex_plain=0.007901s
+2026-11-18T03:10:21-05:00 [795/870] weighted lognormal_continuous_s2_k512 done (199.6 min elapsed) Ckmeans.1d.dp=0.9744s ckmeans_exact=0.5215s lex_hybrid4096=0.05597s lex_plain=0.007976s
+2026-11-18T03:10:21-05:00 [796/870] weighted uniform_continuous_s3_load_w done (199.6 min elapsed) 
+2026-11-18T03:10:23-05:00 [797/870] weighted uniform_continuous_s3_k8 done (199.6 min elapsed) Ckmeans.1d.dp=0.03151s ckmeans_exact=0.02391s lex_hybrid4096=0.0127s lex_plain=0.01389s
+2026-11-18T03:10:25-05:00 [798/870] weighted uniform_continuous_s3_k64 done (199.6 min elapsed) Ckmeans.1d.dp=0.2563s ckmeans_exact=0.1603s lex_hybrid4096=0.01912s lex_plain=0.01475s
+2026-11-18T03:10:33-05:00 [799/870] weighted uniform_continuous_s3_k256 done (199.8 min elapsed) Ckmeans.1d.dp=0.9703s ckmeans_exact=0.59s lex_hybrid4096=0.03876s lex_plain=0.0144s
+2026-11-18T03:10:48-05:00 [800/870] weighted uniform_continuous_s3_k512 done (200.0 min elapsed) Ckmeans.1d.dp=1.98s ckmeans_exact=1.134s lex_hybrid4096=0.06275s lex_plain=0.01404s
+2026-11-18T03:10:48-05:00 [801/870] weighted gaussian_continuous_s3_load_w done (200.0 min elapsed) 
+2026-11-18T03:10:49-05:00 [802/870] weighted gaussian_continuous_s3_k8 done (200.0 min elapsed) Ckmeans.1d.dp=0.0319s ckmeans_exact=0.02395s lex_hybrid4096=0.01274s lex_plain=0.01309s
+2026-11-18T03:10:52-05:00 [803/870] weighted gaussian_continuous_s3_k64 done (200.1 min elapsed) Ckmeans.1d.dp=0.2611s ckmeans_exact=0.1636s lex_hybrid4096=0.01919s lex_plain=0.01462s
+2026-11-18T03:10:59-05:00 [804/870] weighted gaussian_continuous_s3_k256 done (200.2 min elapsed) Ckmeans.1d.dp=0.9802s ckmeans_exact=0.602s lex_hybrid4096=0.03921s lex_plain=0.0153s
+2026-11-18T03:11:14-05:00 [805/870] weighted gaussian_continuous_s3_k512 done (200.5 min elapsed) Ckmeans.1d.dp=1.971s ckmeans_exact=1.162s lex_hybrid4096=0.06286s lex_plain=0.01675s
+2026-11-18T03:11:14-05:00 [806/870] weighted lognormal_continuous_s3_load_w done (200.5 min elapsed) 
+2026-11-18T03:11:15-05:00 [807/870] weighted lognormal_continuous_s3_k8 done (200.5 min elapsed) Ckmeans.1d.dp=0.03377s ckmeans_exact=0.02341s lex_hybrid4096=0.01297s lex_plain=0.01467s
+2026-11-18T03:11:18-05:00 [808/870] weighted lognormal_continuous_s3_k64 done (200.5 min elapsed) Ckmeans.1d.dp=0.262s ckmeans_exact=0.1571s lex_hybrid4096=0.01934s lex_plain=0.01745s
+2026-11-18T03:11:26-05:00 [809/870] weighted lognormal_continuous_s3_k256 done (200.7 min elapsed) Ckmeans.1d.dp=0.9832s ckmeans_exact=0.5828s lex_hybrid4096=0.03918s lex_plain=0.02386s
+2026-11-18T03:11:41-05:00 [810/870] weighted lognormal_continuous_s3_k512 done (200.9 min elapsed) Ckmeans.1d.dp=1.991s ckmeans_exact=1.116s lex_hybrid4096=0.06269s lex_plain=0.01829s
+2026-11-18T03:11:41-05:00 [811/870] weighted uniform_continuous_s4_load_w done (200.9 min elapsed) 
+2026-11-18T03:11:42-05:00 [812/870] weighted uniform_continuous_s4_k8 done (200.9 min elapsed) Ckmeans.1d.dp=0.06277s ckmeans_exact=0.05001s lex_hybrid4096=0.02622s lex_plain=0.0292s
+2026-11-18T03:11:47-05:00 [813/870] weighted uniform_continuous_s4_k64 done (201.0 min elapsed) Ckmeans.1d.dp=0.5006s ckmeans_exact=0.3439s lex_hybrid4096=0.03291s lex_plain=0.02953s
+2026-11-18T03:12:02-05:00 [814/870] weighted uniform_continuous_s4_k256 done (201.3 min elapsed) Ckmeans.1d.dp=1.956s ckmeans_exact=1.261s lex_hybrid4096=0.05258s lex_plain=0.03051s
+2026-11-18T03:12:31-05:00 [815/870] weighted uniform_continuous_s4_k512 done (201.7 min elapsed) Ckmeans.1d.dp=3.904s ckmeans_exact=2.457s lex_hybrid4096=0.07652s lex_plain=0.03107s
+2026-11-18T03:12:32-05:00 [816/870] weighted gaussian_continuous_s4_load_w done (201.7 min elapsed) 
+2026-11-18T03:12:33-05:00 [817/870] weighted gaussian_continuous_s4_k8 done (201.8 min elapsed) Ckmeans.1d.dp=0.06401s ckmeans_exact=0.0504s lex_hybrid4096=0.02672s lex_plain=0.03s
+2026-11-18T03:12:38-05:00 [818/870] weighted gaussian_continuous_s4_k64 done (201.9 min elapsed) Ckmeans.1d.dp=0.5081s ckmeans_exact=0.3535s lex_hybrid4096=0.03338s lex_plain=0.03233s
+2026-11-18T03:12:53-05:00 [819/870] weighted gaussian_continuous_s4_k256 done (202.1 min elapsed) Ckmeans.1d.dp=1.981s ckmeans_exact=1.292s lex_hybrid4096=0.05322s lex_plain=0.03153s
+2026-11-18T03:13:23-05:00 [820/870] weighted gaussian_continuous_s4_k512 done (202.6 min elapsed) Ckmeans.1d.dp=3.874s ckmeans_exact=2.495s lex_hybrid4096=0.07733s lex_plain=0.03405s
+2026-11-18T03:13:23-05:00 [821/870] weighted lognormal_continuous_s4_load_w done (202.6 min elapsed) 
+2026-11-18T03:13:24-05:00 [822/870] weighted lognormal_continuous_s4_k8 done (202.6 min elapsed) Ckmeans.1d.dp=0.06739s ckmeans_exact=0.04917s lex_hybrid4096=0.02686s lex_plain=0.02827s
+2026-11-18T03:13:29-05:00 [823/870] weighted lognormal_continuous_s4_k64 done (202.7 min elapsed) Ckmeans.1d.dp=0.5075s ckmeans_exact=0.3372s lex_hybrid4096=0.03348s lex_plain=0.03872s
+2026-11-18T03:13:44-05:00 [824/870] weighted lognormal_continuous_s4_k256 done (203.0 min elapsed) Ckmeans.1d.dp=1.999s ckmeans_exact=1.239s lex_hybrid4096=0.05377s lex_plain=0.03385s
+2026-11-18T03:14:14-05:00 [825/870] weighted lognormal_continuous_s4_k512 done (203.4 min elapsed) Ckmeans.1d.dp=3.967s ckmeans_exact=2.398s lex_hybrid4096=0.07771s lex_plain=0.03686s
+2026-11-18T03:14:14-05:00 [826/870] weighted uniform_continuous_s5_load_w done (203.4 min elapsed) 
+2026-11-18T03:14:16-05:00 [827/870] weighted uniform_continuous_s5_k8 done (203.5 min elapsed) Ckmeans.1d.dp=0.1274s ckmeans_exact=0.1061s lex_hybrid4096=0.05617s lex_plain=0.06424s
+2026-11-18T03:14:25-05:00 [828/870] weighted uniform_continuous_s5_k64 done (203.6 min elapsed) Ckmeans.1d.dp=1.015s ckmeans_exact=0.7347s lex_hybrid4096=0.06269s lex_plain=0.06415s
+2026-11-18T03:14:56-05:00 [829/870] weighted uniform_continuous_s5_k256 done (204.2 min elapsed) Ckmeans.1d.dp=3.921s ckmeans_exact=2.724s lex_hybrid4096=0.08339s lex_plain=0.06816s
+2026-11-18T03:15:55-05:00 [830/870] weighted uniform_continuous_s5_k512 done (205.1 min elapsed) Ckmeans.1d.dp=7.816s ckmeans_exact=5.246s lex_hybrid4096=0.1077s lex_plain=0.06697s
+2026-11-18T03:15:55-05:00 [831/870] weighted gaussian_continuous_s5_load_w done (205.1 min elapsed) 
+2026-11-18T03:15:58-05:00 [832/870] weighted gaussian_continuous_s5_k8 done (205.2 min elapsed) Ckmeans.1d.dp=0.1282s ckmeans_exact=0.107s lex_hybrid4096=0.05678s lex_plain=0.0659s
+2026-11-18T03:16:07-05:00 [833/870] weighted gaussian_continuous_s5_k64 done (205.3 min elapsed) Ckmeans.1d.dp=1.013s ckmeans_exact=0.7405s lex_hybrid4096=0.06309s lex_plain=0.06398s
+2026-11-18T03:16:38-05:00 [834/870] weighted gaussian_continuous_s5_k256 done (205.8 min elapsed) Ckmeans.1d.dp=3.9s ckmeans_exact=2.763s lex_hybrid4096=0.08385s lex_plain=0.06949s
+2026-11-18T03:17:38-05:00 [835/870] weighted gaussian_continuous_s5_k512 done (206.9 min elapsed) Ckmeans.1d.dp=7.916s ckmeans_exact=5.322s lex_hybrid4096=0.1082s lex_plain=0.07672s
+2026-11-18T03:17:38-05:00 [836/870] weighted lognormal_continuous_s5_load_w done (206.9 min elapsed) 
+2026-11-18T03:17:40-05:00 [837/870] weighted lognormal_continuous_s5_k8 done (206.9 min elapsed) Ckmeans.1d.dp=0.1368s ckmeans_exact=0.1052s lex_hybrid4096=0.05726s lex_plain=0.07605s
+2026-11-18T03:17:50-05:00 [838/870] weighted lognormal_continuous_s5_k64 done (207.0 min elapsed) Ckmeans.1d.dp=1.025s ckmeans_exact=0.7249s lex_hybrid4096=0.06397s lex_plain=0.07832s
+2026-11-18T03:18:20-05:00 [839/870] weighted lognormal_continuous_s5_k256 done (207.6 min elapsed) Ckmeans.1d.dp=3.903s ckmeans_exact=2.672s lex_hybrid4096=0.08396s lex_plain=0.07815s
+2026-11-18T03:19:19-05:00 [840/870] weighted lognormal_continuous_s5_k512 done (208.5 min elapsed) Ckmeans.1d.dp=7.872s ckmeans_exact=5.154s lex_hybrid4096=0.1095s lex_plain=0.0948s
+2026-11-18T03:19:19-05:00 [841/870] weighted uniform_continuous_s6_load_w done (208.5 min elapsed) 
+2026-11-18T03:19:24-05:00 [842/870] weighted uniform_continuous_s6_k8 done (208.6 min elapsed) Ckmeans.1d.dp=0.2575s ckmeans_exact=0.2239s lex_hybrid4096=0.133s lex_plain=0.1415s
+2026-11-18T03:19:42-05:00 [843/870] weighted uniform_continuous_s6_k64 done (208.9 min elapsed) Ckmeans.1d.dp=2.032s ckmeans_exact=1.558s lex_hybrid4096=0.1388s lex_plain=0.1854s
+2026-11-18T03:20:46-05:00 [844/870] weighted uniform_continuous_s6_k256 done (210.0 min elapsed) Ckmeans.1d.dp=8.098s ckmeans_exact=5.806s lex_hybrid4096=0.1598s lex_plain=0.1544s
+2026-11-18T03:22:47-05:00 [845/870] weighted uniform_continuous_s6_k512 done (212.0 min elapsed) Ckmeans.1d.dp=15.8s ckmeans_exact=11.15s lex_hybrid4096=0.1864s lex_plain=0.1606s
+2026-11-18T03:22:47-05:00 [846/870] weighted gaussian_continuous_s6_load_w done (212.0 min elapsed) 
+2026-11-18T03:22:51-05:00 [847/870] weighted gaussian_continuous_s6_k8 done (212.1 min elapsed) Ckmeans.1d.dp=0.2613s ckmeans_exact=0.2247s lex_hybrid4096=0.1328s lex_plain=0.1424s
+2026-11-18T03:23:10-05:00 [848/870] weighted gaussian_continuous_s6_k64 done (212.4 min elapsed) Ckmeans.1d.dp=2.058s ckmeans_exact=1.57s lex_hybrid4096=0.14s lex_plain=0.1524s
+2026-11-18T03:24:14-05:00 [849/870] weighted gaussian_continuous_s6_k256 done (213.5 min elapsed) Ckmeans.1d.dp=8.093s ckmeans_exact=5.968s lex_hybrid4096=0.16s lex_plain=0.1615s
+2026-11-18T03:26:17-05:00 [850/870] weighted gaussian_continuous_s6_k512 done (215.5 min elapsed) Ckmeans.1d.dp=15.77s ckmeans_exact=11.44s lex_hybrid4096=0.1886s lex_plain=0.1651s
+2026-11-18T03:26:18-05:00 [851/870] weighted lognormal_continuous_s6_load_w done (215.5 min elapsed) 
+2026-11-18T03:26:22-05:00 [852/870] weighted lognormal_continuous_s6_k8 done (215.6 min elapsed) Ckmeans.1d.dp=0.2788s ckmeans_exact=0.2219s lex_hybrid4096=0.1322s lex_plain=0.1476s
+2026-11-18T03:26:40-05:00 [853/870] weighted lognormal_continuous_s6_k64 done (215.9 min elapsed) Ckmeans.1d.dp=2.075s ckmeans_exact=1.539s lex_hybrid4096=0.1397s lex_plain=0.1585s
+2026-11-18T03:27:43-05:00 [854/870] weighted lognormal_continuous_s6_k256 done (216.9 min elapsed) Ckmeans.1d.dp=7.962s ckmeans_exact=5.689s lex_hybrid4096=0.1628s lex_plain=0.2026s
+2026-11-18T03:29:45-05:00 [855/870] weighted lognormal_continuous_s6_k512 done (219.0 min elapsed) Ckmeans.1d.dp=16.02s ckmeans_exact=11s lex_hybrid4096=0.1902s lex_plain=0.1964s
+2026-11-18T03:29:45-05:00 [856/870] weighted uniform_continuous_s7_load_w done (219.0 min elapsed) 
+2026-11-18T03:29:54-05:00 [857/870] weighted uniform_continuous_s7_k8 done (219.1 min elapsed) Ckmeans.1d.dp=0.5233s ckmeans_exact=0.4639s lex_hybrid4096=0.3394s lex_plain=0.3666s
+2026-11-18T03:30:32-05:00 [858/870] weighted uniform_continuous_s7_k64 done (219.7 min elapsed) Ckmeans.1d.dp=4.239s ckmeans_exact=3.291s lex_hybrid4096=0.3463s lex_plain=0.373s
+2026-11-18T03:32:44-05:00 [859/870] weighted uniform_continuous_s7_k256 done (222.0 min elapsed) Ckmeans.1d.dp=16.36s ckmeans_exact=12.38s lex_hybrid4096=0.3701s lex_plain=0.4073s
+2026-11-18T03:37:01-05:00 [860/870] weighted uniform_continuous_s7_k512 done (226.2 min elapsed) Ckmeans.1d.dp=32.84s ckmeans_exact=24s lex_hybrid4096=0.3962s lex_plain=0.3953s
+2026-11-18T03:37:01-05:00 [861/870] weighted gaussian_continuous_s7_load_w done (226.2 min elapsed) 
+2026-11-18T03:37:10-05:00 [862/870] weighted gaussian_continuous_s7_k8 done (226.4 min elapsed) Ckmeans.1d.dp=0.5282s ckmeans_exact=0.4657s lex_hybrid4096=0.3409s lex_plain=0.3796s
+2026-11-18T03:37:49-05:00 [863/870] weighted gaussian_continuous_s7_k64 done (227.0 min elapsed) Ckmeans.1d.dp=4.275s ckmeans_exact=3.33s lex_hybrid4096=0.3476s lex_plain=0.4514s
+2026-11-18T03:40:03-05:00 [864/870] weighted gaussian_continuous_s7_k256 done (229.3 min elapsed) Ckmeans.1d.dp=16.5s ckmeans_exact=12.63s lex_hybrid4096=0.3726s lex_plain=0.4303s
+2026-11-18T03:44:22-05:00 [865/870] weighted gaussian_continuous_s7_k512 done (233.6 min elapsed) Ckmeans.1d.dp=32.73s ckmeans_exact=24.56s lex_hybrid4096=0.4028s lex_plain=0.4217s
+2026-11-18T03:44:22-05:00 [866/870] weighted lognormal_continuous_s7_load_w done (233.6 min elapsed) 
+2026-11-18T03:44:31-05:00 [867/870] weighted lognormal_continuous_s7_k8 done (233.7 min elapsed) Ckmeans.1d.dp=0.5562s ckmeans_exact=0.4564s lex_hybrid4096=0.3372s lex_plain=0.4318s
+2026-11-18T03:45:09-05:00 [868/870] weighted lognormal_continuous_s7_k64 done (234.4 min elapsed) Ckmeans.1d.dp=4.317s ckmeans_exact=3.253s lex_hybrid4096=0.3444s lex_plain=0.448s
+2026-11-18T03:47:22-05:00 [869/870] weighted lognormal_continuous_s7_k256 done (236.6 min elapsed) Ckmeans.1d.dp=16.55s ckmeans_exact=12.3s lex_hybrid4096=0.3699s lex_plain=0.4379s
+2026-11-18T03:51:36-05:00 [870/870] weighted lognormal_continuous_s7_k512 done (240.8 min elapsed) Ckmeans.1d.dp=32.69s ckmeans_exact=23.5s lex_hybrid4096=0.4108s lex_plain=0.4636s
+2026-11-18T03:51:36-05:00 all 870 cells done (240.8 min this session)
+figures written to /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/out_v24_raw/figures
+analysis: 18708 processes, 4624 cell x method rows -> /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/out_v24_raw/results.csv, summary.md
+2026-11-18 03:51:38 EST after the run: lex1d check: 104/104 files identical to commit 8a691ee
+2026-11-18 03:51:38 EST finished bot_v24_lex_full.sh (rc 0). session time: 4h 0m 57s. Results: /Users/sriram/Desktop/Learning/Lex/run1/bot_v24_lex_pack/out_v24_raw

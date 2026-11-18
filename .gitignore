@@ -1,0 +1,18 @@
+# generated simulation files (data/generate.py writes them; run/run3.sh does this when they are missing)
+simulation/input/*
+!simulation/input/.gitkeep
+simulation/dataset_slice_counts.csv
+
+# run outputs, prepared inputs and builds
+out/
+work/
+build/
+
+# installed packages (run/setup.sh)
+R-lib/
+.venv*/
+
+# Python and OS clutter
+__pycache__/
+*.pyc
+.DS_Store
