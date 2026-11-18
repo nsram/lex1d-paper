@@ -111,8 +111,7 @@ the Python binding and by `data/generate.py`.
 
 GOLD ran on a MacBook Pro with an Apple M3 Max (12 performance and 4 efficiency cores) and 128 GB of
 RAM, macOS 15.8.1, on 17 and 18 November 2026. The raw and sorted runs each took under 4 hours
-of compute, and the bindings calibration less than 10 minutes. The sorted and bindings logs show
-longer wall-clock spans because the Mac slept during part of those runs; the medians are unaffected.
+of compute, and the bindings calibration less than 10 minutes.
 
 The largest memory use is Ckmeans.1d.dp on the audio at k = 512, with a peak of 67.9 GB. lex1d's
 exact dynamic program peaks at 15.7 GB on the same cell, and LEX at 0.61 GB. Before each fit the
