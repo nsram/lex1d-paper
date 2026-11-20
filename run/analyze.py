@@ -4,9 +4,12 @@
 
 For one out folder: merges cells/ into reps.csv (one row per process) and results.csv (one row per
 cell x method: medians and min/max over the timed rounds), writes summary.md, gold_check.md (SSE
-identity and time ratios against the GOLD run in results/gold/<mode>/) and figures/ (if matplotlib imports).
+identity and time ratios against the GOLD run in results/gold/<mode>/; for run 4, against
+results/gold/raw/ lex_hybrid rows) and figures/ (if matplotlib imports).
 If both out/raw/ and out/sorted/ exist next to each other (with results.csv), it also writes
 raw_vs_sorted.csv / raw_vs_sorted.md into both (sort cost = raw - sorted, per cell and method).
+For MODE=refine (GOLD run 4) it also writes refine_ablation.md: per-k/M Refine vs coarse-DP gaps,
+with continuous, discrete and audio shown separately.
 """
 from __future__ import annotations
 
@@ -95,8 +98,15 @@ def merge(out):
             continue
         sses = {r["sse"] for r in ok}
         sizes = {r["sizes"] for r in ok}
+        coarses = {r.get("coarse_sse", "") for r in ok}
         o.update(status="ok" if len(ok) == len(g) else "partial", skip_reason="",
-                 sse=ok[0]["sse"], sse_identical_all_rounds=int(len(sses) == 1 and len(sizes) == 1),
+                 sse=ok[0]["sse"], coarse_sse=ok[0].get("coarse_sse", ""),
+                 coarse_sizes=ok[0].get("coarse_sizes", ""),
+                 ltr_sse=ok[0].get("ltr_sse", ""), ltr_sizes=ok[0].get("ltr_sizes", ""),
+                 ltr_sweeps=ok[0].get("ltr_sweeps", ""), ltr_moves=ok[0].get("ltr_moves", ""),
+                 ltr_same_partition=ok[0].get("ltr_same_partition", ""),
+                 sse_identical_all_rounds=int(len(sses) == 1 and len(sizes) == 1
+                                              and ("" in coarses or len(coarses) == 1)),
                  n_timed=len(timed), k_eff=ok[0]["k_eff"], atoms=ok[0]["atoms"], sweeps=ok[0]["sweeps"],
                  moves=ok[0]["moves"], start=ok[0]["start"], version=ok[0]["version"],
                  api_match=(warm[0]["api_match"] if warm else ""), api_s=(warm[0]["api_s"] if warm else ""),
@@ -109,6 +119,8 @@ def merge(out):
                  post_sort_s=med([f(r["post_sort_s"]) for r in timed]))
         for s in STAGES:
             o[s] = med([f(r[s]) for r in timed])
+        if any(r.get("t_refine_ltr_s") not in (None, "") for r in (timed or ok)):
+            o["t_refine_ltr_s"] = med([f(r.get("t_refine_ltr_s")) for r in (timed or ok)])
         rss = [f(r["peak_rss_bytes"]) for r in ok]
         rss = [x for x in rss if x is not None]
         o.update(peak_rss_bytes=med(rss), peak_rss_min=min(rss) if rss else None, peak_rss_max=max(rss) if rss else None,
@@ -121,18 +133,61 @@ def merge(out):
     # gap vs our exact DP in the same cell
     ex = {(o["section"], o["dataset"], o["slice"], o["k"], o["weighted"]): o for o in res
           if o["method"] == "ckmeans_exact" and o.get("status") in ("ok", "partial")}
+    gold_exact_src = "same-run"
+    # Run 4 does not re-run exact: fall back to GOLD raw ckmeans_exact. Runs 1-3 never take this path
+    # (they include exact, or like bindings they have no exact and must not gain new gap_pct values).
+    if not ex and res and res[0].get("mode") == "refine":
+        gp = os.path.join(PACK, "results", "gold", "raw", "results.csv")
+        if os.path.isfile(gp):
+            with open(gp, newline="") as fh:
+                for g in csv.DictReader(fh):
+                    if g["method"] == "ckmeans_exact" and g.get("status") in ("ok", "partial"):
+                        ex[(g["section"], g["dataset"], int(g["slice"]), int(g["k"]), g["weighted"])] = g
+            gold_exact_src = "results/gold/raw"
     for o in res:
         e = ex.get((o["section"], o["dataset"], o["slice"], o["k"], o["weighted"]))
         if e and o.get("sse") not in (None, ""):
             es, s = float(e["sse"]), float(o["sse"])
             o["gap_pct"] = 100 * (s - es) / es if es > 0 else 0.0
             o["sizes_match_exact"] = int(o["sizes"] == e["sizes"])
+            cs = o.get("coarse_sse")
+            if cs not in (None, ""):
+                o["exact_sse"] = e["sse"]
+                ls = o.get("ltr_sse")
+                if ls not in (None, ""):
+                    o["ltr_gap_pct"] = 100 * (float(ls) - es) / es if es > 0 else 0.0
+                c = float(cs)
+                o["coarse_gap_pct"] = 100 * (c - es) / es if es > 0 else 0.0
+                fg, cg = o["gap_pct"], o["coarse_gap_pct"]
+                # M >= atoms makes the coarse DP exact, so both gaps should be 0; we flag only
+                # when they actually are, so a mismatch is not hidden.
+                already = (cg == 0.0 and fg == 0.0)
+                o["already_exact"] = int(already)
+                if already:
+                    o["reduction_factor"] = ""
+                    o["pct_gap_removed"] = ""
+                elif fg == 0.0:
+                    o["reduction_factor"] = "inf"
+                    o["pct_gap_removed"] = 100.0
+                elif cg == 0.0:
+                    o["reduction_factor"] = ""
+                    o["pct_gap_removed"] = ""
+                else:
+                    o["reduction_factor"] = cg / fg
+                    o["pct_gap_removed"] = 100.0 * (cg - fg) / cg
     fields = ["section", "dataset", "slice", "N", "D", "D_expected", "k", "method", "M", "family", "weighted", "mode",
               "status", "skip_reason", "sse", "gap_pct", "sizes_match_exact", "sse_identical_all_rounds", "n_timed",
               "fit_s", "fit_min_s", "fit_max_s", "post_sort_s"] + STAGES + [
               "api_s", "api_match", "did_sort", "peak_rss_bytes", "peak_rss_min", "peak_rss_max", "peak_footprint_bytes",
               "baseline_method", "baseline_rss_bytes", "rss_above_baseline_bytes", "dp_table_est_bytes", "k_eff", "atoms",
               "sweeps", "moves", "start", "version", "first_ts", "last_ts", "sessions", "sizes"]
+    if any(o.get("coarse_sse") not in (None, "") for o in res):
+        # insert Refine-ablation columns after sse (run 4 only)
+        i = fields.index("sse") + 1
+        extras = ["coarse_sse", "ltr_sse", "exact_sse", "coarse_gap_pct",
+                  "ltr_gap_pct", "ltr_same_partition", "t_refine_ltr_s", "ltr_sweeps", "ltr_moves", "ltr_sizes",
+                  "reduction_factor", "pct_gap_removed", "already_exact", "coarse_sizes"]
+        fields[i:i] = extras
     res.sort(key=lambda o: (o["section"], o["dataset"], o["slice"], o["k"], o["method"], o["M"]))
     with open(os.path.join(out, "results.csv"), "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=fields, extrasaction="ignore")
@@ -219,8 +274,13 @@ def summary(out, rows, res):
                 body.append(line)
             L.append(f"**N = {N}**\n")
             L.append(table(["method \\ k"] + [str(k) for k in ks], body))
-        L.append("## Main grid: speedup of lex_hybrid M=4096 (median over continuous datasets of time ratios)\n")
+        if mode == "refine" and not any(o["method"] in ("Ckmeans.1d.dp", "ckmeans_exact") for o in m):
+            pass
+        else:
+            L.append("## Main grid: speedup of lex_hybrid M=4096 (median over continuous datasets of time ratios)\n")
         for ref in ("Ckmeans.1d.dp", "ckmeans_exact"):
+            if mode == "refine" and not any(o["method"] == ref for o in m):
+                continue
             body = []
             for N in Ns:
                 line = [str(N)]
@@ -294,12 +354,18 @@ def gold_check(out, res):
     if not res:
         return
     mode = res[0]["mode"]
-    p = os.path.join(PACK, "results", "gold", mode, "results.csv")
+    gold_mode = "raw" if mode == "refine" else mode
+    p = os.path.join(PACK, "results", "gold", gold_mode, "results.csv")
     if not os.path.isfile(p) or os.path.abspath(os.path.dirname(p)) == os.path.abspath(out):
         return
     with open(p, newline="") as fh:
         gold = list(csv.DictReader(fh))
-    key = lambda r: (r["section"], r["dataset"], r["slice"], r["k"], r["method"], r["M"], r["family"], r["weighted"])
+    if mode == "refine":
+        gold = [g for g in gold if g["method"] == "lex_hybrid"]
+        key = lambda r: (r["section"], r["dataset"], str(r["slice"]), str(r["k"]), r["method"], str(r["M"]),
+                         r["family"], str(r["weighted"]))
+    else:
+        key = lambda r: (r["section"], r["dataset"], r["slice"], r["k"], r["method"], r["M"], r["family"], r["weighted"])
     idx = {key(o): o for o in res if o.get("status") == "ok"}
     out_rows = []
     for g in gold:
@@ -320,9 +386,16 @@ def gold_check(out, res):
         w = csv.DictWriter(fh, fieldnames=list(out_rows[0].keys()))
         w.writeheader()
         w.writerows(out_rows)
-    L = [f"# Identity and timing vs GOLD ({os.path.basename(out)})\n",
-         f"GOLD: results/gold/{mode}/results.csv (Apple M3 Max). SSEs should match on any machine; time ratios "
-         "(this run / GOLD, median fit times) show the speed of this machine relative to GOLD.\n"]
+    if mode == "refine":
+        src = f"results/gold/{gold_mode}/results.csv"
+        note = " Final SSE and bin sizes are checked against GOLD raw lex_hybrid rows."
+        L = [f"# Identity and timing vs GOLD ({os.path.basename(out)})\n",
+             f"GOLD: {src} (Apple M3 Max). SSEs should match on any machine; time ratios "
+             f"(this run / GOLD, median fit times) show the speed of this machine relative to GOLD.{note}\n"]
+    else:
+        L = [f"# Identity and timing vs GOLD ({os.path.basename(out)})\n",
+             f"GOLD: results/gold/{mode}/results.csv (Apple M3 Max). SSEs should match on any machine; time ratios "
+             "(this run / GOLD, median fit times) show the speed of this machine relative to GOLD.\n"]
     body = []
     for m in sorted({r["method"] for r in out_rows}):
         sel = [r for r in out_rows if r["method"] == m]
@@ -432,29 +505,30 @@ def figures(out, res):
         plt.close(fig)
     # speedup vs k at the largest N
     top = max(Ns)
-    fig, ax = plt.subplots(figsize=(6, 4))
-    for ref in ("Ckmeans.1d.dp", "ckmeans_exact"):
-        ys = []
-        for k in ks:
-            rs = []
-            for d in CONT:
-                a = [o for o in m if o["dataset"] == d and int(o["N"]) == top and o["k"] == k]
-                h = next((o for o in a if o["method"] == "lex_hybrid" and o["M"] == 4096), None)
-                e = next((o for o in a if o["method"] == ref), None)
-                if h and e and h["fit_s"] and e["fit_s"]:
-                    rs.append(e["fit_s"] / h["fit_s"])
-            ys.append(med(rs) if rs else float("nan"))
-        ax.plot(ks, ys, marker="o", label=f"{ref} / lex_hybrid M=4096")
-    ax.set_xscale("log", base=2)
-    ax.set_yscale("log")
-    ax.set_xlabel("k")
-    ax.set_ylabel("time ratio (median over datasets)")
-    ax.set_title(f"Speedup at N = {top} ({mode} input)")
-    ax.grid(alpha=0.3)
-    ax.legend(fontsize=8)
-    fig.tight_layout()
-    fig.savefig(os.path.join(fd, "fig_speedup_vs_k.png"), dpi=150)
-    plt.close(fig)
+    if any(o["method"] in ("Ckmeans.1d.dp", "ckmeans_exact") for o in m):
+        fig, ax = plt.subplots(figsize=(6, 4))
+        for ref in ("Ckmeans.1d.dp", "ckmeans_exact"):
+            ys = []
+            for k in ks:
+                rs = []
+                for d in CONT:
+                    a = [o for o in m if o["dataset"] == d and int(o["N"]) == top and o["k"] == k]
+                    h = next((o for o in a if o["method"] == "lex_hybrid" and o["M"] == 4096), None)
+                    e = next((o for o in a if o["method"] == ref), None)
+                    if h and e and h["fit_s"] and e["fit_s"]:
+                        rs.append(e["fit_s"] / h["fit_s"])
+                ys.append(med(rs) if rs else float("nan"))
+            ax.plot(ks, ys, marker="o", label=f"{ref} / lex_hybrid M=4096")
+        ax.set_xscale("log", base=2)
+        ax.set_yscale("log")
+        ax.set_xlabel("k")
+        ax.set_ylabel("time ratio (median over datasets)")
+        ax.set_title(f"Speedup at N = {top} ({mode} input)")
+        ax.grid(alpha=0.3)
+        ax.legend(fontsize=8)
+        fig.tight_layout()
+        fig.savefig(os.path.join(fd, "fig_speedup_vs_k.png"), dpi=150)
+        plt.close(fig)
     # stage breakdown at the largest N
     hy = [(meth, M) for meth, M in meths if meth in ("lex_hybrid", "lex_plain")]
     fig, ax = plt.subplots(figsize=(max(6, len(hy) * len(ks) * 0.25), 4))
@@ -479,6 +553,182 @@ def figures(out, res):
     plt.close(fig)
     print("figures written to", fd)
 
+def _rf(v):
+    """Parse a reduction factor that may be "inf" or empty."""
+    if v in ("", None):
+        return None
+    if v == "inf":
+        return math.inf
+    return f(v)
+
+
+def refine_ablation(out, res):
+    """Per-k/M summary of how much Refine reduces the coarse-DP gap (GOLD run 4)."""
+    rows = [o for o in res if o.get("status") == "ok" and o["method"] == "lex_hybrid" and o.get("coarse_sse") not in (None, "")]
+    if not rows:
+        return
+    L = ["# Refine vs coarse-DP gap (GOLD run 4)\n",
+         "For each lex_hybrid cell: the coarse-DP SSE is the instrumented partition after Collapse(M)+DP(k) "
+         "and before Refine; the final SSE is after Refine. Gaps are 100 × (SSE − exact) / exact, using GOLD "
+         "raw `ckmeans_exact` SSEs (this run does not re-run the exact DP). Reduction factor is "
+         "coarse_gap / final_gap; percent of gap removed is 100 × (coarse_gap − final_gap) / coarse_gap. "
+         "When M is at least the number of atoms the coarse DP is already exact (gap 0); those cells are "
+         "counted separately and left out of the reduction statistics.\n"]
+    already = [o for o in rows if str(o.get("already_exact")) in ("1", "1.0")]
+    rest = [o for o in rows if o not in already]
+    L.append(f"Cells: {len(rows)} ok; already exact (M ≥ atoms, gap 0): {len(already)}; "
+             f"cells with a coarse gap: {len(rest)}.\n")
+
+    def group_of(o):
+        if o["section"] == "audio" or o["dataset"] == "audio":
+            return "audio"
+        if o["dataset"] in DISC:
+            return "discrete"
+        return "continuous"
+
+    def trip(xs, kind="gap"):
+        xs = [x for x in xs if x is not None]
+        if not xs:
+            return ""
+        def one(x):
+            if x is math.inf:
+                return "∞"
+            if kind == "pct" and abs(x - 100) < 1e-9:
+                return "100"
+            if kind == "intish":
+                return fmt(x, 1) if abs(x - round(x)) > 1e-9 else str(int(round(x)))
+            return fmt(x)
+        return f"{one(med(xs))} ({one(min(xs))}–{one(max(xs))})"
+
+    for grp, label in (("continuous", "continuous (10 datasets)"),
+                       ("discrete", "discrete (2 datasets)"),
+                       ("audio", "audio")):
+        sub = [o for o in rows if group_of(o) == grp]
+        if not sub:
+            continue
+        Ms = sorted({int(o["M"]) for o in sub})
+        ks = sorted({int(o["k"]) for o in sub})
+        L.append(f"## {label}\n")
+        for M in Ms:
+            body = []
+            n_alr = n_gap = 0
+            for k in ks:
+                sel = [o for o in sub if int(o["M"]) == M and int(o["k"]) == k]
+                alr = [o for o in sel if str(o.get("already_exact")) in ("1", "1.0")]
+                use = [o for o in sel if o not in alr]
+                n_alr += len(alr)
+                n_gap += len(use)
+                if not sel:
+                    continue
+                cg = [f(o.get("coarse_gap_pct")) for o in sel]
+                fg = [f(o.get("gap_pct")) for o in sel]
+                rd = [_rf(o.get("reduction_factor")) for o in use]
+                rm = [f(o.get("pct_gap_removed")) for o in use]
+                sw = [f(o.get("sweeps")) for o in sel]
+                mv = [f(o.get("moves")) for o in sel]
+                body.append([str(k),
+                             trip(cg), trip(fg),
+                             trip(rd) if any(x is not None for x in rd) else ("already exact" if alr and not use else ""),
+                             trip(rm, "pct") if any(x is not None for x in rm) else "",
+                             trip(sw, "intish"), trip(mv, "intish"),
+                             f"{len(alr)}/{len(sel)}"])
+            L.append(f"**M = {M}** ({n_gap} cells with a coarse gap, {n_alr} already exact). "
+                     "Each cell is median (min–max) over datasets; sweeps and moves are medians of those values.\n")
+            L.append(table(["k", "coarse gap %", "final gap %", "reduction factor", "% of gap removed",
+                            "median sweeps", "median moves", "already exact"], body))
+
+
+    # Exploratory LTR vs standard RTL Refine, started from the same coarse-DP bounds.
+    ltr_rows = [o for o in rows if o.get("ltr_sse") not in (None, "")]
+    if ltr_rows:
+        SKEW = ["lognormal_continuous", "exponential_continuous", "weibull_continuous"]
+        def gap_diff(o):
+            a, b = f(o.get("ltr_gap_pct")), f(o.get("gap_pct"))
+            if a is None or b is None:
+                return None
+            return a - b  # LTR minus RTL; negative => LTR closer to exact
+        n_diff = sum(str(o.get("ltr_same_partition")) == "0" for o in ltr_rows)
+        n_same = sum(str(o.get("ltr_same_partition")) == "1" for o in ltr_rows)
+        diffs = [gap_diff(o) for o in ltr_rows]
+        diffs = [d for d in diffs if d is not None]
+        absd = [abs(d) for d in diffs]
+        L.append("## Exploratory variant: left-to-right Refine vs standard right-to-left\n")
+        L.append("Each cell starts both Refine directions from the same coarse-DP bounds. Tie rules are "
+                 "unchanged (larger bounds win; tie sweeps still push right). This is an exploratory "
+                 "variant in the paper-repo harness (`bench/refine_ltr.cpp`); frozen lex1d is the RTL code.\n")
+        L.append(f"- cells with both directions: {len(ltr_rows)}")
+        L.append(f"- partitions equal (LTR == RTL): {n_same}/{len(ltr_rows)}")
+        L.append(f"- partitions differ: {n_diff}/{len(ltr_rows)}")
+        if diffs:
+            L.append(f"- gap difference (LTR − RTL), percentage points: median {fmt(med(diffs))}, "
+                     f"min {fmt(min(diffs))}, max {fmt(max(diffs))}; "
+                     f"median |diff| {fmt(med(absd))}, max |diff| {fmt(max(absd))}\n")
+        # by k (pool M and datasets)
+        ks = sorted({int(o["k"]) for o in ltr_rows})
+        body = []
+        for k in ks:
+            sel = [o for o in ltr_rows if int(o["k"]) == k]
+            d = [gap_diff(o) for o in sel]
+            d = [x for x in d if x is not None]
+            nd = sum(str(o.get("ltr_same_partition")) == "0" for o in sel)
+            body.append([str(k), str(len(sel)), f"{nd}/{len(sel)}",
+                         fmt(med(d)) if d else "", fmt(max(d, key=abs)) if d else "",
+                         fmt(med([abs(x) for x in d])) if d else ""])
+        L.append("By k (all datasets and M):\n")
+        L.append(table(["k", "cells", "partitions differ", "median LTR−RTL gap pp",
+                        "signed max |diff| (signed)", "median |diff|"], body))
+        # by dataset
+        dss = sorted({o["dataset"] for o in ltr_rows})
+        body = []
+        for ds in dss:
+            sel = [o for o in ltr_rows if o["dataset"] == ds]
+            d = [x for x in (gap_diff(o) for o in sel) if x is not None]
+            nd = sum(str(o.get("ltr_same_partition")) == "0" for o in sel)
+            tag = " (skewed)" if ds in SKEW else ""
+            body.append([ds + tag, str(len(sel)), f"{nd}/{len(sel)}",
+                         fmt(med(d)) if d else "", fmt(max(d, key=abs)) if d else "",
+                         fmt(med([abs(x) for x in d])) if d else ""])
+        L.append("By dataset (all k and M; lognormal, exponential and weibull are the skewed continuous families):\n")
+        L.append(table(["dataset", "cells", "partitions differ", "median LTR−RTL gap pp",
+                        "signed max |diff| (signed)", "median |diff|"], body))
+        # skewed subset vs other continuous vs discrete vs audio
+        def bucket(o):
+            if o["section"] == "audio" or o["dataset"] == "audio":
+                return "audio"
+            if o["dataset"] in DISC:
+                return "discrete"
+            if o["dataset"] in SKEW:
+                return "skewed continuous (lognormal, exponential, weibull)"
+            return "other continuous"
+        body = []
+        for name in ("skewed continuous (lognormal, exponential, weibull)", "other continuous", "discrete", "audio"):
+            sel = [o for o in ltr_rows if bucket(o) == name]
+            if not sel:
+                continue
+            d = [x for x in (gap_diff(o) for o in sel) if x is not None]
+            nd = sum(str(o.get("ltr_same_partition")) == "0" for o in sel)
+            body.append([name, str(len(sel)), f"{nd}/{len(sel)}",
+                         fmt(med(d)) if d else "", fmt(max(d, key=abs)) if d else ""])
+        L.append("By family:\n")
+        L.append(table(["family", "cells", "partitions differ", "median LTR−RTL gap pp", "signed max |diff| (signed)"], body))
+
+    # GOLD identity reminder if gold_check wrote counts into the same folder
+    gcp = os.path.join(out, "gold_check.csv")
+    if os.path.isfile(gcp):
+        with open(gcp, newline="") as fh:
+            gc = list(csv.DictReader(fh))
+        if gc:
+            L.append("## GOLD identity (final SSE vs results/gold/raw lex_hybrid)\n")
+            L.append(f"- cells compared: {len(gc)}")
+            L.append(f"- final SSE identical: {sum(int(r['sse_identical']) for r in gc)}/{len(gc)}")
+            L.append(f"- sizes identical: {sum(int(r['sizes_identical']) for r in gc)}/{len(gc)}\n")
+
+    path = os.path.join(out, "refine_ablation.md")
+    with open(path, "w") as fh:
+        fh.write("\n".join(L))
+    print("refine ablation summary written to", path)
+
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -490,8 +740,13 @@ def main():
         return 0
     summary(a.out, rows, res)
     gold_check(a.out, res)
+    if res and res[0].get("mode") == "refine":
+        refine_ablation(a.out, res)
     raw_vs_sorted(a.out)
-    figures(a.out, res)
+    try:
+        figures(a.out, res)
+    except Exception as e:
+        print(f"WARNING: figures failed ({e}); results.csv and summaries were still written")
     print(f"analysis: {len(rows)} processes, {len(res)} cell x method rows -> {a.out}/results.csv, summary.md")
     return 0
 

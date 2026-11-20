@@ -1,5 +1,5 @@
 # Benchmark build: the frozen lex1d C++ library (../lex1d/cpp, commit 8a691ee, verbatim), its 6 test
-# suites, and the single-fit driver fit.cpp. Release and strict floating point (-ffp-contract=off)
+# suites, the single-fit driver fit.cpp, and the Refine-ablation driver refine_fit.cpp (GOLD run 4). Release and strict floating point (-ffp-contract=off)
 # come from lex1d/cpp/cmake/LexFloatingPoint.cmake. run/common.sh configures it with
 #   cmake -S bench -B build -DCMAKE_BUILD_TYPE=Release
 cmake_minimum_required(VERSION 3.21)
@@ -18,6 +18,13 @@ add_executable(fit fit.cpp)
 target_include_directories(fit PRIVATE ${LEX1D_DIR}/cpp/src)
 target_link_libraries(fit PRIVATE lex)
 lex_strict_fp(fit)
+# Not in the default `all` target: runs 1-3 (`cmake --build`) still build only fit + the tests.
+add_executable(refine_fit refine_fit.cpp refine_ltr.cpp)
+set_target_properties(refine_fit PROPERTIES EXCLUDE_FROM_ALL TRUE)
+target_include_directories(refine_fit PRIVATE ${LEX1D_DIR}/cpp/src ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(refine_fit PRIVATE lex)
+lex_strict_fp(refine_fit)
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
   target_compile_options(fit PRIVATE -Wall -Wextra)
+  target_compile_options(refine_fit PRIVATE -Wall -Wextra)
 endif()

@@ -1,6 +1,6 @@
-# Shared setup and run logic. Sourced by run/raw.sh (MODE=raw), run/sorted.sh (MODE=sorted)
-# and run/bindings.sh (MODE=bindings). Not run directly.
-# Everything below is identical for the three scripts except MODE.
+# Shared setup and run logic. Sourced by run/raw.sh (MODE=raw), run/sorted.sh (MODE=sorted),
+# run/bindings.sh (MODE=bindings) and run/run4.sh (MODE=refine). Not run directly.
+# Everything below is identical for the scripts except MODE.
 set -euo pipefail
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
@@ -11,10 +11,11 @@ case "$MODE" in
   raw) OUT_NAME=out/raw; SCRIPT_NAME=raw.sh;;
   sorted) OUT_NAME=out/sorted; SCRIPT_NAME=sorted.sh;;
   bindings) OUT_NAME=out/bindings; SCRIPT_NAME=bindings.sh;;
+  refine) OUT_NAME=out/refine; SCRIPT_NAME=run4.sh;;
   *) echo "bad MODE" >&2; exit 2;;
 esac
 
-REPS=3; MEM_GB=100; SMOKE=0; FRESH=0; NO_R=0; SKIP_INSTALL=0; SKIP_TESTS=0
+REPS=3; REPS_SET=0; MEM_GB=100; SMOKE=0; FRESH=0; NO_R=0; SKIP_INSTALL=0; SKIP_TESTS=0
 SECTIONS="main,msweep,audio,weighted"; DATASETS=""; SLICES=""; KLIST=""; OUT_DIR=""
 
 usage() {
@@ -51,7 +52,7 @@ while [[ $# -gt 0 ]]; do
     --resume) ;;
     --fresh) FRESH=1;;
     --smoke) SMOKE=1;;
-    --reps) REPS=$2; shift;;
+    --reps) REPS=$2; REPS_SET=1; shift;;
     --skip-main) SECTIONS=${SECTIONS//main,/};;
     --skip-msweep) SECTIONS=${SECTIONS//msweep,/};;
     --skip-audio) SECTIONS=${SECTIONS//audio,/};;
@@ -69,7 +70,26 @@ while [[ $# -gt 0 ]]; do
   esac
   shift
 done
-[[ $SMOKE == 1 && $REPS == 3 ]] && REPS=1
+# Run 4 (Refine ablation): lex_hybrid only, no R. One timed round by default (SSE is deterministic;
+# pass --reps N to measure timing more carefully). Smoke still uses one timed round.
+if [[ "$MODE" == refine ]]; then
+  NO_R=1
+  [[ $REPS_SET == 0 ]] && REPS=1
+  # main + audio; no weighted section and no extra M-sweep values (M is 4096, 8192, 16384)
+  # Keep an explicit --skip-* / remaining default: drop msweep and weighted, which run 4 does not run.
+  SECTIONS=${SECTIONS//msweep,/}
+  SECTIONS=${SECTIONS//,weighted/}
+  SECTIONS=${SECTIONS//weighted/}
+  SECTIONS=${SECTIONS//,,/,}
+  SECTIONS=${SECTIONS#,}
+  SECTIONS=${SECTIONS%,}
+  [[ -z "$SECTIONS" ]] && SECTIONS="main,audio"
+fi
+if [[ "$MODE" == refine ]]; then
+  [[ $SMOKE == 1 && $REPS_SET == 0 ]] && REPS=1
+else
+  [[ $SMOKE == 1 && $REPS == 3 ]] && REPS=1
+fi
 [[ -z "$OUT_DIR" ]] && OUT_DIR="$PKG_DIR/$OUT_NAME$([[ $SMOKE == 1 ]] && echo _smoke || true)"
 WORK="$PKG_DIR/work/$([[ $SMOKE == 1 ]] && echo smoke || echo full)"
 
@@ -172,6 +192,9 @@ log "building lex1d ($COMMIT) and bench/fit.cpp in build/"
 if have cmake && cmake -S "$PKG_DIR/bench" -B "$BUILD" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER="$(command -v "$CXX_BIN")" >>"$LOG" 2>&1; then
   BUILD_HOW="cmake Release (lex_strict_fp: -ffp-contract=off)"
   cmake --build "$BUILD" -j 8 >>"$LOG" 2>&1 || { log "build failed; see run.log"; exit 1; }
+  if [[ "$MODE" == refine ]]; then
+    cmake --build "$BUILD" -j 8 --target refine_fit >>"$LOG" 2>&1 || { log "refine_fit build failed; see run.log"; exit 1; }
+  fi
   if [[ $SKIP_TESTS == 0 ]]; then
     (cd "$BUILD" && ctest --output-on-failure) >>"$LOG" 2>&1 || { log "ctest FAILED; see run.log. Stopping."; exit 1; }
     log "ctest: $(grep -E 'tests passed' "$LOG" | tail -1)"
@@ -190,6 +213,17 @@ else
     done
     log "6/6 test suites passed (direct build)"
   fi
+fi
+if [[ "$MODE" == refine ]]; then
+  if [[ ! -x "$BUILD/refine_fit" ]]; then
+    log "building bench/refine_fit.cpp directly"
+    FLAGS=(-O3 -DNDEBUG -std=c++17 -ffp-contract=off -I"$PKG_DIR/lex1d/cpp/include" -I"$PKG_DIR/lex1d/cpp/src" -I"$PKG_DIR/bench")
+    SRCS=("$PKG_DIR"/lex1d/cpp/src/*.cpp)
+    "$CXX_BIN" "${FLAGS[@]}" "${SRCS[@]}" "$PKG_DIR/bench/refine_fit.cpp" "$PKG_DIR/bench/refine_ltr.cpp" -o "$BUILD/refine_fit" >>"$LOG" 2>&1 \
+      || { log "refine_fit build failed; see run.log"; exit 1; }
+
+  fi
+  FIT="$BUILD/refine_fit"
 fi
 [[ -x "$FIT" ]] || { log "driver not built"; exit 1; }
 
@@ -346,6 +380,14 @@ files += ["lex1d/cpp/include/lex/lex.hpp", "lex1d/r/src/lex1d_r.cpp", "lex1d/r/R
 for f in files:
     print("sha256 %s  %s" % (hashlib.sha256(open(os.path.join(root, f), "rb").read()).hexdigest(), f))
 PYEOF
+  if [[ "$MODE" == refine ]]; then
+  "$PY" - "$PKG_DIR" <<'PYEOF'
+import hashlib, os, sys
+root = sys.argv[1]
+for f in ["bench/refine_fit.cpp", "bench/refine_ltr.cpp", "bench/refine_ltr.hpp", "run/run4.sh"]:
+    print("sha256 %s  %s" % (hashlib.sha256(open(os.path.join(root, f), "rb").read()).hexdigest(), f))
+PYEOF
+  fi
   echo "input: $INPUT"
   echo "input check: $INPUT_CHECK"
 } > "$OUT_DIR/env_$SESSION.txt"

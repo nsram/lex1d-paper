@@ -18,7 +18,7 @@ figures, and the data or the means to regenerate it.
 | Path | What it holds |
 |---|---|
 | `lex1d/` | lex1d at commit `8a691ee005b657f985ffa299c57542b79570b08c`, byte for byte. Every run checks it against `run/lex1d_8a691ee.sha256` and stops if any file differs. |
-| `bench/` | `fit.cpp`, the single-fit driver, and the `CMakeLists.txt` that builds it with lex1d. |
+| `bench/` | `fit.cpp`, the single-fit driver; `refine_fit.cpp`, the Refine-ablation driver for run 4; `refine_ltr.cpp`, an exploratory left-to-right Refine variant used only by run 4; and the `CMakeLists.txt` that builds them with lex1d. |
 | `run/` | Setup, run and analysis scripts (see below). |
 | `data/` | The simulation generator, its checksums and slice counts, and `audio/` for the real audio file. |
 | `simulation/input/` | The 12 generated simulation files. Not in git; created on the first run. |
@@ -30,28 +30,40 @@ figures, and the data or the means to regenerate it.
 
 ## The benchmark
 
-Three scripts share one engine (`run/common.sh`, `run/run.py`):
+Four scripts share one engine (`run/common.sh`, `run/run.py`):
 
 - `run/raw.sh`: the full grid with every fit on the values in file order.
 - `run/sorted.sh`: the same grid with every fit on the same values presorted, which separates the
   cost of sorting.
 - `run/bindings.sh`: the same fits through lex1d's R and Python bindings, to measure binding overhead.
+- `run/run4.sh`: a fourth run, lex_hybrid only, that records the coarse-DP SSE (after Collapse(M)+DP(k),
+  before Refine) as well as the final SSE, so the papers can report how much Refine moves the needle.
+  The grid is the 12 simulation files (10 continuous and 2 discrete) × 7 slices plus the audio file,
+  at M = 4,096, 8,192 and 16,384 and k = 4 to 512. There is no weighted section and no extra M-sweep.
+  In the same process it also runs an exploratory left-to-right Refine from the same coarse-DP bounds
+  (`bench/refine_ltr.cpp`, a copy of frozen refine.cpp whose only change is the sweep direction;
+  every tie rule is unchanged). Frozen lex1d itself is not modified. The variant is labelled exploratory
+  in the outputs.
 
-The grid covers the 12 simulated datasets, each cut into 7 slices of 2^14 to 2^20 values, with
-k = 4 to 512, plus an M sweep, the audio file, and a weighted subset. Each cell compares LEX
-(`lex_hybrid`, M = 4,096, 8,192 and 16,384, and 1,024 and 2,048 in the M sweep), plain LEX
-(`lex_plain`), lex1d's exact dynamic program (`ckmeans_exact`) and the R package Ckmeans.1d.dp
-4.3.6. Every fit runs in its own process under `/usr/bin/time`, so each has its own peak memory; each
-cell has one warm-up round and 3 timed rounds, with the method order rotated each round.
+The main grid covers the 12 simulated datasets, each cut into 7 slices of 2^14 to 2^20 values, with
+k = 4 to 512, plus an M sweep, the audio file, and a weighted subset. Each cell of the first three
+runs compares LEX (`lex_hybrid`, M = 4,096, 8,192 and 16,384, and 1,024 and 2,048 in the M sweep),
+plain LEX (`lex_plain`), lex1d's exact dynamic program (`ckmeans_exact`) and the R package
+Ckmeans.1d.dp 4.3.6. Every fit runs in its own process under `/usr/bin/time`, so each has its own
+peak memory. Each cell in the first three runs has one warm-up round and 3 timed rounds, with the
+method order rotated each round. Run 4 uses one warm-up round and one timed round by default (pass
+`--reps 3` for the same timing protocol): the SSE is deterministic, GOLD already showed it identical
+across three rounds, and Refine timing is secondary.
 
 Before measuring, the scripts build lex1d and the driver in Release mode with strict floating point
 (`-ffp-contract=off`) and run lex1d's 6 C++ test suites. On the warm-up round the driver also calls
 the public lex1d function and checks that it gives the same answer as the instrumented copy it times
 (the `api_match` column).
 
-`run/run3.sh` runs the three scripts in turn, and keeps the machine awake while it does
-(`caffeinate` on macOS, `systemd-inhibit` on Linux). Each script writes finished cells to disk as it
-goes, so running the same command again resumes where it stopped.
+`run/run3.sh` runs the first three scripts in turn, and keeps the machine awake while it does
+(`caffeinate -dims` on macOS, `systemd-inhibit` on Linux). `run/run4.sh` is the same kind of one-command
+entry point for the Refine ablation, and uses the same keep-awake hold. Each script writes finished
+cells to disk as it goes, so running the same command again resumes where it stopped.
 
 ## Setup and run
 
@@ -59,6 +71,7 @@ From the repo root:
 
     bash run/setup.sh
     bash run/run3.sh
+    bash run/run4.sh
 
 `run/setup.sh` installs what is missing and prints a table of every component against its pinned
 version. It installs the R packages into `./R-lib` and the Python packages into `./.venv`, both
@@ -69,8 +82,9 @@ Before the first run, put the audio file in `data/audio/` (see `data/audio/READM
 `--skip-audio`. If `simulation/input/` is empty, the first script generates the 12 files with
 `data/generate.py` and checks them against `data/shasum.txt`.
 
-For a quick check that everything works, `bash run/run3.sh --smoke` runs a small subset in a few
-minutes and writes to `out/*_smoke/`.
+For a quick check that everything works, `bash run/run3.sh --smoke` or `bash run/run4.sh --smoke`
+runs a small subset in a few minutes and writes to `out/*_smoke/`. (Smoke truncates the inputs, so
+those SSE values are not compared with GOLD.)
 
 Each script takes `--help`. Useful options: `--no-r`, `--skip-audio`, `--datasets A,B`,
 `--slices 1,2`, `--k 4,8`, `--reps N`, `--fresh` (start over), `--mem-limit-gb N`.
@@ -110,7 +124,13 @@ the Python binding and by `data/generate.py`.
 
 GOLD ran on a MacBook Pro with an Apple M3 Max (12 performance and 4 efficiency cores) and 128 GB of
 RAM, macOS 15.8.1, on 17 and 18 November 2026. The raw and sorted runs each took under 4 hours
-of compute, and the bindings calibration less than 10 minutes.
+of compute, and the bindings calibration less than 10 minutes. Run 4 is much smaller (lex_hybrid only,
+2,040 cells, one warm-up and one timed round): summing GOLD's own lex_hybrid fit times gives about 8
+minutes of compute, plus process overhead, so about 15–25 minutes on that machine. The exploratory
+left-to-right Refine runs in the same process from a copy of the coarse bounds, so it does not add a
+process; GOLD's Refine times summed to about 1 second, and doubling that is a few extra seconds, not a
+change to the 15–25 minute estimate. When M is at least the number of atoms the coarse DP is already
+the exact DP and the gap is 0.
 
 The largest memory use is Ckmeans.1d.dp on the audio at k = 512, with a peak of 67.9 GB. lex1d's
 exact dynamic program peaks at 15.7 GB on the same cell, and LEX at 0.61 GB. Before each fit the
@@ -121,14 +141,16 @@ swapping; skipped cells are marked in `results.csv`.
 
 ## Outputs
 
-Each script writes to `out/raw/`, `out/sorted/` or `out/bindings/`:
+The first three scripts write to `out/raw/`, `out/sorted/` or `out/bindings/`; run 4 writes to
+`out/refine/`:
 
 | File | Contents |
 |---|---|
-| `results.csv` | One row per cell and method: median, minimum and maximum fit time over the timed rounds, SSE, gap to the exact SSE, peak memory, stage times, and checks. |
+| `results.csv` | One row per cell and method: median, minimum and maximum fit time over the timed rounds, SSE, gap to the exact SSE, peak memory, stage times, and checks. Run 4 also has `coarse_sse`, `coarse_gap_pct`, the reduction factor and the percent of the coarse gap that Refine removed. |
 | `reps.csv` | One row per process (every round of every fit). |
 | `summary.md` | Tables of gaps, speed-ups, memory and checks. |
-| `gold_check.csv`, `gold_check.md` | SSE identity and time ratios against the GOLD run in `results/gold/`. |
+| `gold_check.csv`, `gold_check.md` | SSE identity and time ratios against the GOLD run in `results/gold/`. Run 4 compares final SSE and bin sizes to GOLD `raw` lex_hybrid rows, bit for bit. |
+| `refine_ablation.md` | Run 4 only: per-k/M summary of the coarse gap, the final gap, the reduction factor and the percent of the gap Refine removed, with continuous, discrete and audio shown separately, plus an exploratory comparison of left-to-right vs standard right-to-left Refine. |
 | `raw_vs_sorted.csv`, `raw_vs_sorted.md` | Sort cost per cell and method (written once both raw and sorted exist). |
 | `inputs_manifest.csv` | SHA-256 of every prepared input file and the check that each sorted copy is a permutation of its raw slice. |
 | `env.txt`, `env_<session>.txt` | Machine, compiler, R and Python versions, and SHA-256 of the lex1d and benchmark sources. |
@@ -138,10 +160,12 @@ Each script writes to `out/raw/`, `out/sorted/` or `out/bindings/`:
 
 ## What results/gold contains
 
-`results/gold/raw/`, `sorted/` and `bindings/` hold the files above from the GOLD run, unchanged,
-except `cells/` and `figures/`, which are left out because `run/analyze.py` regenerates them from
-`reps.csv`. GOLD's results show 4,624 cell and method rows per grid script, all ok, with
-`api_match` 3,860/3,860 and SSE identical across all rounds in every row.
+`results/gold/raw/`, `sorted/` and `bindings/` hold the files above from the first three GOLD runs,
+unchanged, except `cells/` and `figures/`, which are left out because `run/analyze.py` regenerates
+them from `reps.csv`. GOLD's results show 4,624 cell and method rows per grid script, all ok, with
+`api_match` 3,860/3,860 and SSE identical across all rounds in every row. Run 4 is a later addition;
+its outputs belong in `results/gold/refine/` once the run has been executed and checked against those
+lex_hybrid SSEs.
 
 GOLD was run with an earlier copy of these scripts that carried version prefixes in their file names
 (for example `bot_v24_lex_full.sh` for `run/raw.sh`), so those names appear in GOLD's `run.log` and

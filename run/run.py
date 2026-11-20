@@ -13,6 +13,8 @@ the first unfinished cell. Every row carries the session id and a timestamp.
                lex1d detects sorted input (std::is_sorted) and skips its sort; Ckmeans.1d.dp 4.3.6 also
                checks (one O(n) scan, src/Ckmeans.1d.dp.cpp) and skips its std::sort
 --mode bindings  binding-overhead subset (C++ driver vs lex1d R binding vs lex1d Python binding)
+--mode refine  GOLD run 4: lex_hybrid only, raw input order, M in {4096, 8192, 16384}. The driver
+               (bench/refine_fit.cpp) also records the coarse-DP SSE before Refine.
 """
 from __future__ import annotations
 
@@ -112,6 +114,16 @@ ROW_FIELDS = [
     "wall_s", "peak_rss_bytes", "peak_footprint_bytes", "rss_self_bytes", "dp_table_est_bytes", "version",
     "input_file", "sizes",
 ]
+# Appended only when --mode refine so runs 1-3 keep the original cell-CSV columns.
+REFINE_ROW_FIELDS = [
+    "session", "timestamp", "mode", "section", "cell", "dataset", "slice", "N", "D", "D_expected", "k", "method",
+    "M", "family", "weighted", "rep", "warmup", "order_pos", "status", "skip_reason", "exit_code", "sse", "coarse_sse", "ltr_sse", "k_eff",
+    "atoms", "fit_s", "post_sort_s", "api_s", "api_match", "did_sort", "t_prep_s", "t_sort_s", "t_atoms_s",
+    "t_collapse_s", "t_dp_s", "t_starts_s", "t_refine_s", "t_refine_ltr_s", "t_summary_s", "sweeps", "moves", "ltr_sweeps", "ltr_moves", "ltr_same_partition", "start", "load_s",
+    "api_presorted",
+    "wall_s", "peak_rss_bytes", "peak_footprint_bytes", "rss_self_bytes", "dp_table_est_bytes", "version",
+    "input_file", "sizes", "coarse_sizes", "ltr_sizes",
+]
 
 
 class Runner:
@@ -198,9 +210,10 @@ class Runner:
                            order_pos=pos, status="ok" if ok else "failed", exit_code=rc,
                            skip_reason="" if ok else (err.strip().splitlines() or [""])[-1][:300].replace(",", ";"),
                            wall_s=wall, peak_rss_bytes=rss, peak_footprint_bytes=foot, dp_table_est_bytes=est)
-                for f in ("sse", "k_eff", "atoms", "fit_s", "post_sort_s", "api_s", "api_match", "did_sort", "t_prep_s",
-                          "t_sort_s", "t_atoms_s", "t_collapse_s", "t_dp_s", "t_starts_s", "t_refine_s", "t_summary_s",
-                          "sweeps", "moves", "start", "load_s", "version", "sizes"):
+                for f in ("sse", "coarse_sse", "ltr_sse", "k_eff", "atoms", "fit_s", "post_sort_s", "api_s", "api_match", "did_sort", "t_prep_s",
+                          "t_sort_s", "t_atoms_s", "t_collapse_s", "t_dp_s", "t_starts_s", "t_refine_s", "t_refine_ltr_s", "t_summary_s",
+                          "sweeps", "moves", "ltr_sweeps", "ltr_moves", "ltr_same_partition",
+                          "start", "load_s", "version", "sizes", "coarse_sizes", "ltr_sizes"):
                     if f in res:
                         row[f] = res[f]
                 if "rss_self" in res:
@@ -223,7 +236,8 @@ class Runner:
         rows += skipped
         tmp = path + ".tmp"
         with open(tmp, "w", newline="") as f:
-            wr = csv.DictWriter(f, fieldnames=ROW_FIELDS, extrasaction="ignore")
+            fields = REFINE_ROW_FIELDS if self.a.mode == "refine" else ROW_FIELDS
+            wr = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
             wr.writeheader()
             wr.writerows(rows)
         os.replace(tmp, path)
@@ -257,6 +271,18 @@ def build_plan(a, r: Runner):
             plan.append(("bindings", key, 0, loads, False, True))
             for k in a.k_bind:
                 plan.append(("bindings", key, k, fams, False, False))
+        return plan
+    if a.mode == "refine":
+        # lex_hybrid only, main M values, no load baselines, no weighted section, no extra M-sweep.
+        hy = [(f"hybrid{m}", ("cpp", "lex_hybrid", m)) for m in M_MAIN]
+        if "main" in a.sections:
+            for s in a.slices:
+                for d in a.datasets:
+                    for k in a.k:
+                        plan.append(("main", (d, s), k, hy, False, False))
+        if "audio" in a.sections:
+            for k in a.k:
+                plan.append(("audio", ("audio", 0), k, hy, False, False))
         return plan
     mt = method_table(False)
     def meths(msweep, weighted=False):
@@ -340,7 +366,7 @@ def prepare_inputs(a, plan):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mode", required=True, choices=["raw", "sorted", "bindings"])
+    ap.add_argument("--mode", required=True, choices=["raw", "sorted", "bindings", "refine"])
     ap.add_argument("--input-dir", default="")
     ap.add_argument("--out", required=True)
     ap.add_argument("--workdir", required=True)
