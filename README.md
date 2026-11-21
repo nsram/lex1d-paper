@@ -121,6 +121,19 @@ current on 18 November 2026, since GOLD did not record them.
 The run scripts themselves need only Python 3.8+ with its standard library. numpy is used only by
 the Python binding and by `data/generate.py`.
 
+## Proposition checks
+
+`bash run/checks.sh` numerically checks the propositions in Appendix B of the technical paper
+(Table 11). It verifies the Ward and transfer identities with sympy, compares the exact DP to
+brute force on tiny inputs, and runs 300 random cases through the lex1d Python binding (seed
+20261116): exactness when D ≤ M, that LEX is never worse than Collapse, that Refine never
+raises SSE, and that Collapse is hierarchical. It also checks the DP-table memory formulas
+against `results/gold/raw/results.csv`. Results go to `out/checks/results.json` and
+`out/checks/summary.md`.
+
+This needs the lex1d Python binding in `.venv` (`bash run/setup.sh` first). The script also
+uses sympy and pandas, and installs them into `.venv` if they are missing.
+
 ## Runtime and memory
 
 GOLD ran on a MacBook Pro with an Apple M3 Max (12 performance and 4 efficiency cores) and 128 GB of
