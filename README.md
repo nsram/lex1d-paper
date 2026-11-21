@@ -18,7 +18,7 @@ figures, and the data or the means to regenerate it.
 | Path | What it holds |
 |---|---|
 | `lex1d/` | lex1d at commit `8a691ee005b657f985ffa299c57542b79570b08c`, byte for byte. Every run checks it against `run/lex1d_8a691ee.sha256` and stops if any file differs. |
-| `bench/` | `fit.cpp`, the single-fit driver; `refine_fit.cpp`, the Refine-ablation driver for run 4; `refine_ltr.cpp`, an exploratory left-to-right Refine variant used only by run 4; and the `CMakeLists.txt` that builds them with lex1d. |
+| `bench/` | `fit.cpp`, the single-fit driver; `refine_fit.cpp`, the Refine-ablation driver for run 4; `refine_ltr.cpp`, an exploratory left-to-right Refine variant used only by run 4; `precgroup_fit.cpp`, the precision-grouping driver for run 5; and the `CMakeLists.txt` that builds them with lex1d. |
 | `run/` | Setup, run and analysis scripts (see below). |
 | `data/` | The simulation generator, its checksums and slice counts, and `audio/` for the real audio file. |
 | `simulation/input/` | The 12 generated simulation files. Not in git; created on the first run. |
@@ -44,6 +44,7 @@ Four scripts share one engine (`run/common.sh`, `run/run.py`):
   (`bench/refine_ltr.cpp`, a copy of frozen refine.cpp whose only change is the sweep direction;
   every tie rule is unchanged). Frozen lex1d itself is not modified. The variant is labelled exploratory
   in the outputs.
+- `run/run5.sh`: a fifth, exploratory run (not GOLD) on the audio only, described under "Run 5" below.
 
 The main grid covers the 12 simulated datasets, each cut into 7 slices of 2^14 to 2^20 values, with
 k = 4 to 512, plus an M sweep, the audio file, and a weighted subset. Each cell of the first three
@@ -138,6 +139,18 @@ scripts predict the size of its dynamic-programming table and skip the fit if it
 100 GB or 85% of the machine's RAM, whichever is smaller (`--mem-limit-gb` changes the first). A
 machine with less than about 80 GB of RAM therefore skips the largest R and exact cells instead of
 swapping; skipped cells are marked in `results.csv`.
+
+## Run 5: precision grouping (exploratory)
+
+`bash run/run5.sh` takes about 2 minutes. It rounds each audio value to 5 significant digits and turns
+each run of equal rounded values in the sorted data into one atom (552,603 atoms instead of 7,295,677
+distinct values). Each atom carries the count and the mean of its true values, and lex_hybrid (M = 4,096)
+runs on the atoms with weights, so a bin never splits an atom. The SSE stays exact on the real values:
+the weighted SSE plus the within-atom sum of squares. That sum is checked against the SSE recomputed on
+the raw values from the mapped cuts, and must agree to 1e-12. Run 5 compares this with plain lex_hybrid
+at k = 64, 256 and 512, with one warm-up round and 3 timed rounds, and the variant order alternates.
+The plain variant's SSE must equal GOLD's bit for bit. Results go to `out/precgroup/`: `summary.md`
+(medians, speed-ups, gaps to the exact SSE, and the checks), `runs.csv`, `env.txt` and `run.log`.
 
 ## Outputs
 
