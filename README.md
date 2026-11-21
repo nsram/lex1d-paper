@@ -22,7 +22,7 @@ figures, and the data or the means to regenerate it.
 | `run/` | Setup, run and analysis scripts (see below). |
 | `data/` | The simulation generator, its checksums and slice counts, and `audio/` for the real audio file. |
 | `simulation/input/` | The 12 generated simulation files. Not in git; created on the first run. |
-| `results/gold/` | Outputs of the GOLD run used in the papers: `raw/`, `sorted/`, `bindings/`. |
+| `results/gold/` | Outputs of the GOLD run used in the papers: `raw/`, `sorted/`, `bindings/`, and `refine/` (run 4). |
 | `results/figures/` | The figures in the papers. |
 | `paper/` | LaTeX sources and PDFs of the technical and expository papers. |
 | `talk/` | The talk, as HTML and PDF. |
@@ -134,6 +134,17 @@ against `results/gold/raw/results.csv`. Results go to `out/checks/results.json` 
 This needs the lex1d Python binding in `.venv` (`bash run/setup.sh` first). The script also
 uses sympy and pandas, and installs them into `.venv` if they are missing.
 
+## Run 4 numbers
+
+`bash run/run4_numbers.sh` computes every number the papers quote from run 4, the diagnostic run that
+records the coarse DP's error before Refine: Table 3 of the technical paper (coarse and final error and
+the share Refine removed, by k), the regressions of the coarse error on k and M, the error ratios per
+doubling of M and k, the left-to-right sweep comparison, the discrete and audio cells, and a cross-check
+of the final error against `results/gold/raw/results.csv`. It reads only `results/gold/refine/results.csv`
+and that file, uses no timing column, and takes a few seconds. Results go to `out/run4_numbers/results.json`
+and `out/run4_numbers/summary.md`. It uses `.venv` (creating it from Python 3.12+ if needed; `run/setup.sh`
+reuses it) and installs numpy, pandas and statsmodels into it if they are missing.
+
 ## Runtime and memory
 
 GOLD ran on a MacBook Pro with an Apple M3 Max (12 performance and 4 efficiency cores) and 128 GB of
@@ -190,8 +201,11 @@ The first three scripts write to `out/raw/`, `out/sorted/` or `out/bindings/`; r
 unchanged, except `cells/` and `figures/`, which are left out because `run/analyze.py` regenerates
 them from `reps.csv`. GOLD's results show 4,624 cell and method rows per grid script, all ok, with
 `api_match` 3,860/3,860 and SSE identical across all rounds in every row. Run 4 is a later addition;
-its outputs belong in `results/gold/refine/` once the run has been executed and checked against those
-lex_hybrid SSEs.
+its outputs are in `results/gold/refine/`: `results.csv`, `gold_check.csv` and `gold_check.md` (final SSE
+and bin sizes identical to GOLD's raw lex_hybrid rows in 2,040 of 2,040 cells), `refine_ablation.md`,
+`summary.md`, `env*.txt` and `inputs_manifest.csv`, unchanged. `reps.csv`, `run.log`, `cells/` and
+`figures/` are left out to keep the repository small; the papers use only `results.csv`, and none of
+run 4's timing columns.
 
 GOLD was run with an earlier copy of these scripts that carried version prefixes in their file names
 (for example `bot_v24_lex_full.sh` for `run/raw.sh`), so those names appear in GOLD's `run.log` and
