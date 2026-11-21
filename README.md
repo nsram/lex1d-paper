@@ -145,6 +145,20 @@ and that file, uses no timing column, and takes a few seconds. Results go to `ou
 and `out/run4_numbers/summary.md`. It uses `.venv` (creating it from Python 3.12+ if needed; `run/setup.sh`
 reuses it) and installs numpy, pandas and statsmodels into it if they are missing.
 
+## Expository checks
+
+`bash run/expo_checks.sh` recomputes every worked example and number that the expository paper
+lists in its Appendix A (Table 10), one section per row: the hand DP on six values, contiguity and
+non-nesting, the quadrangle inequality (80,000 random quadruples) and monotone splits, the SMAWK
+pseudocode against brute-force row minima, the ten-value LEX trace and the coarse DP for every M,
+the Figure 2 toy example, the atom endpoint property, the transfer examples, the memory budgets,
+and the smaller hand illustrations. Small examples use exact fractions; random cases use fixed seeds
+(20261117, 1 and 20261120). Each value is compared with the value printed in the paper, and the
+script exits with status 1 if any differs. The traces are also checked against the lex1d Python
+binding (`lex_hybrid`, `lex_plain`, `ckmeans_exact`). It takes a few seconds. Results go to
+`out/expo_checks/results.json` and `out/expo_checks/summary.md`. It needs the lex1d Python binding
+and numpy in `.venv` (`bash run/setup.sh` first) and installs nothing.
+
 ## Runtime and memory
 
 GOLD ran on a MacBook Pro with an Apple M3 Max (12 performance and 4 efficiency cores) and 128 GB of
