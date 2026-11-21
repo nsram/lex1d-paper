@@ -1,0 +1,58 @@
+2026-11-21 15:04:35 EST ==== gpt2.sh start (session 20261121T150435-76743) ====
+2026-11-21 15:04:35 EST args: 
+2026-11-21 15:04:35 EST repo: /Users/sriram/Desktop/Learning/Lex/lex1d-paper  out: /Users/sriram/Desktop/Learning/Lex/lex1d-paper/out/gpt2  mode: gpt2  reps: 3 (+1 warm-up)  smoke: 0
+2026-11-21 15:04:35 EST python: /Users/sriram/Desktop/PyEnv/llm/bin/python3 (3.13.18)
+2026-11-21 15:04:35 EST lex1d check: 104/104 files identical to commit 8a691ee
+2026-11-21 15:04:36 EST R: /opt/homebrew/bin/Rscript; Ckmeans.1d.dp 4.3.6
+2026-11-21 15:04:36 EST R packages at the GOLD pins (requirements-r.txt)
+2026-11-21 15:04:36 EST building lex1d (8a691ee005b657f985ffa299c57542b79570b08c) and bench/fit.cpp in build/
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/sriram/Desktop/Learning/Lex/lex1d-paper/build
+[ 33%] Built target lex
+[ 52%] Built target test_edge
+[ 52%] Built target fit
+[100%] Built target test_ties
+[100%] Built target test_coarse
+[100%] Built target test_weighted
+[100%] Built target test_quality
+[100%] Built target test_exact
+Test project /Users/sriram/Desktop/Learning/Lex/lex1d-paper/build
+    Start 1: edge
+1/6 Test #1: edge .............................   Passed    0.00 sec
+    Start 2: exact
+2/6 Test #2: exact ............................   Passed    0.06 sec
+    Start 3: quality
+3/6 Test #3: quality ..........................   Passed    0.11 sec
+    Start 4: coarse
+4/6 Test #4: coarse ...........................   Passed    1.54 sec
+    Start 5: weighted
+5/6 Test #5: weighted .........................   Passed    0.01 sec
+    Start 6: ties
+6/6 Test #6: ties .............................   Passed    0.24 sec
+
+100% tests passed out of 6
+
+Total Test time (real) =   1.97 sec
+2026-11-21 15:04:38 EST ctest: 100% tests passed out of 6
+2026-11-21 15:04:38 EST gpt2: data/gpt2/gpt2-large_h0_mlp_c_fc_weight.f32le
+2026-11-21 15:04:38 EST memory: 137 GB RAM; System-wide memory free percentage: 96%
+2026-11-21 15:04:38 EST Ckmeans.1d.dp at k = 512 needs about 16kN = 54 GB; a cell whose predicted table does not fit in the memory available at its start is skipped (status skipped_mem) instead of swapping
+2026-11-21 15:04:38 EST input folder: 
+2026-11-21 15:04:38 EST environment written to env.txt (and env_20261121T150435-76743.txt)
+2026-11-21T15:04:38-05:00 plan: 9 cells, mode=raw, sections=['msweep', 'gpt2'], reps=3 (+1 warm-up), RAM=137.4 GB, available now=95.0 GB, mem limit=100.0 GB
+2026-11-21T15:04:41-05:00 prepared gpt2 slices [0] (3.0s)
+2026-11-21T15:04:44-05:00 inputs checked: 1 slices, 2 files; all sorted copies are ascending permutations of their own raw slice (inputs_manifest.csv)
+2026-11-21T15:04:44-05:00 [1/9] gpt2 gpt2_s0_load done (0.1 min elapsed) 
+2026-11-21T15:06:14-05:00 [2/9] gpt2 gpt2_s0_k4 done (1.6 min elapsed) Ckmeans.1d.dp=1.654s ckmeans_exact=1.16s lex_hybrid1024=2.502s lex_hybrid16384=2.534s lex_hybrid2048=2.542s lex_hybrid4096=2.497s lex_hybrid8192=2.506s lex_plain=2.687s
+2026-11-21T15:07:54-05:00 [3/9] gpt2 gpt2_s0_k8 done (3.3 min elapsed) Ckmeans.1d.dp=2.795s ckmeans_exact=2.007s lex_hybrid1024=2.494s lex_hybrid16384=2.499s lex_hybrid2048=2.495s lex_hybrid4096=2.488s lex_hybrid8192=2.496s lex_plain=2.669s
+2026-11-21T15:09:51-05:00 [4/9] gpt2 gpt2_s0_k16 done (5.2 min elapsed) Ckmeans.1d.dp=5.174s ckmeans_exact=3.668s lex_hybrid1024=2.503s lex_hybrid16384=2.5s lex_hybrid2048=2.508s lex_hybrid4096=2.498s lex_hybrid8192=2.51s lex_plain=2.862s
+2026-11-21T15:12:23-05:00 [5/9] gpt2 gpt2_s0_k32 done (7.7 min elapsed) Ckmeans.1d.dp=9.93s ckmeans_exact=6.925s lex_hybrid1024=2.509s lex_hybrid16384=2.521s lex_hybrid2048=2.501s lex_hybrid4096=2.505s lex_hybrid8192=2.51s lex_plain=2.639s
+2026-11-21T15:16:07-05:00 [6/9] gpt2 gpt2_s0_k64 done (11.5 min elapsed) Ckmeans.1d.dp=19.26s ckmeans_exact=13.35s lex_hybrid1024=2.516s lex_hybrid16384=2.543s lex_hybrid2048=2.517s lex_hybrid4096=2.51s lex_hybrid8192=2.514s lex_plain=3.106s
+2026-11-21T15:22:05-05:00 [7/9] gpt2 gpt2_s0_k128 done (17.4 min elapsed) Ckmeans.1d.dp=37.15s ckmeans_exact=26.05s lex_hybrid1024=2.574s lex_hybrid16384=2.537s lex_hybrid2048=2.538s lex_hybrid4096=2.517s lex_hybrid8192=2.51s lex_plain=2.878s
+2026-11-21T15:32:26-05:00 [8/9] gpt2 gpt2_s0_k256 done (27.8 min elapsed) Ckmeans.1d.dp=71.26s ckmeans_exact=50.75s lex_hybrid1024=2.722s lex_hybrid16384=2.586s lex_hybrid2048=2.624s lex_hybrid4096=2.542s lex_hybrid8192=2.543s lex_plain=2.925s
+2026-11-21T15:51:36-05:00 [9/9] gpt2 gpt2_s0_k512 done (47.0 min elapsed) Ckmeans.1d.dp=142.1s ckmeans_exact=99.85s lex_hybrid1024=2.839s lex_hybrid16384=2.728s lex_hybrid2048=2.707s lex_hybrid4096=2.65s lex_hybrid8192=2.689s lex_plain=3.045s
+2026-11-21T15:51:36-05:00 all 9 cells done (47.0 min this session)
+analysis: 258 processes, 64 cell x method rows -> /Users/sriram/Desktop/Learning/Lex/lex1d-paper/out/gpt2/results.csv, summary.md
+2026-11-21 15:51:37 EST after the run: lex1d check: 104/104 files identical to commit 8a691ee
+2026-11-21 15:51:37 EST finished gpt2.sh (rc 0). session time: 0h 47m 2s. Results: /Users/sriram/Desktop/Learning/Lex/lex1d-paper/out/gpt2

@@ -68,6 +68,27 @@ def ram_bytes() -> int:
     return 0
 
 
+def ram_available() -> int:
+    """Memory the OS can hand out now without swapping (bytes; 0 if unknown).
+    macOS: free + inactive + speculative + purgeable pages (vm_stat). Linux: MemAvailable."""
+    try:
+        if platform.system() == "Darwin":
+            out = subprocess.check_output(["vm_stat"], text=True)
+            page = int(re.search(r"page size of (\d+) bytes", out).group(1))
+            pages = 0
+            for name in ("Pages free", "Pages inactive", "Pages speculative", "Pages purgeable"):
+                m = re.search(name + r":\s+(\d+)", out)
+                pages += int(m.group(1)) if m else 0
+            return pages * page
+        with open("/proc/meminfo") as f:
+            for line in f:
+                if line.startswith("MemAvailable:"):
+                    return int(line.split()[1]) * 1024
+    except Exception:
+        pass
+    return 0
+
+
 def time_prefix():
     return ["/usr/bin/time", "-l"] if platform.system() == "Darwin" else ["/usr/bin/time", "-v"]
 
@@ -186,6 +207,12 @@ class Runner:
                 reason = f"dp_table_est {est} B > mem limit {self.limit} B"
             elif self.ram and est > 0.85 * self.ram:
                 reason = f"dp_table_est {est} B > 85% of RAM {self.ram} B"
+            elif self.a.free_mem_guard and est > 2**30:
+                avail = ram_available()
+                if avail and est + 2 * 2**30 > avail:  # table plus ~2 GB for R, the data and the OS
+                    reason = (f"dp_table_est {est} B > memory available now {avail} B "
+                              f"minus a 2 GB margin (skipped instead of swapping; to retry, free memory, delete this cell's CSV "
+                              f"under out/.../cells/ and re-run)")
             if reason:
                 skipped.append(dict(base, method=label, M=M, family=fam, rep="", warmup="", order_pos="",
                                     status="skipped_mem", skip_reason=reason, dp_table_est_bytes=est,
@@ -303,6 +330,10 @@ def build_plan(a, r: Runner):
         plan.append(("audio", ("audio", 0), 0, loads(), False, True))
         for k in a.k:
             plan.append(("audio", ("audio", 0), k, meths("msweep" in a.sections), False, False))
+    if "gpt2" in a.sections:  # second real dataset: the same protocol as the audio section
+        plan.append(("gpt2", ("gpt2", 0), 0, loads(), False, True))
+        for k in a.k:
+            plan.append(("gpt2", ("gpt2", 0), k, meths("msweep" in a.sections), False, False))
     if "weighted" in a.sections:
         for s in a.w_slices:
             for d in a.w_datasets:
@@ -334,6 +365,8 @@ def prepare_inputs(a, plan):
             t = time.time()
             if d == "audio":
                 ready[0] = data.prepare_audio(idir, truncate=a.audio_truncate)
+            elif d == "gpt2":
+                ready[0] = data.prepare_gpt2(idir, truncate=a.gpt2_truncate)
             else:
                 ms = data.prepare_dataset(a.input_dir, idir, d, [s for s, _ in todo],
                                           weighted_slices=[s for s, w in todo if w], truncate=a.truncate)
@@ -383,6 +416,7 @@ def main():
     ap.add_argument("--k", default=",".join(map(str, K_FULL)))
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--plan-only", action="store_true")
+    ap.add_argument("--free-mem-guard", type=int, default=0)
     a = ap.parse_args()
     a.sections = [s for s in a.sections.split(",") if s]
     a.datasets = [d for d in a.datasets.split(",") if d]
@@ -391,9 +425,9 @@ def main():
     a.k_weighted, a.w_datasets, a.w_slices = K_WEIGHTED, WEIGHTED_DATASETS, list(a.slices)
     a.k_bind = K_BIND
     a.bind_inputs = [("gaussian_continuous", 7), ("audio", 0)]
-    a.truncate = a.audio_truncate = 0
+    a.truncate = a.audio_truncate = a.gpt2_truncate = 0
     if a.smoke:  # light check: tiny pieces of the real files, two k, one timed round
-        a.truncate, a.audio_truncate = 2048, 20000
+        a.truncate, a.audio_truncate, a.gpt2_truncate = 2048, 20000, 65536
         a.slices = [1, 2]
         a.datasets = ["gaussian_continuous", "lognormal_continuous", "triangular_discrete", "spike_uniform_discrete"]
         a.k = [4, 64]
@@ -403,7 +437,7 @@ def main():
     plan = build_plan(a, r)
     r.total = len(plan)
     print(f"{now_iso()} plan: {len(plan)} cells, mode={a.mode}, sections={a.sections}, reps={a.reps} (+1 warm-up), "
-          f"RAM={r.ram/1e9:.1f} GB, mem limit={a.mem_limit_gb} GB", flush=True)
+          f"RAM={r.ram/1e9:.1f} GB, available now={ram_available()/1e9:.1f} GB, mem limit={a.mem_limit_gb} GB", flush=True)
     if a.plan_only:
         for p in plan:
             print(p[0], p[1], p[2], [m[0] for m in p[3]], "weighted" if p[4] else "", "baseline" if p[5] else "")

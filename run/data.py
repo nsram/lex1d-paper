@@ -11,6 +11,10 @@ D (distinct values) is recomputed per slice and checked against data/slice_count
 Audio: dharini-abhogi (8,168,256 values), read from data/audio/dharini-abhogi.txt.gz; the SHA-256 of
 the uncompressed text is pinned.
 
+GPT-2 Large weights: tensor h.0.mlp.c_fc.weight of openai-community/gpt2-large (6,553,600 float32 values,
+row-major), fetched by run/gpt2_fetch.py into data/gpt2/; the SHA-256 of the tensor bytes is pinned.
+Each float32 is converted exactly to float64.
+
 Every solver reads the same little-endian float64 file, written here from the text with Python float()
 (correctly rounded, the same doubles C strtod gives). For each input PREFIX:
     PREFIX.raw.f64     values in file order (the raw-input script)
@@ -45,6 +49,10 @@ AUDIO_NAME = "dharini-abhogi.txt.gz"
 AUDIO_SHA256 = "b19a45a308ba4758d8769b0d71e43ccf7503c0a0182e8d05e3ac5583586b2c3e"
 AUDIO_N = 8_168_256
 AUDIO_D = 7_295_677  # distinct values in the full audio file
+GPT2_NAME = "gpt2-large_h0_mlp_c_fc_weight.f32le"
+GPT2_SHA256 = "3b5cac6f1a695c6d6493aa65cdabec45b3a6dd541fee24604e03d208a5d28557"  # tensor bytes
+GPT2_N = 6_553_600
+GPT2_D = 6_275_774  # distinct values in the full tensor
 
 
 def shasums() -> dict:
@@ -258,6 +266,43 @@ def prepare_audio(outdir: str, truncate: int = 0, weighted: bool = False):
     return meta
 
 
+def gpt2_path() -> str:
+    return os.path.join(DATA, "gpt2", GPT2_NAME)
+
+
+def find_gpt2() -> str:
+    p = gpt2_path()
+    return os.path.relpath(p, PACK) if os.path.isfile(p) else ""
+
+
+def prepare_gpt2(outdir: str, truncate: int = 0):
+    p = gpt2_path()
+    if not os.path.isfile(p):
+        raise SystemExit(f"GPT-2 tensor not found: {os.path.relpath(p, PACK)} (run: python3 run/gpt2_fetch.py)")
+    with open(p, "rb") as f:
+        raw = f.read()
+    h = hashlib.sha256(raw).hexdigest()
+    if h != GPT2_SHA256:
+        raise SystemExit(f"GPT-2 tensor sha256 {h} != pinned {GPT2_SHA256}")
+    v32 = array("f")
+    v32.frombytes(raw)
+    if sys.byteorder != "little":
+        v32.byteswap()
+    if len(v32) != GPT2_N:
+        raise SystemExit(f"GPT-2 tensor: {len(v32)} values, expected {GPT2_N}")
+    vals = list(v32[:truncate] if truncate else v32)
+    prefix = os.path.join(outdir, "gpt2_s0")
+    write_input(prefix, vals)
+    d = len(set(vals))
+    if not truncate and d != GPT2_D:
+        raise SystemExit(f"GPT-2 tensor: D = {d}, expected {GPT2_D}")
+    meta = dict(dataset="gpt2", slice=0, N=len(vals), D=d, D_expected="" if truncate else GPT2_D, start=0,
+                sha256=h if not truncate else "", weighted=0, prefix=prefix)
+    with open(prefix + ".meta", "w") as f:
+        f.write(" ".join(f"{k}={v}" for k, v in meta.items()) + "\n")
+    return meta
+
+
 def read_meta(prefix: str):
     p = prefix + ".meta"
     if not os.path.isfile(p):
@@ -278,6 +323,11 @@ if __name__ == "__main__":
     elif len(sys.argv) >= 3 and sys.argv[1] == "verify":
         ds = sys.argv[3].split(",") if len(sys.argv) > 3 and sys.argv[3] else DATASETS
         sys.exit(1 if verify(sys.argv[2], ds, os.environ.get("LEX_PREPARED_DIR", "")) else 0)
+    elif len(sys.argv) >= 2 and sys.argv[1] == "find-gpt2":
+        r = find_gpt2()
+        if not r:
+            sys.exit(1)
+        print(r)
     elif len(sys.argv) >= 2 and sys.argv[1] == "find-audio":
         r = find_audio()
         print(r or "not found")

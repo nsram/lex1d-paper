@@ -1,5 +1,6 @@
 # Shared setup and run logic. Sourced by run/raw.sh (MODE=raw), run/sorted.sh (MODE=sorted),
-# run/bindings.sh (MODE=bindings) and run/run4.sh (MODE=refine). Not run directly.
+# run/bindings.sh (MODE=bindings), run/run4.sh (MODE=refine) and run/gpt2.sh (MODE=gpt2: the audio protocol
+# on the GPT-2 Large weight tensor, raw input order). Not run directly.
 # Everything below is identical for the scripts except MODE.
 set -euo pipefail
 
@@ -12,11 +13,14 @@ case "$MODE" in
   sorted) OUT_NAME=out/sorted; SCRIPT_NAME=sorted.sh;;
   bindings) OUT_NAME=out/bindings; SCRIPT_NAME=bindings.sh;;
   refine) OUT_NAME=out/refine; SCRIPT_NAME=run4.sh;;
+  gpt2) OUT_NAME=out/gpt2; SCRIPT_NAME=gpt2.sh;;
   *) echo "bad MODE" >&2; exit 2;;
 esac
 
 REPS=3; REPS_SET=0; MEM_GB=100; SMOKE=0; FRESH=0; NO_R=0; SKIP_INSTALL=0; SKIP_TESTS=0
 SECTIONS="main,msweep,audio,weighted"; DATASETS=""; SLICES=""; KLIST=""; OUT_DIR=""
+RUNMODE=$MODE
+if [[ "$MODE" == gpt2 ]]; then RUNMODE=raw; SECTIONS="msweep,gpt2"; fi
 
 usage() {
   cat <<USAGE
@@ -286,9 +290,25 @@ fi
 # writes them (run from simulation/, since it writes to input/ in its working directory), then every file
 # is checked against data/shasum.txt. A mismatch is a warning, not a stop: the run goes on, but its
 # results will not be bit-identical to results/gold/.
+if [[ "$MODE" == gpt2 ]]; then
+  INPUT=""; INPUT_CHECK="simulation files not used (gpt2 only)"
+  if ! G=$("$PY" "$SCRIPT_DIR/data.py" find-gpt2); then
+    log "GPT-2 tensor not in data/gpt2/: fetching it over HTTPS (range reads, about 26 MB) with run/gpt2_fetch.py"
+    "$PY" "$SCRIPT_DIR/gpt2_fetch.py" 2>&1 | tee -a "$LOG" | tail -3 || true
+    G=$("$PY" "$SCRIPT_DIR/data.py" find-gpt2) || { log "Stopping: could not fetch the GPT-2 tensor (see above)."; exit 3; }
+  fi
+  log "gpt2: $G"
+  if [[ "$(uname)" == "Darwin" ]]; then
+    log "memory: $(( $(sysctl -n hw.memsize) / 1000000000 )) GB RAM; $(memory_pressure 2>/dev/null | tail -1)"
+  else
+    log "memory: $(grep -E 'MemTotal|MemAvailable' /proc/meminfo | tr -s ' ' | tr '\n' ' ')"
+  fi
+  log "Ckmeans.1d.dp at k = 512 needs about 16kN = 54 GB; a cell whose predicted table does not fit in the memory available at its start is skipped (status skipped_mem) instead of swapping"
+fi
 SIM=${SIM_ARG:-$PKG_DIR/simulation}
 [[ -d "$SIM" ]] || SIM="$PKG_DIR/$SIM"
-if ! INPUT=$("$PY" "$SCRIPT_DIR/data.py" find-input "$SIM"); then
+if [[ "$MODE" == gpt2 ]]; then :
+elif ! INPUT=$("$PY" "$SCRIPT_DIR/data.py" find-input "$SIM"); then
   if [[ -n "$SIM_ARG" ]]; then
     log "Data not found in $SIM_ARG: expected $SIM_ARG/input/gaussian_continuous.txt (and the other 11 files)."; exit 3
   fi
@@ -308,11 +328,13 @@ if ! INPUT=$("$PY" "$SCRIPT_DIR/data.py" find-input "$SIM"); then
   INPUT=$("$PY" "$SCRIPT_DIR/data.py" find-input "$PKG_DIR/simulation") || { log "generation wrote no usable files"; exit 1; }
 fi
 log "input folder: $INPUT"
-if [[ $SMOKE == 1 ]]; then VDS="gaussian_continuous,lognormal_continuous,triangular_discrete,spike_uniform_discrete"
+if [[ "$MODE" == gpt2 ]]; then :
+elif [[ $SMOKE == 1 ]]; then VDS="gaussian_continuous,lognormal_continuous,triangular_discrete,spike_uniform_discrete"
 elif [[ $MODE == bindings ]]; then VDS="gaussian_continuous"
 else VDS="${DATASETS:-}"; fi
-INPUT_CHECK="all checked files match data/shasum.txt"
-if ! LEX_PREPARED_DIR="$WORK/inputs" "$PY" "$SCRIPT_DIR/data.py" verify "$INPUT" ${VDS:+"$VDS"} 2>&1 | tee -a "$LOG"; then
+[[ "$MODE" == gpt2 ]] || INPUT_CHECK="all checked files match data/shasum.txt"
+if [[ "$MODE" == gpt2 ]]; then :
+elif ! LEX_PREPARED_DIR="$WORK/inputs" "$PY" "$SCRIPT_DIR/data.py" verify "$INPUT" ${VDS:+"$VDS"} 2>&1 | tee -a "$LOG"; then
   INPUT_CHECK="MISMATCH against data/shasum.txt: results will not be bit-identical to results/gold/"
   log "WARNING: a data file does not match data/shasum.txt (see above). Continuing, but the results will not be"
   log "bit-identical to results/gold/. Files generated with another NumPy version or on another platform can differ in the last digit."
@@ -395,12 +417,13 @@ cp "$OUT_DIR/env_$SESSION.txt" "$OUT_DIR/env.txt"
 log "environment written to env.txt (and env_$SESSION.txt)"
 
 # ---- run ----
-ARGS=(--mode "$MODE" --input-dir "$INPUT" --out "$OUT_DIR" --workdir "$WORK" --fit "$FIT" --session "$SESSION"
+ARGS=(--mode "$RUNMODE" --input-dir "$INPUT" --out "$OUT_DIR" --workdir "$WORK" --fit "$FIT" --session "$SESSION"
       --reps "$REPS" --mem-limit-gb "$MEM_GB" --sections "$SECTIONS")
 [[ -n "$RS" ]] && ARGS+=(--rscript "$RS")
 [[ $RBIND == 1 ]] && ARGS+=(--rb 1)
 [[ -n "$PYB" ]] && ARGS+=(--pyb "$PYB")
 [[ $SMOKE == 1 ]] && ARGS+=(--smoke)
+[[ "$MODE" == gpt2 ]] && ARGS+=(--free-mem-guard 1)
 [[ -n "$DATASETS" ]] && ARGS+=(--datasets "$DATASETS")
 [[ -n "$SLICES" ]] && ARGS+=(--slices "$SLICES")
 [[ -n "$KLIST" ]] && ARGS+=(--k "$KLIST")

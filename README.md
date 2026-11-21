@@ -20,9 +20,10 @@ figures, and the data or the means to regenerate it.
 | `lex1d/` | lex1d at commit `8a691ee005b657f985ffa299c57542b79570b08c`, byte for byte. Every run checks it against `run/lex1d_8a691ee.sha256` and stops if any file differs. |
 | `bench/` | `fit.cpp`, the single-fit driver; `refine_fit.cpp`, the Refine-ablation driver for run 4; `refine_ltr.cpp`, an exploratory left-to-right Refine variant used only by run 4; `precgroup_fit.cpp`, the precision-grouping driver for run 5; and the `CMakeLists.txt` that builds them with lex1d. |
 | `run/` | Setup, run and analysis scripts (see below). |
-| `data/` | The simulation generator, its checksums and slice counts, and `audio/` for the real audio file. |
+| `data/` | The simulation generator, its checksums and slice counts, `audio/` for the real audio file, and `gpt2/` for the GPT-2 Large weight tensor (fetched by `run/gpt2.sh`; see `data/gpt2/README.md`). |
 | `simulation/input/` | The 12 generated simulation files. Not in git; created on the first run. |
 | `results/gold/` | Outputs of the GOLD run used in the papers: `raw/`, `sorted/`, `bindings/`, and `refine/` (run 4). |
+| `results/gpt2/` | Outputs of the GPT-2 Large run (`bash run/gpt2.sh`), the second real dataset in the papers. |
 | `results/figures/` | The figures in the papers. |
 | `paper/` | LaTeX sources and PDFs of the technical and expository papers. |
 | `talk/` | The talk, as HTML and PDF. |
@@ -45,6 +46,10 @@ Four scripts share one engine (`run/common.sh`, `run/run.py`):
   every tie rule is unchanged). Frozen lex1d itself is not modified. The variant is labelled exploratory
   in the outputs.
 - `run/run5.sh`: a fifth, exploratory run (not GOLD) on the audio only, described under "Run 5" below.
+- `run/gpt2.sh`: the second real dataset, one GPT-2 Large weight tensor (6,553,600 values), run with
+  the audio protocol (all solvers, M = 1,024 to 16,384, k = 4 to 512, 3 timed rounds). It fetches the
+  tensor into `data/gpt2/` if missing and writes to `out/gpt2/`; the paper's run is committed in
+  `results/gpt2/`. Details in `data/gpt2/README.md`.
 
 The main grid covers the 12 simulated datasets, each cut into 7 slices of 2^14 to 2^20 values, with
 k = 4 to 512, plus an M sweep, the audio file, and a weighted subset. Each cell of the first three
@@ -260,6 +265,12 @@ sources are the same.
 
 `results/figures/` holds the four figures in the papers, drawn from GOLD.
 
+
+## What results/gpt2 contains
+
+`results/gpt2/` holds the GPT-2 Large run used in the papers (`bash run/gpt2.sh`, 21 November 2026, same
+machine as GOLD): `results.csv`, `reps.csv`, `summary.md`, `env*.txt`, `run.log` and `inputs_manifest.csv`,
+unchanged from `out/gpt2/`. As in `results/gold/`, `cells/` is left out; its rows are all in `reps.csv`. All 64 cell and method rows are ok with 3 timed rounds, and SSE is identical across rounds.
 ## Data
 
 **Simulation.** `data/generate.py` (seed 2048) writes 12 datasets of 2,080,768 values each: ten
@@ -272,6 +283,11 @@ results will not be bit-identical to GOLD. See `data/README.md`.
 Carnatic Varnam Dataset by Xavier Serra, Gopala Krishna Koduri, Vignesh Ishwar and Joan Serrà
 (doi:10.34810/DATA2311), licensed CC BY 4.0. The file is `data/audio/dharini-abhogi.txt.gz`; its
 SHA-256 is checked before use. See `data/audio/README.md`.
+
+**GPT-2 Large weights.** 6,553,600 float32 values (1,280 × 5,120) of tensor `h.0.mlp.c_fc.weight` from
+GPT-2 Large (openai-community/gpt2-large on Hugging Face, commit 32b71b12, MIT license, Copyright OpenAI).
+The tensor is not committed: `run/gpt2.sh` fetches its 26 MB by HTTPS range reads of `model.safetensors`
+and checks its SHA-256. See `data/gpt2/README.md`.
 
 ## License
 

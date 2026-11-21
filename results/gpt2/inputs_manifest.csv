@@ -1,0 +1,3 @@
+dataset,slice,file,n,sha256,check,ok
+gpt2,0,gpt2_s0.raw.f64,6553600,140e15241b545ad369fd92fad6154b4785024f468fe61afb4e0eaf4c2dc6731e,raw,1
+gpt2,0,gpt2_s0.sorted.f64,6553600,2f3467c26858229c6e277df4717fc76ffccb9b871614c317fda82bff3b0d6298,ascending=1 permutation_of_raw=1,1

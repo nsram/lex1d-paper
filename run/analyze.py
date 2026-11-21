@@ -319,7 +319,7 @@ def summary(out, rows, res):
                 line.append(f"{p/2**20:.0f} / {a/2**20:.0f}" if p is not None and a is not None else "")
             body.append(line)
         L.append(table(["method \\ k"] + [str(k) for k in ks], body))
-    for s in ("audio", "weighted", "bindings"):
+    for s in ("audio", "gpt2", "weighted", "bindings"):
         if not sec.get(s):
             continue
         L.append(f"## Section {s}\n")

@@ -16,3 +16,9 @@ R-lib/
 __pycache__/
 *.pyc
 .DS_Store
+
+# GPT-2 Large tensor data (run/gpt2_fetch.py fetches it when missing); only README.md and gpt2_stats.json are committed
+data/gpt2/*.f32le
+data/gpt2/*.f64
+data/gpt2/*.safetensors
+data/gpt2/*.safetensors.part
