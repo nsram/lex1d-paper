@@ -6,22 +6,22 @@ small hand examples; random cases use fixed seeds.
 
 Dependencies: numpy and the lex1d Python binding (from bash run/setup.sh).
 
-From the repo root:  bash run/expo_checks.sh
-Writes out/expo_checks/results.json and out/expo_checks/summary.md. Exits 1 if any check fails.
+From the repo root:  bash run/checks.sh
+Writes out/checks/expository_examples/results.json and summary.md. Exits 1 if any check fails.
 """
 import itertools, json, math, os, sys, time
 from collections import Counter
 from fractions import Fraction as Fr
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, "out", "expo_checks")
+OUT = os.path.join(ROOT, "out", "checks", "expository_examples")
 BIG = 1 - 1e-12  # largest allowed tolerance: Refine applies (almost) no gain moves
 
 try:
     import numpy as np
     import lex
 except ImportError as e:
-    sys.exit(f"{e}. Run from the repo root: bash run/expo_checks.sh (needs bash run/setup.sh first)")
+    sys.exit(f"{e}. Run from the repo root: bash run/checks.sh (needs bash run/setup.sh first)")
 
 T0 = time.time()
 ROWS = []      # (row number, title)
@@ -495,7 +495,7 @@ for n, title in enumerate(ROWS, 1):
 res = dict(seconds=round(secs, 2), numpy=np.__version__, rows=summary, checks=CHECKS)
 with open(os.path.join(OUT, "results.json"), "w") as fh:
     json.dump(res, fh, indent=1)
-lines = ["# Expository checks (run/expo_checks.py)", "",
+lines = ["# Expository checks (run/check_expository_examples.py)", "",
          f"{len(CHECKS)} checks in {len(ROWS)} rows, {sum(not ch['ok'] for ch in CHECKS)} failed, {secs:.1f} s.", "",
          "| Row | Item (Table 10 of the expository paper) | Checks | Result |", "|---:|---|---:|---|"]
 for s_ in summary:

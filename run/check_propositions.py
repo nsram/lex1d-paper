@@ -1,4 +1,4 @@
-"""Numerical checks of the technical paper's propositions.
+"""Numerical checks of the technical paper's propositions (Appendix A, Table 7).
 
 Uses the lex1d Python binding, sympy for the algebraic identities, and brute force on
 tiny inputs. Random cases use seed 20261116. The DP-table memory formulas are checked
@@ -7,13 +7,13 @@ against results/gold/raw/results.csv.
 Dependencies: numpy, sympy, pandas, and the lex1d Python binding (from bash run/setup.sh).
 
 From the repo root:  bash run/checks.sh
-Writes out/checks/results.json and out/checks/summary.md.
+Writes out/checks/propositions/results.json and summary.md. Exits 1 if any check fails.
 """
 import itertools, json, os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GOLD = os.path.join(ROOT, "results", "gold", "raw", "results.csv")
-OUT = os.path.join(ROOT, "out", "checks")
+OUT = os.path.join(ROOT, "out", "checks", "propositions")
 SEED = 20261116
 BIG = 1 - 1e-12  # largest allowed tolerance: Refine applies (almost) no gain moves
 
@@ -197,12 +197,12 @@ def write_summary(out):
     lines = [
         "# Numerical checks of the propositions",
         "",
-        "Script `run/checks.py`, lex1d Python binding, seed 20261116. Random cases: N = 200 to 5,000, "
+        "Script `run/check_propositions.py`, lex1d Python binding, seed 20261116. Random cases: N = 200 to 5,000, "
         "k = 2 to 64, integer, lognormal and rounded-normal data, M from k + 1 to 1,024; brute-force "
         "cases: N = 3 to 9. The memory-formula check uses GOLD `results/gold/raw/results.csv` "
         "(the paper's earlier 32 + 32 + 31 count was from a smaller pre-GOLD harness; the formulas are the same).",
         "",
-        "Table 11 also reports 112 of 112 discrete synthetic cells exact, 3,096 of 3,096 LEX fits of "
+        "Table 7 also reports 112 of 112 discrete synthetic cells exact, 3,096 of 3,096 LEX fits of "
         "Section 6 finished with no SSE increase and none below the optimum, and Lemma 2 on 30 GOLD "
         "cells. Those figures come from the GOLD benchmark, not from this script.",
         "",
@@ -236,6 +236,10 @@ def main():
     rel = os.path.relpath(OUT, ROOT)
     print(json.dumps(out, indent=1, default=str))
     print(f"wrote {rel}/results.json and {rel}/summary.md")
+    if "Every statement checked by this script passed." not in open(os.path.join(OUT, "summary.md")).read():
+        print("FAIL: at least one proposition check failed (see summary.md)")
+        sys.exit(1)
+    print("all checks passed")
 
 
 if __name__ == "__main__":

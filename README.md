@@ -121,18 +121,39 @@ current on 18 November 2026, since GOLD did not record them.
 The run scripts themselves need only Python 3.8+ with its standard library. numpy is used only by
 the Python binding and by `data/generate.py`.
 
-## Proposition checks
+## Proof checks
 
-`bash run/checks.sh` numerically checks the propositions in Appendix B of the technical paper
-(Table 11). It verifies the Ward and transfer identities with sympy, compares the exact DP to
-brute force on tiny inputs, and runs 300 random cases through the lex1d Python binding (seed
-20261116): exactness when D ≤ M, that LEX is never worse than Collapse, that Refine never
-raises SSE, and that Collapse is hierarchical. It also checks the DP-table memory formulas
-against `results/gold/raw/results.csv`. Results go to `out/checks/results.json` and
-`out/checks/summary.md`.
+One command runs every check of the papers' stated results, from the repo root:
 
-This needs the lex1d Python binding in `.venv` (`bash run/setup.sh` first). The script also
-uses sympy and pandas, and installs them into `.venv` if they are missing.
+    bash run/checks.sh
+
+It needs the lex1d Python binding in `.venv` (`bash run/setup.sh` first) and sympy and pandas,
+which it installs into `.venv` if they are missing. It runs five scripts, prints a summary, and
+exits nonzero if any check fails. The whole run takes about 15 seconds.
+
+- `run/check_propositions.py`: the technical paper's propositions (Appendix A, Table 7). It
+  verifies the merge-cost and transfer identities with sympy, compares the exact DP to brute force
+  on tiny inputs, runs random cases through the lex1d Python binding (seed 20261116) for exactness
+  when D ≤ M, LEX never worse than Collapse, Refine never raising SSE, and Collapse being
+  hierarchical, and checks the DP-table memory formulas against `results/gold/raw/results.csv`.
+  Results go to `out/checks/propositions/`.
+- `run/check_move_rule.py`: Lemma 1, the transfer formula (7) against brute-force SSE in 20,000
+  random cases, the move-sign rule (b) and its counterexample (c); and the two-copy case of
+  Proposition 1, symbolically (sympy) and on 6,000 edge cases. Exact rational arithmetic.
+- `run/check_no_split_duplicates.py`: Corollary 1. Over 8,591 small partitions in which no single
+  transfer pays, no two neighboring bins share a value unless both hold only that value. Exact
+  rational arithmetic.
+- `run/check_expository_numbers.py`: numbers in the expository paper that can be recomputed from
+  scratch: the Refine move counts 8, 20, 40, 70, 112 for windows of 3 to 7 bins, the Lemma 1(c)
+  example, and Exercises 4, 5 and 7.
+- `run/check_expository_examples.py`: every worked example and number that the expository paper
+  lists in its Appendix A (Table 10), one section per row: the hand DP on six values, contiguity
+  and non-nesting, the quadrangle inequality (80,000 random quadruples) and monotone splits, the
+  SMAWK pseudocode against brute-force row minima, the ten-value LEX trace and the coarse DP for
+  every M, the Figure 2 toy example, the atom endpoint property, the transfer examples, the memory
+  budgets, and the smaller hand illustrations. Each value is compared with the value printed in the
+  paper; the traces are also checked against the lex1d Python binding. Seeds 20261117, 1 and
+  20261120. Results go to `out/checks/expository_examples/`.
 
 ## Run 4 numbers
 
@@ -144,20 +165,6 @@ of the final error against `results/gold/raw/results.csv`. It reads only `result
 and that file, uses no timing column, and takes a few seconds. Results go to `out/run4_numbers/results.json`
 and `out/run4_numbers/summary.md`. It uses `.venv` (creating it from Python 3.12+ if needed; `run/setup.sh`
 reuses it) and installs numpy, pandas and statsmodels into it if they are missing.
-
-## Expository checks
-
-`bash run/expo_checks.sh` recomputes every worked example and number that the expository paper
-lists in its Appendix A (Table 10), one section per row: the hand DP on six values, contiguity and
-non-nesting, the quadrangle inequality (80,000 random quadruples) and monotone splits, the SMAWK
-pseudocode against brute-force row minima, the ten-value LEX trace and the coarse DP for every M,
-the Figure 2 toy example, the atom endpoint property, the transfer examples, the memory budgets,
-and the smaller hand illustrations. Small examples use exact fractions; random cases use fixed seeds
-(20261117, 1 and 20261120). Each value is compared with the value printed in the paper, and the
-script exits with status 1 if any differs. The traces are also checked against the lex1d Python
-binding (`lex_hybrid`, `lex_plain`, `ckmeans_exact`). It takes a few seconds. Results go to
-`out/expo_checks/results.json` and `out/expo_checks/summary.md`. It needs the lex1d Python binding
-and numpy in `.venv` (`bash run/setup.sh` first) and installs nothing.
 
 ## Runtime and memory
 
@@ -189,6 +196,31 @@ the raw values from the mapped cuts, and must agree to 1e-12. Run 5 compares thi
 at k = 64, 256 and 512, with one warm-up round and 3 timed rounds, and the variant order alternates.
 The plain variant's SSE must equal GOLD's bit for bit. Results go to `out/precgroup/`: `summary.md`
 (medians, speed-ups, gaps to the exact SSE, and the checks), `runs.csv`, `env.txt` and `run.log`.
+
+## Measurement details
+
+These details were in the paper's experimental-setup section and now live here.
+
+- **Machine.** MacBook Pro, Apple M3 Max (12 performance and 4 efficiency cores), 128 GB of RAM,
+  macOS 15.8.1, on AC power.
+- **Compiler.** Apple clang 17.0.0, with floating-point contraction off (`-ffp-contract=off`), so a
+  multiply and an add are never fused into one instruction with a single rounding. Bit-identity
+  with the Scala reference and across the bindings depends on this.
+- **Threads.** LEX, lex1d's exact DP and Ckmeans.1d.dp are single-threaded; Ckmeans.1d.dp's own
+  README describes it as running on a single core.
+- **Timing.** Every fit runs on unsorted input with the sort included: one warm-up run and three
+  timed runs per cell and solver, each in its own process; the reported time is the median of the
+  three. Ckmeans.1d.dp is timed inside R around the call. LEX and the exact DP are timed in a C++
+  driver that uses a stage-instrumented copy of lex1d and records each stage's time; on the warm-up
+  run the driver also calls the public lex1d function and checks that it returns the same result
+  (3,860 of 3,860 checks passed in GOLD). Every fit is repeated on presorted copies of the same
+  inputs to measure the cost of the sort.
+- **Memory.** Peak resident set size of every fit, read from `/usr/bin/time -l` (macOS) or
+  `/usr/bin/time -v` (Linux) in each of its four processes; the paper reports the median over the
+  four. Process baselines (the C++ driver, R or Python, plus the loaded data) are measured separately
+  with load-only processes. The paper reports memory in MB (10^6 bytes) and GB (10^9 bytes).
+- **Data precision.** The synthetic datasets are written with 18 decimals; the decoded audio is
+  stored with 8 decimals.
 
 ## Outputs
 
