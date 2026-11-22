@@ -1,0 +1,49 @@
+start,variant,cells,move,left,right,type3,description,accepted_moves,sse_drop,move_share,drop_share
+collapse,all8,24,0,give,give,shrink_grow,paired shrink of the middle bin,183952,6660.5507405321869,0.06389482946,0.1406612465
+collapse,all8,24,1,give,stay,single,single move of the left cut (give),218664,4860.1432412181475,0.07595187325,0.1026392311
+collapse,all8,24,2,stay,give,single,single move of the right cut (give),182733,230.86260547254301,0.06347141575,0.004875485997
+collapse,all8,24,3,take,stay,single,single move of the left cut (take),273226,1225.6758413812317,0.09490371767,0.02588450992
+collapse,all8,24,4,stay,take,single,single move of the right cut (take),197194,1970.9264613201317,0.06849437353,0.04162313053
+collapse,all8,24,5,take,give,translate,paired translate of the middle bin one piece left,885397,4323.0604029133347,0.3075383269,0.09129681446
+collapse,all8,24,6,give,take,translate,paired translate of the middle bin one piece right,741994,19630.46586152451,0.2577279947,0.4145671891
+collapse,all8,24,7,take,take,shrink_grow,paired grow of the middle bin,195821,8450.0261684294983,0.06801746868,0.1784523924
+collapse,single,24,0,give,give,shrink_grow,paired shrink of the middle bin,0,0,0,0
+collapse,single,24,1,give,stay,single,single move of the left cut (give),953766,11962.607431412118,0.2166971344,0.2525392067
+collapse,single,24,2,stay,give,single,single move of the right cut (give),1089323,5275.8129658038197,0.2474958979,0.1113761886
+collapse,single,24,3,take,stay,single,single move of the left cut (take),1251575,6587.3341505162134,0.2843598073,0.1390633397
+collapse,single,24,4,stay,take,single,single move of the right cut (take),1106714,23543.553319217928,0.2514471604,0.497021265
+collapse,single,24,5,take,give,translate,paired translate of the middle bin one piece left,0,0,0,0
+collapse,single,24,6,give,take,translate,paired translate of the middle bin one piece right,0,0,0,0
+collapse,single,24,7,take,take,shrink_grow,paired grow of the middle bin,0,0,0,0
+coarse4096,all8,24,0,give,give,shrink_grow,paired shrink of the middle bin,7868,0.16010095232530572,0.05847292617,0.1747515761
+coarse4096,all8,24,1,give,stay,single,single move of the left cut (give),16097,0.070989635600266457,0.1196287103,0.07748580209
+coarse4096,all8,24,2,stay,give,single,single move of the right cut (give),13203,0.050151255278869079,0.09812125626,0.05474052949
+coarse4096,all8,24,3,take,stay,single,single move of the left cut (take),17604,0.14646665119533792,0.1308283417,0.1598696183
+coarse4096,all8,24,4,stay,take,single,single move of the right cut (take),12093,0.033071741144430358,0.08987202545,0.03609809189
+coarse4096,all8,24,5,take,give,translate,paired translate of the middle bin one piece left,31683,0.22103351494670007,0.2354598017,0.2412599959
+coarse4096,all8,24,6,give,take,translate,paired translate of the middle bin one piece right,27976,0.10929507083709214,0.2079103435,0.1192965164
+coarse4096,all8,24,7,take,take,shrink_grow,paired grow of the middle bin,8034,0.12505431681259011,0.05970659493,0.1364978699
+coarse4096,single,24,0,give,give,shrink_grow,paired shrink of the middle bin,0,0,0,0
+coarse4096,single,24,1,give,stay,single,single move of the left cut (give),47196,0.17601784370121681,0.2458509142,0.1924203004
+coarse4096,single,24,2,stay,give,single,single move of the right cut (give),47842,0.24938672732672429,0.2492160233,0.2726261609
+coarse4096,single,24,3,take,stay,single,single move of the left cut (take),51985,0.34632955409264438,0.2707975204,0.3786027338
+coarse4096,single,24,4,stay,take,single,single move of the right cut (take),44947,0.1430230151129446,0.234135542,0.1563508048
+coarse4096,single,24,5,take,give,translate,paired translate of the middle bin one piece left,0,0,0,0
+coarse4096,single,24,6,give,take,translate,paired translate of the middle bin one piece right,0,0,0,0
+coarse4096,single,24,7,take,take,shrink_grow,paired grow of the middle bin,0,0,0,0
+all,all8,48,0,give,give,shrink_grow,paired shrink of the middle bin,191820,6660.7108414845125,0.06365273521,0.1406619061
+all,all8,48,1,give,stay,single,single move of the left cut (give),234761,4860.2142308537477,0.07790209451,0.1026387444
+all,all8,48,2,stay,give,single,single move of the right cut (give),195936,230.91275672782191,0.06501857119,0.004876450769
+all,all8,48,3,take,stay,single,single move of the left cut (take),290830,1225.8223080324267,0.09650779366,0.02588710222
+all,all8,48,4,stay,take,single,single move of the right cut (take),209287,1970.959533061276,0.0694489104,0.04162302364
+all,all8,48,5,take,give,translate,paired translate of the middle bin one piece left,917080,4323.2814364282813,0.3043199375,0.0912997159
+all,all8,48,6,give,take,translate,paired translate of the middle bin one piece right,769970,19630.575156595347,0.255503579,0.4145614763
+all,all8,48,7,take,take,shrink_grow,paired grow of the middle bin,203855,8450.1512227463118,0.06764637856,0.1784515806
+all,single,48,0,give,give,shrink_grow,paired shrink of the middle bin,0,0,0,0
+all,single,48,1,give,stay,single,single move of the left cut (give),1000962,11962.783449255818,0.2179155596,0.2525380458
+all,single,48,2,stay,give,single,single move of the right cut (give),1137165,5276.0623525311466,0.2475677872,0.1113793024
+all,single,48,3,take,stay,single,single move of the left cut (take),1303560,6587.6804800703057,0.283792998,0.1390679654
+all,single,48,4,stay,take,single,single move of the right cut (take),1151661,23543.696342233041,0.2507236552,0.4970146864
+all,single,48,5,take,give,translate,paired translate of the middle bin one piece left,0,0,0,0
+all,single,48,6,give,take,translate,paired translate of the middle bin one piece right,0,0,0,0
+all,single,48,7,take,take,shrink_grow,paired grow of the middle bin,0,0,0,0

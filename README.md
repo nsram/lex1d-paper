@@ -18,12 +18,13 @@ figures, and the data or the means to regenerate it.
 | Path | What it holds |
 |---|---|
 | `lex1d/` | lex1d at commit `8a691ee005b657f985ffa299c57542b79570b08c`, byte for byte. Every run checks it against `run/lex1d_8a691ee.sha256` and stops if any file differs. |
-| `bench/` | `fit.cpp`, the single-fit driver; `refine_fit.cpp`, the Refine-ablation driver for run 4; `refine_ltr.cpp`, an exploratory left-to-right Refine variant used only by run 4; `precgroup_fit.cpp`, the precision-grouping driver for run 5; and the `CMakeLists.txt` that builds them with lex1d. |
+| `bench/` | `fit.cpp`, the single-fit driver; `refine_fit.cpp`, the Refine-ablation driver for run 4; `refine_ltr.cpp`, an exploratory left-to-right Refine variant used only by run 4; `precgroup_fit.cpp`, the precision-grouping driver for run 5; `ablation.cpp`, the paired-move Refine driver for `run/ablation.sh`; and the `CMakeLists.txt` that builds them with lex1d. |
 | `run/` | Setup, run and analysis scripts (see below). |
 | `data/` | The simulation generator, its checksums and slice counts, `audio/` for the real audio file, and `gpt2/` for the GPT-2 Large weight tensor (fetched by `run/gpt2.sh`; see `data/gpt2/README.md`). |
 | `simulation/input/` | The 12 generated simulation files. Not in git; created on the first run. |
 | `results/gold/` | Outputs of the GOLD run used in the papers: `raw/`, `sorted/`, `bindings/`, and `refine/` (run 4). |
 | `results/gpt2/` | Outputs of the GPT-2 Large run (`bash run/gpt2.sh`), the second real dataset in the papers. |
+| `results/ablation/` | Outputs of the paired-move Refine ablation (`bash run/ablation.sh`). |
 | `results/figures/` | Earlier figures, not the ones in the current technical paper. |
 | `paper/` | LaTeX sources and PDFs of the technical and expository papers. |
 | `paper/technical/figs/` | Figures 1-5 of the technical paper, and the script that regenerates them. |
@@ -51,6 +52,12 @@ Four scripts share one engine (`run/common.sh`, `run/run.py`):
   the audio protocol (all solvers, M = 1,024 to 16,384, k = 4 to 512, 3 timed rounds). It fetches the
   tensor into `data/gpt2/` if missing and writes to `out/gpt2/`; the paper's run is committed in
   `results/gpt2/`. Details in `data/gpt2/README.md`.
+- `run/ablation.sh`: a paired-move Refine ablation on current lex1d. From the same start it compares
+  all 8 window moves (`all8`) with the four single-cut moves only (`single`), on
+  `uniform_continuous`, `gaussian_continuous` and `lognormal_continuous` at N = 2^16 and 2^20,
+  k = 8, 64, 256 and 512, from a Collapse start (`lex_plain`) and from the default coarse-DP start
+  (M = 4,096). Writes to `out/ablation/`. The committed copy lives in `results/ablation/`; if the
+  run was done with the standalone pack, copy the output files in as described there.
 
 The main grid covers the 12 simulated datasets, each cut into 7 slices of 2^14 to 2^20 values, with
 k = 4 to 512, plus an M sweep, the audio file, and a weighted subset. Each cell of the first three
@@ -276,6 +283,23 @@ sources are the same.
 `results/gpt2/` holds the GPT-2 Large run used in the papers (`bash run/gpt2.sh`, 21 November 2026, same
 machine as GOLD): `results.csv`, `reps.csv`, `summary.md`, `env*.txt`, `run.log` and `inputs_manifest.csv`,
 unchanged from `out/gpt2/`. As in `results/gold/`, `cells/` is left out; its rows are all in `reps.csv`. All 64 cell and method rows are ok with 3 timed rounds, and SSE is identical across rounds.
+
+## What results/ablation contains
+
+`results/ablation/` holds the paired-move Refine ablation (`bash run/ablation.sh`). The script
+writes to `out/ablation/`. If the run was done outside this repository with the standalone pack,
+copy these files from that pack's `out/ablation/` into `results/ablation/`:
+
+    cp out/ablation/results.csv results/ablation/
+    cp out/ablation/moves_8way.csv results/ablation/
+    cp out/ablation/moves_3way.csv results/ablation/
+    cp out/ablation/summary.txt results/ablation/
+    cp out/ablation/env.txt results/ablation/
+
+Run the copy commands from the repository root, with `out/ablation/` pointing at the pack folder
+(or use the pack's full path). `run.log` and `inputs_manifest.csv` can be copied too if they are
+present. See `results/ablation/README.md`.
+
 ## Data
 
 **Simulation.** `data/generate.py` (seed 2048) writes 12 datasets of 2,080,768 values each: ten

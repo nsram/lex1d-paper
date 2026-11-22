@@ -1,6 +1,6 @@
 # Benchmark build: the frozen lex1d C++ library (../lex1d/cpp, commit 8a691ee, verbatim), its 6 test
-# suites, the single-fit driver fit.cpp, the Refine-ablation driver refine_fit.cpp (GOLD run 4), and the
-# precision-grouping driver precgroup_fit.cpp (run 5, exploratory). Release and strict floating point (-ffp-contract=off)
+# suites, the single-fit driver fit.cpp, the Refine-ablation driver refine_fit.cpp (GOLD run 4), the precision-grouping driver precgroup_fit.cpp (run 5, exploratory),
+# and the paired-move ablation driver ablation.cpp. Release and strict floating point (-ffp-contract=off)
 # come from lex1d/cpp/cmake/LexFloatingPoint.cmake. run/common.sh configures it with
 #   cmake -S bench -B build -DCMAKE_BUILD_TYPE=Release
 cmake_minimum_required(VERSION 3.21)
@@ -31,8 +31,15 @@ set_target_properties(precgroup_fit PROPERTIES EXCLUDE_FROM_ALL TRUE)
 target_include_directories(precgroup_fit PRIVATE ${LEX1D_DIR}/cpp/src)
 target_link_libraries(precgroup_fit PRIVATE lex)
 lex_strict_fp(precgroup_fit)
+# Paired-move Refine ablation (run/ablation.sh); also outside `all`.
+add_executable(ablation ablation.cpp)
+set_target_properties(ablation PROPERTIES EXCLUDE_FROM_ALL TRUE)
+target_include_directories(ablation PRIVATE ${LEX1D_DIR}/cpp/src)
+target_link_libraries(ablation PRIVATE lex)
+lex_strict_fp(ablation)
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
   target_compile_options(fit PRIVATE -Wall -Wextra)
   target_compile_options(refine_fit PRIVATE -Wall -Wextra)
   target_compile_options(precgroup_fit PRIVATE -Wall -Wextra)
+  target_compile_options(ablation PRIVATE -Wall -Wextra)
 endif()
