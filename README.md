@@ -24,8 +24,9 @@ figures, and the data or the means to regenerate it.
 | `simulation/input/` | The 12 generated simulation files. Not in git; created on the first run. |
 | `results/gold/` | Outputs of the GOLD run used in the papers: `raw/`, `sorted/`, `bindings/`, and `refine/` (run 4). |
 | `results/gpt2/` | Outputs of the GPT-2 Large run (`bash run/gpt2.sh`), the second real dataset in the papers. |
-| `results/figures/` | The figures in the papers. |
+| `results/figures/` | Earlier figures, not the ones in the current technical paper. |
 | `paper/` | LaTeX sources and PDFs of the technical and expository papers. |
+| `paper/technical/figs/` | Figures 1-5 of the technical paper, and the script that regenerates them. |
 | `talk/` | The talk, as HTML and PDF. |
 | `requirements.txt`, `requirements-r.txt` | Pinned Python and R package versions (the GOLD versions). |
 
@@ -263,7 +264,11 @@ GOLD was run with an earlier copy of these scripts that carried version prefixes
 `env.txt`. The scripts were renamed for this repository; the method, the CSV columns and the lex1d
 sources are the same.
 
-`results/figures/` holds the four figures in the papers, drawn from GOLD.
+`paper/technical/figs/` holds Figures 1-5 of the technical paper, drawn from GOLD. From the repository root:
+
+    python3 paper/technical/figs/make_figs.py
+
+`results/figures/` holds earlier figures. They are not the ones in the current technical paper.
 
 
 ## What results/gpt2 contains
