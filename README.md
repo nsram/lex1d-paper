@@ -1,5 +1,9 @@
 # lex1d-paper
 
+> Superseded by [lex1dx-paper](https://github.com/nsram/lex1dx-paper), the replication material
+> for the current LEX paper, which uses [lex1dx](https://github.com/nsram/lex1dx).
+> This repository is a frozen record of the earlier lex1d papers. It is archived and read-only.
+
 Replication material for two papers by N. Sriram on LEX, a method for least-squares scalar
 quantization (1-D k-means with contiguous bins):
 
